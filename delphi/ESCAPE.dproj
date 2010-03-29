@@ -1,0 +1,109 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{19c45f9f-6e04-4bd0-be26-402bf42ba179}</ProjectGuid>
+    <MainSource>ESCAPE.DPR</MainSource>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+    <DCC_DependencyCheckOutputName>ESCAPE.exe</DCC_DependencyCheckOutputName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_DebugInformation>False</DCC_DebugInformation>
+    <DCC_LocalDebugSymbols>False</DCC_LocalDebugSymbols>
+    <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+    <DCC_Define>RELEASE</DCC_Define>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_Define>DEBUG</DCC_Define>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <Borland.Personality>Delphi.Personality</Borland.Personality>
+    <Borland.ProjectType>VCLApplication</Borland.ProjectType>
+    <BorlandProject>
+<BorlandProject xmlns=""> <Delphi.Personality>   <Parameters>
+      <Parameters Name="UseLauncher">False</Parameters>
+      <Parameters Name="LoadAllSymbols">True</Parameters>
+      <Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+    </Parameters>
+    <VersionInfo>
+      <VersionInfo Name="IncludeVerInfo">False</VersionInfo>
+      <VersionInfo Name="AutoIncBuild">False</VersionInfo>
+      <VersionInfo Name="MajorVer">1</VersionInfo>
+      <VersionInfo Name="MinorVer">0</VersionInfo>
+      <VersionInfo Name="Release">0</VersionInfo>
+      <VersionInfo Name="Build">0</VersionInfo>
+      <VersionInfo Name="Debug">False</VersionInfo>
+      <VersionInfo Name="PreRelease">False</VersionInfo>
+      <VersionInfo Name="Special">False</VersionInfo>
+      <VersionInfo Name="Private">False</VersionInfo>
+      <VersionInfo Name="DLL">False</VersionInfo>
+      <VersionInfo Name="Locale">2067</VersionInfo>
+      <VersionInfo Name="CodePage">1252</VersionInfo>
+    </VersionInfo>
+    <VersionInfoKeys>
+      <VersionInfoKeys Name="CompanyName"></VersionInfoKeys>
+      <VersionInfoKeys Name="FileDescription"></VersionInfoKeys>
+      <VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+      <VersionInfoKeys Name="InternalName"></VersionInfoKeys>
+      <VersionInfoKeys Name="LegalCopyright"></VersionInfoKeys>
+      <VersionInfoKeys Name="LegalTrademarks"></VersionInfoKeys>
+      <VersionInfoKeys Name="OriginalFilename"></VersionInfoKeys>
+      <VersionInfoKeys Name="ProductName"></VersionInfoKeys>
+      <VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+      <VersionInfoKeys Name="Comments"></VersionInfoKeys>
+    </VersionInfoKeys>
+    <Source>
+      <Source Name="MainSource">ESCAPE.DPR</Source>
+    </Source>
+  </Delphi.Personality> </BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <ItemGroup />
+  <ItemGroup>
+    <DelphiCompile Include="ESCAPE.DPR">
+      <MainSource>MainSource</MainSource>
+    </DelphiCompile>
+    <DCCReference Include="ABOUT.PAS">
+      <Form>AboutForm</Form>
+    </DCCReference>
+    <DCCReference Include="ACTIVITY.PAS">
+      <Form>ActivityForm</Form>
+    </DCCReference>
+    <DCCReference Include="BRKFORM.PAS">
+      <Form>BreakForm</Form>
+    </DCCReference>
+    <DCCReference Include="COMMON.PAS" />
+    <DCCReference Include="CONFIG.PAS">
+      <Form>ConfigForm</Form>
+    </DCCReference>
+    <DCCReference Include="DATAMEM.PAS">
+      <Form>DmemForm</Form>
+    </DCCReference>
+    <DCCReference Include="INSTRMEM.PAS">
+      <Form>ImemForm</Form>
+    </DCCReference>
+    <DCCReference Include="MAIN.PAS">
+      <Form>MainForm</Form>
+    </DCCReference>
+    <DCCReference Include="MICRO.PAS">
+      <Form>MicroForm</Form>
+    </DCCReference>
+    <DCCReference Include="MICROCOD.PAS">
+      <Form>MicroCode</Form>
+    </DCCReference>
+    <DCCReference Include="PIPE.PAS">
+      <Form>PipeForm</Form>
+    </DCCReference>
+    <DCCReference Include="PIPEDEF.PAS">
+      <Form>PipeCode</Form>
+    </DCCReference>
+    <DCCReference Include="RANGE.PAS">
+      <Form>RangeForm</Form>
+    </DCCReference>
+    <DCCReference Include="USAGE.PAS">
+      <Form>UsageForm</Form>
+    </DCCReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Borland.Delphi.Targets" />
+</Project>
