@@ -175,7 +175,7 @@ begin
     begin
       if Length(s)>0 then
       begin
-        Brush.Color:=Colors[Col-1,Row-1];
+        Brush.Color:=FPColorToTColor(Colors[Col-1,Row-1]);
         FillRect(Rect);
         if Stalled[Col-1,Row-1] then
         begin
