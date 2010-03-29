@@ -35,7 +35,7 @@ interface
 
 uses
   SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
-  Forms, Dialogs, StdCtrls, Spin, Menus, ExtCtrls, Grids, lmessages;
+  Forms, Dialogs, StdCtrls, Spin, Menus, ExtCtrls, Grids, lmessages, lcltype;
 
 type
   { TNewStringGrid: TStringGrid with an extra function to simulate a key press }
@@ -76,9 +76,9 @@ type
     function GetMaxValue: LongInt;
     procedure SetMaxValue (NewValue: LongInt);
     function Log2(NewValue: LongInt): Integer;
-    function CheckValue_Expo(NewValue: LongInt; var Expo: Integer): LongInt;
-    procedure UpClick (Sender: TObject); override;
-    procedure DownClick (Sender: TObject); override;
+    function CheckValue_Expo(NewValue: LongInt; out Expo: Integer): LongInt;
+//    procedure UpClick (Sender: TObject); override;
+//    procedure DownClick (Sender: TObject); override;
     procedure DoExit; override;
   published
     property MinExponent: Integer read FMinExponent write FMinExponent default 0;
@@ -97,8 +97,8 @@ type
     function GetValue2: LongInt;
     procedure SetValue2 (Val: LongInt);
     function CheckValue(Val: LongInt): LongInt;
-    procedure UpClick (Sender: TObject); override;
-    procedure DownClick (Sender: TObject); override;
+//    procedure UpClick (Sender: TObject); override;
+//    procedure DownClick (Sender: TObject); override;
     procedure DoExit; override;
   protected
     procedure KeyPress(var Key: Char); override;
@@ -325,7 +325,7 @@ begin
   if not IsValidChar(Key) then
   begin
     Key := #0;
-    MessageBeep(0)
+//    MessageBeep(0)
   end;
   if Key <> #0 then inherited KeyPress(Key);
 end;
@@ -383,7 +383,7 @@ begin
   end
 end;
 
-function TPowerSpin.CheckValue_Expo(NewValue: LongInt; var Expo: Integer): LongInt;
+function TPowerSpin.CheckValue_Expo(NewValue: LongInt; out Expo: Integer): LongInt;
 begin
   Expo:=Log2(NewValue);
   if (FMaxExponent <> FMinExponent) then
@@ -452,7 +452,7 @@ procedure TPowerSpin.SetMaxValue (NewValue: LongInt);
 begin
   FMaxExponent:=Log2(NewValue);
 end;
-
+(*
 procedure TPowerSpin.UpClick (Sender: TObject);
 begin
   if ReadOnly then MessageBeep(0)
@@ -464,7 +464,7 @@ begin
   if ReadOnly then MessageBeep(0)
   else Value := Value shr 1;
 end;
-
+*)
 procedure TPowerSpin.DoExit;
 begin
   GetValue2
@@ -497,7 +497,7 @@ procedure THexSpin.SetValue2 (Val: LongInt);
 begin
   Text := IntToHex(CheckValue(Val),FDigits)
 end;
-
+(*
 procedure THexSpin.UpClick (Sender: TObject);
 begin
   if ReadOnly then MessageBeep(0)
@@ -509,7 +509,7 @@ begin
   if ReadOnly then MessageBeep(0)
   else Value := Value - FIncrement;
 end;
-
+*)
 procedure THexSpin.DoExit;
 begin
   GetValue2
@@ -546,7 +546,6 @@ begin
   FPanel.Left:=Left+2;
   FPanel.Top:=Top+2;
   FEdit.BorderStyle:=bsNone;
-  FEdit.Ctl3D:=false;
   FEdit.ReadOnly:=true;
   FEdit.Color:=clWindow
 end;
@@ -607,8 +606,6 @@ begin
   FMemo.Left:=2;
   FMemo.Top:=2;
   FMemo.BorderStyle:=bsNone;
-  FMemo.ParentCtl3D:=false;
-  FMemo.Ctl3D:=false;
   FMemo.ReadOnly:=true;
   FMemo.Color:=clWindow
 end;
