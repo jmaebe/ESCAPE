@@ -1,0 +1,64 @@
+object UsageForm: TUsageForm
+  Left = 120
+  Top = 436
+  Width = 552
+  Height = 254
+  Caption = 'Pipeline Usage Diagram'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'System'
+  Font.Style = []
+  Menu = MainMenu1
+  OldCreateOrder = True
+  PopupMenu = PopupMenu1
+  Position = poScreenCenter
+  OnCreate = FormCreate
+  OnResize = FormResize
+  PixelsPerInch = 96
+  TextHeight = 16
+  object Grid: TStringGrid
+    Left = 0
+    Top = 0
+    Width = 544
+    Height = 208
+    Align = alClient
+    ColCount = 2
+    DefaultRowHeight = 20
+    DefaultDrawing = False
+    FixedCols = 0
+    RowCount = 1025
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goThumbTracking]
+    ScrollBars = ssVertical
+    TabOrder = 0
+    OnDrawCell = GridDrawCell
+    OnMouseUp = GridMouseUp
+    OnTopLeftChanged = GridTopLeftChanged
+    ColWidths = (
+      164
+      370
+    )
+  end
+  object MainMenu1: TMainMenu
+    Left = 24
+    Top = 24
+    object View1: TMenuItem
+      Caption = 'View'
+      object HideForm1: TMenuItem
+        Caption = '&Hide Form'
+        ShortCut = 115
+        OnClick = HideForm1Click
+      end
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 24
+    Top = 56
+    object HideForm2: TMenuItem
+      Caption = '&Hide Form'
+      ShortCut = 115
+      OnClick = HideForm1Click
+    end
+  end
+end

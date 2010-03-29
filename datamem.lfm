@@ -1,0 +1,215 @@
+object DmemForm: TDmemForm
+  Left = 675
+  Height = 300
+  Top = 564
+  Width = 434
+  HorzScrollBar.Visible = False
+  VertScrollBar.Visible = False
+  Caption = 'Data View'
+  ClientHeight = 300
+  ClientWidth = 434
+  Font.Color = clBlack
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  KeyPreview = True
+  Menu = MainMenu1
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  OnResize = FormResize
+  Position = poScreenCenter
+  LCLVersion = '0.9.29'
+  object Grid: TStringGrid
+    Left = 0
+    Height = 300
+    Top = 0
+    Width = 434
+    Align = alClient
+    BorderStyle = bsNone
+    FixedColor = clWindow
+    FixedRows = 0
+    Font.Color = clBlack
+    Font.Height = -12
+    Font.Name = 'Courier New'
+    Options = [goRangeSelect, goDrawFocusSelected, goAlwaysShowEditor, goThumbTracking]
+    ParentFont = False
+    PopupMenu = PopupMenu1
+    RowCount = 10
+    ScrollBars = ssVertical
+    TabOrder = 0
+    TitleFont.Color = clBlack
+    TitleFont.Height = -12
+    TitleFont.Name = 'Courier New'
+    OnKeyDown = GridKeyDown
+    OnKeyPress = GridKeyPress
+    OnMouseMove = GridMouseMove
+    OnMouseUp = GridMouseUp
+    OnSelectCell = GridSelectCell
+  end
+  object MainMenu1: TMainMenu
+    object File1: TMenuItem
+      Caption = '&File'
+      object NewFile1: TMenuItem
+        Caption = 'New &File'
+        ShortCut = 16462
+        OnClick = NewFile1Click
+      end
+      object OpenFile1: TMenuItem
+        Caption = '&Open File...'
+        ShortCut = 16463
+        OnClick = OpenFile1Click
+      end
+      object SaveFile1: TMenuItem
+        Caption = '&Save File'
+        ShortCut = 16467
+        OnClick = SaveFile1Click
+      end
+      object SaveFileAs1: TMenuItem
+        Caption = 'Save F&ile As...'
+        ShortCut = 16453
+        OnClick = SaveFileAs1Click
+      end
+      object N2: TMenuItem
+        Caption = '-'
+      end
+      object HideForm1: TMenuItem
+        Caption = '&Hide Form'
+        ShortCut = 115
+        OnClick = HideForm1Click
+      end
+    end
+    object Edit1: TMenuItem
+      Caption = '&Edit'
+      object SelectAll1: TMenuItem
+        Caption = 'Select &All'
+        ShortCut = 16449
+        OnClick = SelectAll1Click
+      end
+      object Clear1: TMenuItem
+        Caption = '&Clear'
+        ShortCut = 16430
+        OnClick = Clear1Click
+      end
+      object Random1: TMenuItem
+        Caption = '&Random'
+        ShortCut = 16466
+        OnClick = Random1Click
+      end
+      object Fill1: TMenuItem
+        Caption = '&Fill...'
+        ShortCut = 16454
+        OnClick = Fill1Click
+      end
+    end
+    object View1: TMenuItem
+      Caption = '&View'
+      object GroupSize1: TMenuItem
+        Caption = '&Size'
+        object Byte1: TMenuItem
+          Caption = '&Byte'
+          OnClick = Byte1Click
+        end
+        object Half1: TMenuItem
+          Caption = '&Half'
+          OnClick = Half1Click
+        end
+        object Word1: TMenuItem
+          Caption = '&Word'
+          OnClick = Word1Click
+        end
+      end
+      object Base1: TMenuItem
+        Caption = '&Base'
+        object UnsignedHexadecimal1: TMenuItem
+          Caption = 'Unsigned &Hexadecimal'
+          OnClick = UnsignedHexadecimal1Click
+        end
+        object UnsignedDecimal1: TMenuItem
+          Caption = '&Unsigned Decimal'
+          OnClick = UnsignedDecimal1Click
+        end
+        object SignedDecimal1: TMenuItem
+          Caption = '&Signed Decimal'
+          OnClick = SignedDecimal1Click
+        end
+      end
+    end
+    object Help2: TMenuItem
+      Caption = '&Help'
+      object About1: TMenuItem
+        Caption = '&About...'
+        OnClick = About1Click
+      end
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    left = 32
+    object SelectAll2: TMenuItem
+      Caption = 'Select All'
+      ShortCut = 16449
+      OnClick = SelectAll1Click
+    end
+    object Clear2: TMenuItem
+      Caption = 'Clear'
+      ShortCut = 16430
+      OnClick = Clear1Click
+    end
+    object Random2: TMenuItem
+      Caption = 'Random'
+      ShortCut = 16466
+      OnClick = Random1Click
+    end
+    object Fill2: TMenuItem
+      Caption = 'Fill...'
+      ShortCut = 16454
+      OnClick = Fill1Click
+    end
+    object N1: TMenuItem
+      Caption = '-'
+    end
+    object Size1: TMenuItem
+      Caption = 'Size'
+      object Byte2: TMenuItem
+        Caption = 'Byte'
+        OnClick = Byte1Click
+      end
+      object Half2: TMenuItem
+        Caption = 'Half'
+        OnClick = Half1Click
+      end
+      object Word2: TMenuItem
+        Caption = 'Word'
+        OnClick = Word1Click
+      end
+    end
+    object Base2: TMenuItem
+      Caption = 'Base'
+      object UnsignedHexadecimal2: TMenuItem
+        Caption = 'Unsigned Hexadecimal'
+        OnClick = UnsignedHexadecimal1Click
+      end
+      object UnsignedDecimal2: TMenuItem
+        Caption = 'Unsigned Decimal'
+        OnClick = UnsignedDecimal1Click
+      end
+      object SignedDecimal2: TMenuItem
+        Caption = 'Signed Decimal'
+        OnClick = SignedDecimal1Click
+      end
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    Title = 'Load Data Memory'
+    DefaultExt = '.dat'
+    Filter = 'Data Memory (*.dat)|*.dat|All Files (*.*)|*.*'
+    Options = [ofHideReadOnly, ofFileMustExist]
+    left = 96
+  end
+  object SaveDialog1: TSaveDialog
+    Title = 'Save Data Memory'
+    DefaultExt = '.dat'
+    Filter = 'Data Memory (*.dat)|*.dat|All Files (*.*)|*.*'
+    Options = [ofOverwritePrompt, ofHideReadOnly, ofPathMustExist]
+    left = 64
+  end
+end

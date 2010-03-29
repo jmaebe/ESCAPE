@@ -30,10 +30,12 @@
 
 unit Main;
 
+{$MODE Delphi}
+
 interface
 
-uses WinTypes, WinProcs, Classes, Graphics, Forms, Controls, StdCtrls,
-  Buttons, ExtCtrls;
+uses {WinTypes, WinProcs,} Classes, Graphics, Forms, Controls, StdCtrls,
+  Buttons, ExtCtrls, LResources;
 
 type
   { This form is used to launch the simulator or to pop up the configuration form }
@@ -59,7 +61,7 @@ implementation
 
 uses Micro, Pipe, Config;
 
-{$R *.DFM}
+{$R *.lfm}
 
 procedure TMainForm.microClick(Sender: TObject);
 begin

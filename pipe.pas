@@ -27,12 +27,14 @@
 
 unit Pipe;
 
+{$MODE Delphi}
+
 interface
 
 uses
-  SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls,
+  SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
   Forms, Dialogs, ExtCtrls, StdCtrls, Compos, Menus, Common, PipeDef,
-  DataMem, InstrMem, BrkForm, Spin;
+  DataMem, InstrMem, BrkForm, Spin, LResources;
 
 type
   { This is the main form for the pipelined architecture simulator }
@@ -538,9 +540,9 @@ var
 implementation
 
 uses
-  Main, Config, Activity, Usage;
+  Main, Config, ACTIVITY, USAGE;
 
-{$R *.DFM}
+{$R *.lfm}
 
 procedure TPipeForm.FormResize(Sender: TObject);
 var

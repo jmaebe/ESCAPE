@@ -1,0 +1,56 @@
+object ActivityForm: TActivityForm
+  Left = 295
+  Top = 308
+  Width = 474
+  Height = 308
+  Caption = 'Pipeline Activity Diagram'
+  Font.Color = clBlack
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  Menu = MainMenu1
+  PixelsPerInch = 96
+  PopupMenu = PopupMenu1
+  Position = poScreenCenter
+  OnCreate = FormCreate
+  OnResize = FormResize
+  TextHeight = 13
+  object Grid: TStringGrid
+    Left = 0
+    Top = 0
+    Width = 466
+    Height = 262
+    Align = alClient
+    ColCount = 6
+    DefaultColWidth = 96
+    DefaultRowHeight = 20
+    DefaultDrawing = False
+    FixedCols = 0
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goThumbTracking]
+    RowCount = 1025
+    ScrollBars = ssVertical
+    TabOrder = 0
+    OnDrawCell = GridDrawCell
+  end
+  object MainMenu1: TMainMenu
+    Left = 72
+    Top = 112
+    object View1: TMenuItem
+      Caption = 'View'
+      object HideForm1: TMenuItem
+        Caption = '&Hide Form'
+        OnClick = HideForm1Click
+        ShortCutText = 'F4'
+      end
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 72
+    Top = 144
+    object HideForm2: TMenuItem
+      Caption = '&Hide Form'
+      OnClick = HideForm1Click
+      ShortCutText = 'F4'
+    end
+  end
+end

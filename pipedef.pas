@@ -27,11 +27,13 @@
 
 unit PipeDef;
 
+{$MODE Delphi}
+
 interface
 
 uses
-  SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls,
-  Forms, Dialogs, Common, Grids, Compos, Menus, Config, ExtCtrls, StdCtrls;
+  SysUtils,{WinTypes,WinProcs,}Messages,Classes,Graphics,Controls,Forms,Dialogs,
+  Common,Grids,Compos,Menus,Config,ExtCtrls,StdCtrls,LResources;
 
 type
   TMetaFormal = (foA,foB,foC);
@@ -122,7 +124,7 @@ implementation
 uses
   Pipe;
 
-{$R *.DFM}
+{$R *.lfm}
 
 function TPipeCode.Formal(Index: Integer; Register: TMetaFormal): Integer;
 begin

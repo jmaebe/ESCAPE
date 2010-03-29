@@ -27,11 +27,13 @@
 
 unit Usage;
 
+{$MODE Delphi}
+
 interface
 
 uses
-  SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls,
-  Forms, Dialogs, Grids, StdCtrls, ExtCtrls, Menus;
+  SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
+  Forms, Dialogs, Grids, StdCtrls, ExtCtrls, Menus, LResources;
 
 type
   { Pipeline Usage Form }
@@ -76,7 +78,7 @@ implementation
 
 uses
   Pipe, InstrMem, Common;
-{$R *.DFM}
+{$R *.lfm}
 
 procedure TUsageForm.HideForm1Click(Sender: TObject);
 begin

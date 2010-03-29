@@ -27,12 +27,14 @@
 
 unit Config;
 
+{$MODE Delphi}
+
 interface
 
 uses
-  SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls,
+  SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
   Forms, Dialogs, StdCtrls, Compos, Menus, Grids, Common, ExtCtrls, Tabs,
-  Spin;
+  Spin, LResources;
 
 type
   TOpcodeType = (otR, otI, otJ);
@@ -203,7 +205,7 @@ implementation
 
 uses Main;
 
-{$R *.DFM}
+{$R *.lfm}
 
 function TEncoding.Opcode(Index: Integer): string;
 begin

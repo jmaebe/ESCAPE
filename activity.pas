@@ -27,11 +27,13 @@
 
 unit Activity;
 
+{$MODE Delphi}
+
 interface
 
 uses
-  SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls,
-  Forms, Dialogs, StdCtrls, Menus, Grids;
+  SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
+  Forms, Dialogs, StdCtrls, Menus, Grids, LResources;
 
 type
   { This is the Pipeline Activity form }
@@ -71,7 +73,7 @@ implementation
 uses
   Pipe, InstrMem, Common;
 
-{$R *.DFM}
+{$R *.lfm}
 
 procedure TActivityForm.Clear;
 var

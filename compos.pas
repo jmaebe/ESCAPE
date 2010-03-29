@@ -27,13 +27,15 @@
 
 unit Compos;
 
+{$MODE Delphi}
+
 { This unit contains components to be installed before building Escape }
 
 interface
 
 uses
-  SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls,
-  Forms, Dialogs, StdCtrls, Spin, Menus, ExtCtrls, Grids;
+  SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
+  Forms, Dialogs, StdCtrls, Spin, Menus, ExtCtrls, Grids, lmessages;
 
 type
   { TNewStringGrid: TStringGrid with an extra function to simulate a key press }
@@ -47,7 +49,7 @@ type
   private
     FMinValue: LongInt;
     FMaxValue: LongInt;
-    procedure CMExit(var Message: TCMExit);   message CM_EXIT;
+    procedure CMExit(var Message: TLMExit);   message LM_EXIT;
     function GetValue: LongInt;
     procedure SetValue (NewValue: LongInt);
     function CheckValue (NewValue: LongInt): LongInt;
@@ -362,7 +364,7 @@ begin
   end;
 end;
 
-procedure TEditInteger.CMExit(var Message: TCMExit);
+procedure TEditInteger.CMExit(var Message: TLMExit);
 begin
   inherited;
   Text := IntToStr(Value);

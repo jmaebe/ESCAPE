@@ -27,10 +27,12 @@
 
 unit About;
 
+{$MODE Delphi}
+
 interface
 
-uses WinTypes, WinProcs, Classes, Graphics, Forms, Controls, StdCtrls,
-  Buttons, ExtCtrls;
+uses {WinTypes, WinProcs,} Classes, Graphics, Forms, Controls, StdCtrls,
+  Buttons, ExtCtrls, LResources;
 
 type
   { This is the 'About' form }
@@ -51,7 +53,7 @@ var
 
 implementation
 
-{$R *.DFM}
+{$R *.lfm}
 
 uses
   Main;

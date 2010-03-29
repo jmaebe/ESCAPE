@@ -1,0 +1,110 @@
+object BreakForm: TBreakForm
+  Left = 112
+  Top = 102
+  ActiveControl = Organisational
+  BorderIcons = [biSystemMenu, biMinimize]
+  AutoScroll = False
+  Caption = 'Breakpoints'
+  ClientHeight = 280
+  ClientWidth = 488
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'System'
+  Font.Style = []
+  KeyPreview = True
+  Menu = MainMenu1
+  PixelsPerInch = 96
+  Position = poScreenCenter
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  TextHeight = 16
+  object Organisational: TGroupBox
+    Left = 8
+    Top = 8
+    Width = 241
+    Height = 225
+    Caption = 'Organisational Registers'
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+    PopupMenu = PopupMenu1
+    TabOrder = 0
+  end
+  object RegisterFile: TGroupBox
+    Left = 264
+    Top = 8
+    Width = 217
+    Height = 225
+    Caption = 'Register File Registers'
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+    PopupMenu = PopupMenu1
+    TabOrder = 1
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 40
+    Top = 248
+    object UnsignedHexadecimal2: TMenuItem
+      Caption = 'Unsigned &Hexadecimal'
+      OnClick = UnsignedHexadecimal1Click
+    end
+    object UnsignedDecimal2: TMenuItem
+      Caption = '&Unsigned Decimal'
+      OnClick = UnsignedDecimal1Click
+    end
+    object SignedDecimal2: TMenuItem
+      Caption = '&Signed Decimal'
+      OnClick = SignedDecimal1Click
+    end
+    object N2: TMenuItem
+      Caption = '-'
+    end
+    object HideForm2: TMenuItem
+      Caption = '&Hide Form'
+      OnClick = HideForm1Click
+      ShortCutText = 'F4'
+    end
+  end
+  object MainMenu1: TMainMenu
+    Top = 248
+    object View1: TMenuItem
+      Caption = '&View'
+      object Base1: TMenuItem
+        Caption = 'Base'
+        object UnsignedHexadecimal1: TMenuItem
+          Caption = 'Unsigned &Hexadecimal'
+          OnClick = UnsignedHexadecimal1Click
+        end
+        object UnsignedDecimal1: TMenuItem
+          Caption = '&Unsigned Decimal'
+          OnClick = UnsignedDecimal1Click
+        end
+        object SignedDecimal1: TMenuItem
+          Caption = '&Signed Decimal'
+          OnClick = SignedDecimal1Click
+        end
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object HideForm1: TMenuItem
+        Caption = '&Hide Form'
+        OnClick = HideForm1Click
+        ShortCutText = 'F4'
+      end
+    end
+    object Help1: TMenuItem
+      Caption = '&Help'
+      object About1: TMenuItem
+        Caption = '&About...'
+        OnClick = About1Click
+      end
+    end
+  end
+end

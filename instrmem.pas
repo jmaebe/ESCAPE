@@ -27,11 +27,13 @@
 
 unit InstrMem;
 
+{$MODE Delphi}
+
 interface
 
 uses
-  SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls,
-  Forms, Dialogs, StdCtrls, Grids, Buttons, Common, Menus, ExtCtrls,
+  SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
+  Forms, Dialogs, StdCtrls, Grids, Buttons, Common, Menus, ExtCtrls,LResources,
   Compos, NewStr;
 
 const
@@ -183,7 +185,7 @@ implementation
 uses
   Config, Range, Micro, Pipe;
 
-{$R *.DFM}
+{$R *.lfm}
 
 constructor TLabels.Create;
 begin

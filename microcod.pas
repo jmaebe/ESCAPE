@@ -27,12 +27,14 @@
 
 unit MicroCod;
 
+{$MODE Delphi}
+
 interface
 
 uses
-  SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls,
+  SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
   Forms, Dialogs, ExtCtrls, Grids, Compos, Tabs, Config, Common, Menus,
-  StdCtrls, NewStr;
+  StdCtrls, LResources, NewStr;
 
 type
   TuCodeField = (ufLabel, ufAdr, ufConst, ufReg, ufALU, ufS1, ufS2,
@@ -229,7 +231,7 @@ implementation
 uses
   Micro;
 
-{$R *.DFM}
+{$R *.lfm}
 
 {
 MicroCode[uAR,field] is

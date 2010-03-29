@@ -27,12 +27,14 @@
 
 unit Micro;
 
+{$MODE Delphi}
+
 interface
 
 uses
-  SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls,
+  SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
   Forms, Dialogs, ExtCtrls, StdCtrls, Compos, Common, Menus, Config,
-  InstrMem, DataMem, BrkForm, MicroCod, Spin;
+  InstrMem, DataMem, BrkForm, MicroCod, Spin, LResources;
 
 type
   { This is the main form for the microprogrammed architecture simulator }
@@ -345,7 +347,7 @@ implementation
 uses
   Main;
 
-{$R *.DFM}
+{$R *.lfm}
 
 procedure TMicroForm.FormCreate(Sender: TObject);
 var

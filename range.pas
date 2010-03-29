@@ -27,11 +27,13 @@
 
 unit Range;
 
+{$MODE Delphi}
+
 interface
 
 uses
-  SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls,
-  Forms, Dialogs, StdCtrls, Buttons, Compos, Spin;
+  SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
+  Forms, Dialogs, StdCtrls, Buttons, Compos, Spin, LResources;
 
 type
   { Range Form -- used to set the Code Range}
@@ -57,7 +59,7 @@ implementation
 
 uses Config, InstrMem;
 
-{$R *.DFM}
+{$R *.lfm}
 
 procedure TRangeForm.OKButtonClick(Sender: TObject);
 begin

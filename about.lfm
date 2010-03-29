@@ -1,0 +1,99 @@
+object AboutForm: TAboutForm
+  Left = 323
+  Top = 457
+  ActiveControl = OKButton
+  BorderStyle = bsDialog
+  Caption = 'About Escape...'
+  ClientHeight = 260
+  ClientWidth = 554
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'System'
+  Font.Style = []
+  Position = poScreenCenter
+  OnClose = FormClose
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 16
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 553
+    Height = 259
+    BevelInner = bvRaised
+    BevelOuter = bvLowered
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 392
+      Top = 24
+      Width = 92
+      Height = 16
+      Caption = 'Escape v1.1.6'
+    end
+    object Panel2: TPanel
+      Left = 8
+      Top = 8
+      Width = 324
+      Height = 244
+      BevelOuter = bvLowered
+      BevelWidth = 2
+      TabOrder = 0
+      object ProgramIcon: TImage
+        Left = 2
+        Top = 2
+        Width = 320
+        Height = 240
+        AutoSize = True
+        IsControl = True
+      end
+    end
+  end
+  object OKButton: TBitBtn
+    Left = 399
+    Top = 210
+    Width = 77
+    Height = 27
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+    OnClick = OKButtonClick
+    Kind = bkOK
+    Margin = 2
+    Spacing = -1
+    IsControl = True
+  end
+  object Memo1: TMemo
+    Left = 344
+    Top = 49
+    Width = 201
+    Height = 152
+    BorderStyle = bsNone
+    Ctl3D = False
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    Lines.Strings = (
+      'Developed by Peter Verplaetse '
+      'and Jan Van Campenhout at the'
+      'Electronics and Information Sys-'
+      'tems (ELIS) department at the'
+      'University of Ghent. Artwork by '
+      'Mark Christiaens.'
+      ''
+      'Bug report: please send e-mail to '
+      'peter.verplaetse@elis.rug.ac.be'
+    )
+    ParentColor = True
+    ParentCtl3D = False
+    ParentFont = False
+    ReadOnly = True
+    TabOrder = 2
+  end
+end

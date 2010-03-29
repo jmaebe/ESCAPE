@@ -29,9 +29,11 @@
 
 unit Common;
 
+{$MODE Delphi}
+
 interface
 
-uses  StdCtrls, SysUtils, Dialogs, Classes, Compos, Graphics, Forms, WinProcs,
+uses  StdCtrls, SysUtils, Dialogs, Classes, Compos, Graphics, Forms, {WinProcs,}
       ClipBrd, Menus, Spin, NewStr;
 const
   { A fixed-size array is used for the data inputs of muxes and buses; 20 should be enough }
@@ -594,7 +596,7 @@ var
 
 implementation
 
-uses Config, Instrmem, Datamem, BrkForm, Micro, Pipe, About;
+uses Config, InstrMem, DataMem, BrkForm, Micro, Pipe, About;
 
 procedure SetModifyOnSimForm;
 begin

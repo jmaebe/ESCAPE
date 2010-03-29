@@ -1,0 +1,275 @@
+object ImemForm: TImemForm
+  Left = 501
+  Top = 284
+  Width = 494
+  Height = 345
+  HorzScrollBar.Visible = False
+  VertScrollBar.Visible = False
+  Caption = 'Instruction View'
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'System'
+  Font.Style = []
+  KeyPreview = True
+  Menu = MainMenu1
+  PopupMenu = PopupMenu1
+  Position = poScreenCenter
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  OnResize = FormResize
+  PixelsPerInch = 96
+  TextHeight = 16
+  object Status1: TPanel
+    Left = 1
+    Top = 256
+    Width = 124
+    Height = 17
+    Alignment = taLeftJustify
+    BevelOuter = bvLowered
+    Caption = 'Status1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Status2: TPanel
+    Left = 128
+    Top = 256
+    Width = 109
+    Height = 17
+    Alignment = taLeftJustify
+    BevelOuter = bvLowered
+    Caption = 'Status2'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+  end
+  object Status3: TPanel
+    Left = 240
+    Top = 256
+    Width = 370
+    Height = 17
+    Alignment = taLeftJustify
+    BevelOuter = bvLowered
+    Caption = 'Status3'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+  end
+  object Grid: TNewStringGrid
+    Left = 0
+    Top = 0
+    Width = 369
+    Height = 217
+    ColCount = 3
+    FixedColor = clWhite
+    FixedCols = 0
+    RowCount = 20
+    FixedRows = 0
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Courier New'
+    Font.Style = []
+    Options = [goVertLine, goRangeSelect, goDrawFocusSelected, goTabs, goAlwaysShowEditor, goThumbTracking]
+    ParentFont = False
+    ScrollBars = ssVertical
+    TabOrder = 3
+    OnDblClick = GridDblClick
+    OnKeyDown = GridKeyDown
+    OnKeyPress = GridKeyPress
+    OnMouseUp = GridMouseUp
+    OnSelectCell = GridSelectCell
+    RowHeights = (
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+    )
+  end
+  object MainMenu1: TMainMenu
+    object File1: TMenuItem
+      Caption = '&File'
+      object NewFile1: TMenuItem
+        Caption = 'New &File'
+        ShortCut = 16462
+        OnClick = NewFile1Click
+      end
+      object OpenFile1: TMenuItem
+        Caption = '&Open File...'
+        ShortCut = 16463
+        OnClick = OpenFile1Click
+      end
+      object SaveFile1: TMenuItem
+        Caption = '&Save File'
+        ShortCut = 16467
+        OnClick = SaveFile1Click
+      end
+      object SaveFileAs1: TMenuItem
+        Caption = 'Save F&ile As...'
+        ShortCut = 16453
+        OnClick = SaveFileAs1Click
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object HideForm1: TMenuItem
+        Caption = '&Hide Form'
+        ShortCut = 115
+        OnClick = HideForm1Click
+      end
+    end
+    object Edit1: TMenuItem
+      Caption = '&Edit'
+      object Cut1: TMenuItem
+        Caption = 'Cu&t'
+        ShortCut = 16472
+        OnClick = Cut1Click
+      end
+      object Copy1: TMenuItem
+        Caption = '&Copy'
+        ShortCut = 16451
+        OnClick = Copy1Click
+      end
+      object Paste1: TMenuItem
+        Caption = '&Paste'
+        ShortCut = 16470
+        OnClick = Paste1Click
+      end
+      object Delete1: TMenuItem
+        Caption = '&Delete'
+        ShortCut = 16430
+        OnClick = Delete1Click
+      end
+      object SelectAll1: TMenuItem
+        Caption = 'Select &All'
+        ShortCut = 16449
+        OnClick = SelectAll1Click
+      end
+    end
+    object View1: TMenuItem
+      Caption = '&View'
+      object SetRange1: TMenuItem
+        Caption = '&Set Code Range...'
+        ShortCut = 16466
+        OnClick = SetRange1Click
+      end
+      object Base1: TMenuItem
+        Caption = '&Base'
+        object UnsignedHexadecimal1: TMenuItem
+          Caption = 'Unsigned &Hexadecimal'
+          OnClick = UnsignedHexadecimal1Click
+        end
+        object UnsignedDecimal1: TMenuItem
+          Caption = '&Unsigned Decimal'
+          OnClick = UnsignedDecimal1Click
+        end
+        object SignedDecimal1: TMenuItem
+          Caption = '&Signed Decimal'
+          OnClick = SignedDecimal1Click
+        end
+      end
+    end
+    object Help1: TMenuItem
+      Caption = '&Help'
+      object About1: TMenuItem
+        Caption = '&About...'
+        OnClick = About1Click
+      end
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 32
+    object Cut2: TMenuItem
+      Caption = 'Cu&t'
+      ShortCut = 16472
+      OnClick = Cut1Click
+    end
+    object Copy2: TMenuItem
+      Caption = '&Copy'
+      ShortCut = 16451
+      OnClick = Copy1Click
+    end
+    object Paste2: TMenuItem
+      Caption = '&Paste'
+      ShortCut = 16470
+      OnClick = Paste1Click
+    end
+    object Delete2: TMenuItem
+      Caption = '&Delete'
+      ShortCut = 16430
+      OnClick = Delete1Click
+    end
+    object SelectAll2: TMenuItem
+      Caption = 'Select &All'
+      ShortCut = 16449
+      OnClick = SelectAll1Click
+    end
+    object Edit2: TMenuItem
+      Caption = '-'
+    end
+    object SetCodeRange1: TMenuItem
+      Caption = '&Set Code Range...'
+      ShortCut = 16466
+      OnClick = SetRange1Click
+    end
+    object Base2: TMenuItem
+      Caption = '&Base'
+      object UnsignedHexadecimal2: TMenuItem
+        Caption = 'Unsigned &Hexadecimal'
+        OnClick = UnsignedHexadecimal1Click
+      end
+      object UnsignedDecimal2: TMenuItem
+        Caption = '&Unsigned Decimal'
+        OnClick = UnsignedDecimal1Click
+      end
+      object SignedDecimal2: TMenuItem
+        Caption = '&Signed Decimal'
+        OnClick = SignedDecimal1Click
+      end
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    DefaultExt = 'cod'
+    Filter = 'Code Memory (*.cod)|*.cod|All Files (*.*)|*.*'
+    Options = [ofHideReadOnly, ofFileMustExist]
+    Title = 'Load Instruction Memory '
+    Left = 72
+  end
+  object SaveDialog1: TSaveDialog
+    DefaultExt = 'cod'
+    Filter = 'Code Memory (*.cod)|*.cod|All Files (*.*)|*.*'
+    Options = [ofOverwritePrompt, ofHideReadOnly, ofPathMustExist]
+    Title = 'Save Instruction Memory'
+    Left = 104
+  end
+end

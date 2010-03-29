@@ -27,11 +27,13 @@
 
 unit DataMem;
 
+{$MODE Delphi}
+
 interface
 
 uses
-  SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls,
-  Forms, Dialogs, Grids, StdCtrls, ExtCtrls, Menus, Common, NewStr;
+  SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
+  Forms, Dialogs, Grids, StdCtrls, ExtCtrls, Menus,LResources, Common, NewStr;
 
 type
   { Data memory form }
@@ -141,9 +143,9 @@ var
 
 implementation
 
-uses config, Micro, Pipe;
+uses Config, Micro, Pipe;
 
-{$R *.DFM}
+{$R *.lfm}
 
 procedure TDmemForm.Byte1Click(Sender: TObject);
 begin

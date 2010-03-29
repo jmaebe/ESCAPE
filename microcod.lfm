@@ -1,0 +1,640 @@
+object MicroCode: TMicroCode
+  Left = 182
+  Top = 167
+  Width = 572
+  Height = 376
+  HorzScrollBar.Visible = False
+  VertScrollBar.Visible = False
+  Caption = 'MicroCode'
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'System'
+  Font.Style = []
+  KeyPreview = True
+  Menu = MainMenu1
+  PixelsPerInch = 96
+  Position = poScreenCenter
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  OnResize = FormResize
+  TextHeight = 16
+  object Grid2: TNewStringGrid
+    Left = 192
+    Top = 0
+    Width = 185
+    Height = 121
+    FixedCols = 0
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goTabs, goAlwaysShowEditor, goThumbTracking]
+    ParentFont = False
+    PopupMenu = PopupMenu2
+    RowCount = 20
+    ScrollBars = ssVertical
+    TabOrder = 2
+    Visible = False
+    OnKeyDown = Grid2KeyDown
+    OnKeyPress = Grid2KeyPress
+    OnMouseUp = Grid2MouseUp
+    OnSelectCell = Grid2SelectCell
+    RowHeights = (
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+    )
+  end
+  object Grid1: TNewStringGrid
+    Left = 0
+    Top = 0
+    Width = 185
+    Height = 121
+    ColCount = 14
+    FixedCols = 0
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goTabs, goThumbTracking]
+    ParentFont = False
+    PopupMenu = PopupMenu1
+    RowCount = 20
+    ScrollBars = ssVertical
+    TabOrder = 0
+    Visible = False
+    OnKeyDown = Grid1KeyDown
+    OnKeyPress = Grid1KeyPress
+    OnMouseUp = Grid1MouseUp
+    OnSelectCell = Grid1SelectCell
+    RowHeights = (
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+      24
+    )
+  end
+  object TabSet: TTabSet
+    Left = 0
+    Top = 316
+    Width = 565
+    Height = 20
+    Align = alBottom
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    Tabs.Strings = (
+      'Microcode'
+      'Jump Tables'
+    )
+    TabIndex = 0
+    OnChange = TabSetChange
+  end
+  object DropMem: TListBox
+    Left = 8
+    Top = 152
+    Width = 81
+    Height = 13
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ItemHeight = 13
+    Items.Strings = (
+      ''
+      'RB'
+      'RH'
+      'RW'
+      'WB'
+      'WH'
+      'WW'
+    )
+    ParentFont = False
+    TabOrder = 3
+    Visible = False
+    OnClick = DropDownClick
+  end
+  object DropMAdr: TListBox
+    Left = 8
+    Top = 176
+    Width = 81
+    Height = 13
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ItemHeight = 13
+    Items.Strings = (
+      ''
+      'MAR'
+      'PC'
+    )
+    ParentFont = False
+    TabOrder = 4
+    Visible = False
+    OnClick = DropDownClick
+  end
+  object DropS2: TListBox
+    Left = 8
+    Top = 200
+    Width = 81
+    Height = 13
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ItemHeight = 13
+    Items.Strings = (
+      ''
+      'B'
+      'Const'
+      'PC'
+      'MAR'
+      'MDR'
+      'IR'
+    )
+    ParentFont = False
+    TabOrder = 5
+    Visible = False
+    OnClick = DropDownClick
+  end
+  object DropS1: TListBox
+    Left = 8
+    Top = 224
+    Width = 81
+    Height = 13
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ItemHeight = 13
+    Items.Strings = (
+      ''
+      'A'
+      'Const'
+      'PC'
+      'MAR'
+      'MDR'
+      'IR'
+    )
+    ParentFont = False
+    TabOrder = 6
+    Visible = False
+    OnClick = DropDownClick
+  end
+  object DropDest: TListBox
+    Left = 104
+    Top = 200
+    Width = 89
+    Height = 13
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ItemHeight = 13
+    Items.Strings = (
+      ''
+      'C'
+      'PC'
+      'MAR'
+      'MDR'
+    )
+    ParentFont = False
+    TabOrder = 7
+    Visible = False
+    OnClick = DropDownClick
+  end
+  object DropIR: TListBox
+    Left = 104
+    Top = 176
+    Width = 89
+    Height = 13
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ItemHeight = 13
+    Items.Strings = (
+      ''
+      'Word'
+    )
+    ParentFont = False
+    TabOrder = 8
+    Visible = False
+    OnClick = DropDownClick
+  end
+  object DropJCond: TListBox
+    Left = 104
+    Top = 152
+    Width = 89
+    Height = 13
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ItemHeight = 13
+    Items.Strings = (
+      ''
+      'True'
+      'EQ'
+      'NE'
+      'LT'
+      'GT'
+      'LE'
+      'GE'
+      'Mbusy'
+    )
+    ParentFont = False
+    TabOrder = 9
+    Visible = False
+    OnClick = DropDownClick
+  end
+  object DropMDest: TListBox
+    Left = 104
+    Top = 128
+    Width = 89
+    Height = 13
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ItemHeight = 13
+    Items.Strings = (
+      ''
+      'MDR'
+      'IR'
+    )
+    ParentFont = False
+    TabOrder = 10
+    Visible = False
+    OnClick = DropDownClick
+  end
+  object DropALU: TListBox
+    Left = 8
+    Top = 128
+    Width = 81
+    Height = 17
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ItemHeight = 16
+    Items.Strings = (
+      ''
+      'ADD'
+      'SUB'
+      'RSUB'
+      'AND'
+      'OR'
+      'XOR'
+      'SLL'
+      'SRL'
+      'SRA'
+      'S1'
+      'S2'
+      'S2S1'
+    )
+    ParentFont = False
+    Style = lbOwnerDrawFixed
+    TabOrder = 11
+    Visible = False
+    OnClick = DropDownClick
+  end
+  object DropReg: TListBox
+    Left = 104
+    Top = 224
+    Width = 89
+    Height = 13
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ItemHeight = 13
+    Items.Strings = (
+      ''
+      'RR'
+    )
+    ParentFont = False
+    TabOrder = 12
+    Visible = False
+    OnClick = DropDownClick
+  end
+  object Status1: TPanel
+    Left = 1
+    Top = 256
+    Width = 124
+    Height = 17
+    Alignment = taLeftJustify
+    BevelOuter = bvLowered
+    Caption = 'Status1'
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 13
+  end
+  object Status2: TPanel
+    Left = 128
+    Top = 256
+    Width = 109
+    Height = 17
+    Alignment = taLeftJustify
+    BevelOuter = bvLowered
+    Caption = 'Status2'
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 14
+  end
+  object Status3: TPanel
+    Left = 240
+    Top = 256
+    Width = 325
+    Height = 17
+    Alignment = taLeftJustify
+    BevelOuter = bvLowered
+    Caption = 'Status3'
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 15
+  end
+  object MainMenu1: TMainMenu
+    object File1: TMenuItem
+      Caption = '&File'
+      object NewFile1: TMenuItem
+        Caption = 'New &File'
+        OnClick = NewFile1Click
+        ShortCutText = 'Ctrl+N'
+      end
+      object OpenFile1: TMenuItem
+        Caption = '&Open File...'
+        OnClick = OpenFile1Click
+        ShortCutText = 'Ctrl+O'
+      end
+      object SaveFile1: TMenuItem
+        Caption = '&Save File'
+        OnClick = SaveFile1Click
+        ShortCutText = 'Ctrl+S'
+      end
+      object SaveFileAs1: TMenuItem
+        Caption = 'Save F&ile As...'
+        OnClick = SaveFileAs1Click
+        ShortCutText = 'Ctrl+E'
+      end
+      object N4: TMenuItem
+        Caption = '-'
+      end
+      object HideForm1: TMenuItem
+        Caption = '&Hide Form'
+        OnClick = HideForm1Click
+        ShortCutText = 'F4'
+      end
+    end
+    object Edit1: TMenuItem
+      Caption = '&Edit'
+      object Cut1: TMenuItem
+        Caption = 'Cu&t'
+        OnClick = Cut1Click
+        ShortCutText = 'Ctrl+X'
+      end
+      object Copy1: TMenuItem
+        Caption = '&Copy'
+        OnClick = Copy1Click
+        ShortCutText = 'Ctrl+C'
+      end
+      object Paste1: TMenuItem
+        Caption = '&Paste'
+        OnClick = Paste1Click
+        ShortCutText = 'Ctrl+V'
+      end
+      object Delete1: TMenuItem
+        Caption = '&Delete'
+        OnClick = Delete1Click
+        ShortCutText = 'Ctrl+Del'
+      end
+      object SelectAll1: TMenuItem
+        Caption = 'Select &All'
+        OnClick = SelectAll1Click
+        ShortCutText = 'Ctrl+A'
+      end
+      object N7: TMenuItem
+        Caption = '-'
+      end
+      object CopyOpcodes1: TMenuItem
+        Caption = 'Copy &Opcodes'
+        OnClick = CopyOpcodes1Click
+        ShortCutText = 'Ctrl+Q'
+      end
+      object Fill1: TMenuItem
+        Caption = '&Fill...'
+        OnClick = Fill1Click
+        ShortCutText = 'Ctrl+F'
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object DropdownMode1: TMenuItem
+        Caption = 'Dropdown &Mode'
+        OnClick = DropdownMode1Click
+        ShortCutText = 'F8'
+      end
+    end
+    object View1: TMenuItem
+      Caption = '&View'
+      object Microcode1: TMenuItem
+        Caption = '&Microcode'
+        OnClick = Microcode1Click
+        ShortCutText = 'F5'
+      end
+      object JumpTables1: TMenuItem
+        Caption = '&Jump Tables'
+        OnClick = JumpTables1Click
+        ShortCutText = 'F6'
+      end
+      object N5: TMenuItem
+        Caption = '-'
+      end
+      object Base1: TMenuItem
+        Caption = '&Base'
+        object UnsignedHexadecimal1: TMenuItem
+          Caption = 'Unsigned &Hexadecimal'
+          OnClick = UnsignedHexadecimal1Click
+        end
+        object UnsignedDecimal1: TMenuItem
+          Caption = '&Unsigned Decimal'
+        end
+        object SignedDecimal1: TMenuItem
+          Caption = '&Signed Decimal'
+        end
+      end
+    end
+    object Assemble4: TMenuItem
+      Caption = '&Assemble'
+      object Assemble1: TMenuItem
+        Caption = '&Assemble'
+        OnClick = Assemble1Click
+        ShortCutText = 'F9'
+      end
+    end
+    object Help1: TMenuItem
+      Caption = '&Help'
+      object About1: TMenuItem
+        Caption = '&About...'
+        OnClick = About1Click
+      end
+    end
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 32
+    object Cut2: TMenuItem
+      Caption = 'Cu&t'
+      OnClick = Cut1Click
+      ShortCutText = 'Ctrl+X'
+    end
+    object Copy2: TMenuItem
+      Caption = '&Copy'
+      OnClick = Copy1Click
+      ShortCutText = 'Ctrl+C'
+    end
+    object Paste2: TMenuItem
+      Caption = '&Paste'
+      OnClick = Paste1Click
+      ShortCutText = 'Ctrl+V'
+    end
+    object Delete2: TMenuItem
+      Caption = '&Delete'
+      OnClick = Delete1Click
+      ShortCutText = 'Ctrl+Del'
+    end
+    object SelectAll2: TMenuItem
+      Caption = 'Select &All'
+      OnClick = SelectAll1Click
+      ShortCutText = 'Ctrl+A'
+    end
+    object N2: TMenuItem
+      Caption = '-'
+    end
+    object DropdownMode2: TMenuItem
+      Caption = 'Dropdown &Mode'
+      OnClick = DropdownMode1Click
+      ShortCutText = 'F8'
+    end
+    object N3: TMenuItem
+      Caption = '-'
+    end
+    object Base2: TMenuItem
+      Caption = '&Base'
+      object UnsignedHexadecimal2: TMenuItem
+        Caption = 'Unsigned &Hexadecimal'
+        OnClick = UnsignedHexadecimal1Click
+      end
+      object UnsignedDecimal2: TMenuItem
+        Caption = '&Unsigned Decimal'
+        OnClick = UnsignedDecimal1Click
+      end
+      object SignedDecimal2: TMenuItem
+        Caption = '&Signed Decimal'
+        OnClick = SignedDecimal1Click
+      end
+    end
+    object JumpTables2: TMenuItem
+      Caption = 'View &Jump Tables'
+      OnClick = JumpTables1Click
+      ShortCutText = 'F6'
+    end
+    object N6: TMenuItem
+      Caption = '-'
+    end
+    object Assemble2: TMenuItem
+      Caption = 'Assembl&e'
+      OnClick = Assemble1Click
+      ShortCutText = 'F9'
+    end
+  end
+  object PopupMenu2: TPopupMenu
+    Left = 192
+    object Assemble3: TMenuItem
+      Caption = '&Assemble'
+      OnClick = Assemble1Click
+      ShortCutText = 'F9'
+    end
+    object N9: TMenuItem
+      Caption = '-'
+    end
+    object Microcode3: TMenuItem
+      Caption = 'View &Microcode'
+      OnClick = Microcode1Click
+      ShortCutText = 'F5'
+    end
+    object N8: TMenuItem
+      Caption = '-'
+    end
+    object CopyOpcodes2: TMenuItem
+      Caption = 'Copy &Opcodes'
+      OnClick = CopyOpcodes1Click
+      ShortCutText = 'Ctrl+Q'
+    end
+    object Fill2: TMenuItem
+      Caption = '&Fill...'
+      OnClick = Fill1Click
+      ShortCutText = 'Ctrl+F'
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    DefaultExt = 'mco'
+    Filter = 'Microcode (*.mco)|*.mco|All Files (*.*)|*.*'
+    Options = [ofHideReadOnly, ofFileMustExist]
+    Title = 'Load Microcode'
+    Left = 224
+    Top = 208
+  end
+  object SaveDialog1: TSaveDialog
+    DefaultExt = 'mco'
+    Filter = 'Microcode (*.mco)|*.mco|All Files (*.*)|*.*'
+    Options = [ofOverwritePrompt, ofHideReadOnly, ofPathMustExist]
+    Title = 'Save Microcode'
+    Left = 256
+    Top = 208
+  end
+end
