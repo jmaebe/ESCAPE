@@ -1,0 +1,19 @@
+In order to compile the escape environment, you must first add a few
+components to the library:
+
+Delphi 1:
+1. copy delphi\bin\complib.dcl to your_dir\bin\complib.dcl
+2. Options->Open Library, select your_dir\bin\complib.dcl
+3. Options->Install Components, Add your_dir\source\compos.pas
+
+Delphi 2:
+1. copy Program Files\Borland\Delphi2.0\bin\cmplib32.dcl to your_dir\bin\cmplib32.dcl
+2. Component->Open Library, select your_dir\bin\cmplib32.dcl
+3. Component->Install Components, Add your_dir\source\compos.pas
+
+Delphi 3:
+1. Componen6->Install Component, Add your_dir\source\compos.pas
+
+Then load the project escape.dpr. Make sure that complete boolean evaluation, overflow 
+checking and range checking are of (you can find these under compiler options). Now you
+can go ahead and compile the escape environment.
