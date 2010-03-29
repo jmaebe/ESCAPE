@@ -160,7 +160,7 @@ begin
   s:=Grid.Cells[Col,Row];
   with Grid.Canvas do
   begin
-    Font.Name:='MS Sans Serif';
+    Font.Name:='Microsoft Sans Serif';
     Font.Style:=[];
     Font.Size:=8;
     Brush.Color:=clWhite;

@@ -76,7 +76,7 @@ object ConfigForm: TConfigForm
     Caption = '0'
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Pitch = fpFixed
     ParentColor = False
     ParentFont = False
@@ -117,7 +117,7 @@ object ConfigForm: TConfigForm
     Caption = '00'
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Pitch = fpFixed
     ParentColor = False
     ParentFont = False

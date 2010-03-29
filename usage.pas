@@ -104,7 +104,7 @@ begin
   with Grid.Canvas do
   begin
     { Write text in cell }
-    Font.Name:='MS Sans Serif';
+    Font.Name:='Microsoft Sans Serif';
     if Row=0 then
     begin
       Brush.Color:=clBtnFace;

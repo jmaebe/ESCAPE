@@ -10,7 +10,7 @@ object MicroForm: TMicroForm
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clBlack
   Font.Height = -11
-  Font.Name = 'MS Sans Serif'
+  Font.Name = 'Microsoft Sans Serif'
   Font.Style = []
   KeyPreview = True
   Menu = MainMenu1
@@ -65,7 +65,7 @@ object MicroForm: TMicroForm
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = -11
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Microsoft Sans Serif'
       Font.Style = [fsBold]
       ParentFont = False
       Transparent = True
@@ -127,7 +127,7 @@ object MicroForm: TMicroForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
+        Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
         Transparent = True
@@ -141,7 +141,7 @@ object MicroForm: TMicroForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
+        Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
       end
@@ -154,7 +154,7 @@ object MicroForm: TMicroForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
+        Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
       end
@@ -167,7 +167,7 @@ object MicroForm: TMicroForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
+        Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
       end
@@ -181,7 +181,7 @@ object MicroForm: TMicroForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
+        Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
       end
@@ -195,7 +195,7 @@ object MicroForm: TMicroForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
+        Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
       end
@@ -209,7 +209,7 @@ object MicroForm: TMicroForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
+        Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
       end
@@ -238,7 +238,7 @@ object MicroForm: TMicroForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
+        Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
       end
@@ -350,7 +350,7 @@ object MicroForm: TMicroForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
+        Font.Name = 'Microsoft Sans Serif'
         Font.Style = []
         ParentFont = False
       end
@@ -413,7 +413,7 @@ object MicroForm: TMicroForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
+        Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
       end
@@ -447,7 +447,7 @@ object MicroForm: TMicroForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -19
-        Font.Name = 'MS Sans Serif'
+        Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
         Transparent = True
@@ -515,7 +515,7 @@ object MicroForm: TMicroForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
+        Font.Name = 'Microsoft Sans Serif'
         Font.Style = []
         ParentFont = False
       end
@@ -528,7 +528,7 @@ object MicroForm: TMicroForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
+        Font.Name = 'Microsoft Sans Serif'
         Font.Style = []
         ParentFont = False
       end
@@ -556,7 +556,7 @@ object MicroForm: TMicroForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
-        Font.Name = 'MS Sans Serif'
+        Font.Name = 'Microsoft Sans Serif'
         Font.Style = []
         ParentFont = False
         TabOrder = 1
@@ -638,7 +638,7 @@ object MicroForm: TMicroForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
     Lines.Strings = (
       'Driver: '

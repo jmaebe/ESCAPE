@@ -2494,7 +2494,7 @@ object MainForm: TMainForm
       Caption = 'Pipelined Architecture'
       Font.Color = clBlack
       Font.Height = -13
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Microsoft Sans Serif'
       OnClick = PipeClick
       ParentFont = False
       ParentShowHint = False
@@ -2508,7 +2508,7 @@ object MainForm: TMainForm
       Caption = 'Microprogrammed Architecture'
       Font.Color = clBlack
       Font.Height = -13
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Microsoft Sans Serif'
       OnClick = microClick
       ParentFont = False
       TabOrder = 1
@@ -2521,7 +2521,7 @@ object MainForm: TMainForm
       Caption = 'Configure '
       Font.Color = clBlack
       Font.Height = -13
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Microsoft Sans Serif'
       OnClick = ConfigButtonClick
       ParentFont = False
       TabOrder = 0
@@ -2534,7 +2534,7 @@ object MainForm: TMainForm
       BorderStyle = bsNone
       Font.Color = clBlack
       Font.Height = -13
-      Font.Name = 'MS Sans Serif'
+      Font.Name = 'Microsoft Sans Serif'
       Lines.Strings = (
         'Environment for the'
         'Simulation'

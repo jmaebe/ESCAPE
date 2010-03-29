@@ -10,7 +10,7 @@ object DmemForm: TDmemForm
   ClientWidth = 434
   Font.Color = clBlack
   Font.Height = -11
-  Font.Name = 'MS Sans Serif'
+  Font.Name = 'Microsoft Sans Serif'
   KeyPreview = True
   Menu = MainMenu1
   OnClose = FormClose

@@ -6,7 +6,7 @@ object ActivityForm: TActivityForm
   Caption = 'Pipeline Activity Diagram'
   Font.Color = clBlack
   Font.Height = -11
-  Font.Name = 'MS Sans Serif'
+  Font.Name = 'Microsoft Sans Serif'
   Font.Style = []
   Menu = MainMenu1
   PixelsPerInch = 96

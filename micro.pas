@@ -385,7 +385,7 @@ begin
       Caption:=ConfigForm.TmpNames.Cells[0,i];
       Font.Color:=clBlack;
       Font.Height:=-11;
-      Font.Name:='MS Sans Serif';
+      Font.Name:='Microsoft Sans Serif';
       Font.Style:=[fsBold];
       ParentFont:=False
     end;

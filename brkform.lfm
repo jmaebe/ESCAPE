@@ -27,7 +27,7 @@ object BreakForm: TBreakForm
     Caption = 'Organisational Registers'
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
     ParentFont = False
     PopupMenu = PopupMenu1
@@ -41,7 +41,7 @@ object BreakForm: TBreakForm
     Caption = 'Register File Registers'
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
     ParentFont = False
     PopupMenu = PopupMenu1

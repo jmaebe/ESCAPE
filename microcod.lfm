@@ -27,7 +27,7 @@ object MicroCode: TMicroCode
     FixedCols = 0
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
     Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goTabs, goAlwaysShowEditor, goThumbTracking]
     ParentFont = False
@@ -72,7 +72,7 @@ object MicroCode: TMicroCode
     FixedCols = 0
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
     Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goTabs, goThumbTracking]
     ParentFont = False
@@ -116,7 +116,7 @@ object MicroCode: TMicroCode
     Align = alBottom
     Font.Color = clWindowText
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
     Tabs.Strings = (
       'Microcode'
@@ -132,7 +132,7 @@ object MicroCode: TMicroCode
     Height = 13
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
     ItemHeight = 13
     Items.Strings = (
@@ -156,7 +156,7 @@ object MicroCode: TMicroCode
     Height = 13
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
     ItemHeight = 13
     Items.Strings = (
@@ -176,7 +176,7 @@ object MicroCode: TMicroCode
     Height = 13
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
     ItemHeight = 13
     Items.Strings = (
@@ -200,7 +200,7 @@ object MicroCode: TMicroCode
     Height = 13
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
     ItemHeight = 13
     Items.Strings = (
@@ -224,7 +224,7 @@ object MicroCode: TMicroCode
     Height = 13
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
     ItemHeight = 13
     Items.Strings = (
@@ -246,7 +246,7 @@ object MicroCode: TMicroCode
     Height = 13
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
     ItemHeight = 13
     Items.Strings = (
@@ -265,7 +265,7 @@ object MicroCode: TMicroCode
     Height = 13
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
     ItemHeight = 13
     Items.Strings = (
@@ -291,7 +291,7 @@ object MicroCode: TMicroCode
     Height = 13
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
     ItemHeight = 13
     Items.Strings = (
@@ -311,7 +311,7 @@ object MicroCode: TMicroCode
     Height = 17
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
     ItemHeight = 16
     Items.Strings = (
@@ -342,7 +342,7 @@ object MicroCode: TMicroCode
     Height = 13
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
     ItemHeight = 13
     Items.Strings = (
@@ -364,7 +364,7 @@ object MicroCode: TMicroCode
     Caption = 'Status1'
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
     ParentFont = False
     TabOrder = 13
@@ -379,7 +379,7 @@ object MicroCode: TMicroCode
     Caption = 'Status2'
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
     ParentFont = False
     TabOrder = 14
@@ -394,7 +394,7 @@ object MicroCode: TMicroCode
     Caption = 'Status3'
     Font.Color = clBlack
     Font.Height = -11
-    Font.Name = 'MS Sans Serif'
+    Font.Name = 'Microsoft Sans Serif'
     Font.Style = []
     ParentFont = False
     TabOrder = 15
