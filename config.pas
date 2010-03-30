@@ -33,7 +33,7 @@ interface
 
 uses
   SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
-  Forms, Dialogs, StdCtrls, Compos, Menus, Grids, Common, ExtCtrls, Tabs,
+  Forms, Dialogs, StdCtrls, Compos, Menus, Grids, COMMON, ExtCtrls, ComCtrls, {Tabs,}
   Spin, LResources, lcltype;
 
 type
@@ -52,8 +52,16 @@ type
 
   { This is the configuration form. Many of the fields are read directly by other units }
   TConfigForm = class(TForm)
-    TabSet1: TTabSet;
+    ImemSize: TIntegerComboBox;
+    DmemSize: TIntegerComboBox;
+    NumRegisters: TIntegerComboBox;
+    NumOpcodes: TIntegerComboBox;
+    TabSet1: TPageControl;
     Notebook1: TNotebook;
+    Page1,
+    Page2,
+    Page3,
+    Page4: TPage;
     MicroStuff: TGroupBox;
     Label7: TLabel;
     Label9: TLabel;
@@ -62,8 +70,6 @@ type
     RBA: TCheckBox;
     GroupBox1: TGroupBox;
     Label1: TLabel;
-    ImemSize: TPowerSpin;
-    DmemSize: TPowerSpin;
     Label2: TLabel;
     CompleteExtend: TRadioGroup;
     CompleteMemOps: TRadioGroup;
@@ -73,8 +79,6 @@ type
     Label12: TLabel;
     GroupBox2: TGroupBox;
     Label3: TLabel;
-    NumRegisters: TPowerSpin;
-    NumOpcodes: TPowerSpin;
     Label4: TLabel;
     Label16: TLabel;
     Label17: TLabel;
@@ -179,6 +183,8 @@ type
     NumFormals: Integer;
     LastCol: Integer;
     LastRow: Integer;
+    // default directory to search for data files
+    DefaultDataSearchDir: String;
     procedure ClearConfiguration;
     procedure UpdateConfiguration;
     procedure ShowDropDown(Row: Integer);
@@ -293,12 +299,22 @@ begin
   NumRegistersChange(Sender);
   DropBox.Height:=DropBox.ItemHeight*DropBox.Items.Count+5;
   ClearConfiguration;
-  if FileExists('Escape.ecf') then
-    OpenDialog1.FileName:='Escape.ecf'
+  DefaultDataSearchDir:=ExtractFileDir(Application.ExeName);
+{$ifdef darwin}
+  { remove bundle path }
+  if copy(DefaultDataSearchDir,Length(DefaultDataSearchDir)-Length('.app/Contents/MacOS')+1,Length('.app/Contents/MacOS'))='.app/Contents/MacOS' then
+    begin
+      SetLength(DefaultDataSearchDir,Length(DefaultDataSearchDir)-Length('.app/Contents/MacOS'));
+      DefaultDataSearchDir:=ExtractFileDir(DefaultDataSearchDir);
+    end;
+{$endif}
+  DefaultDataSearchDir:=DefaultDataSearchDir+DirectorySeparator;
+  if FileExists(DefaultDataSearchDir+'Escape.ecf') then
+    OpenDialog1.FileName:=DefaultDataSearchDir+'Escape.ecf'
   else begin
-    if FindFirst('*.ecf',$3F,SearchRec)=0 then
-      OpenDialog1.FileName:=SearchRec.Name;
-    FindClose(SearchRec.FindHandle)
+    if FindFirst(DefaultDataSearchDir+'*.ecf',$3F,SearchRec)=0 then
+      OpenDialog1.FileName:=DefaultDataSearchDir+SearchRec.Name;
+    FindClose(SearchRec)
   end;
   if Length(OpenDialog1.FileName)>0 then
   begin
@@ -459,7 +475,7 @@ end;
 
 procedure TConfigForm.FormResize(Sender: TObject);
 begin
-  Grid.Height:=ClientHeight-215;
+  Grid.Height:=ClientHeight-276;
   Notebook1.Height:=ClientHeight-21
 end;
 
@@ -891,5 +907,4 @@ begin
 end;
 
 end.
-
 

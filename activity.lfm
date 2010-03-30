@@ -1,7 +1,7 @@
 object ActivityForm: TActivityForm
-  Left = 317
+  Left = 403
   Height = 308
-  Top = 188
+  Top = 246
   Width = 474
   Caption = 'Pipeline Activity Diagram'
   ClientHeight = 308

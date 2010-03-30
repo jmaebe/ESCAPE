@@ -1,7 +1,7 @@
 object UsageForm: TUsageForm
-  Left = 120
+  Left = 364
   Height = 254
-  Top = 436
+  Top = 273
   Width = 552
   Caption = 'Pipeline Usage Diagram'
   ClientHeight = 254

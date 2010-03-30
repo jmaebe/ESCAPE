@@ -565,7 +565,6 @@ object MicroForm: TMicroForm
         Font.Color = clBlack
         Font.Height = -13
         Font.Style = [fsBold]
-        MaxLength = 8
         ParentFont = False
         TabOrder = 2
         Text = '0'
@@ -611,7 +610,6 @@ object MicroForm: TMicroForm
         Font.Color = clBlack
         Font.Height = -13
         Font.Style = [fsBold]
-        MaxLength = 8
         MaxValue = 100000000
         MinValue = 1
         ParentFont = False

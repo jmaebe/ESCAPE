@@ -1,53 +1,52 @@
 object RangeForm: TRangeForm
   Left = 425
+  Height = 81
   Top = 236
+  Width = 271
   HorzScrollBar.Visible = False
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'Set Code Range'
   ClientHeight = 81
   ClientWidth = 271
-  Font.Color = clWindowText
   Font.Height = -13
-  Font.Style = []
   FormStyle = fsStayOnTop
-  PixelsPerInch = 96
-  Position = poScreenCenter
   OnClose = FormClose
   OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '0.9.29'
   object Label1: TLabel
     Left = 16
+    Height = 18
     Top = 11
-    Width = 38
-    Height = 16
+    Width = 35
     Caption = 'Begin'
+    ParentColor = False
   end
   object Label2: TLabel
     Left = 168
+    Height = 18
     Top = 11
-    Width = 25
-    Height = 16
+    Width = 24
     Caption = 'End'
+    ParentColor = False
   end
   object OKButton: TBitBtn
     Left = 48
+    Height = 26
     Top = 48
     Width = 81
-    Height = 26
-    TabOrder = 0
-    OnClick = OKButtonClick
     Kind = bkOK
+    OnClick = OKButtonClick
+    TabOrder = 0
   end
   object CancelButton: TBitBtn
     Left = 144
+    Height = 26
     Top = 48
     Width = 81
-    Height = 26
     Cancel = True
     Caption = 'Cancel'
-    ModalResult = 2
-    TabOrder = 1
-    OnClick = CancelButtonClick
     Glyph.Data = {
       CE070000424DCE07000000000000360000002800000024000000120000000100
       1800000000009807000000000000000000000000000000000000008484008484
@@ -113,32 +112,33 @@ object RangeForm: TRangeForm
       8484008484008484008484008484008484008484008484008484008484008484
       008484008484008484008484008484008484
     }
+    ModalResult = 2
     NumGlyphs = 2
+    OnClick = CancelButtonClick
+    TabOrder = 1
   end
   object StartRange: THexSpin
     Left = 64
+    Height = 16
     Top = 8
     Width = 57
-    Height = 26
     Increment = 4
     MaxValue = 0
-    MinValue = 0
+    OnExit = StartRangeExit
     TabOrder = 2
     Value = 0
-    OnExit = StartRangeExit
     Digits = 4
   end
   object StopRange: THexSpin
     Left = 200
+    Height = 16
     Top = 8
     Width = 57
-    Height = 26
     Increment = 4
     MaxValue = 0
-    MinValue = 0
+    OnExit = StopRangeExit
     TabOrder = 3
     Value = 0
-    OnExit = StopRangeExit
     Digits = 4
   end
 end
