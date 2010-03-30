@@ -28,8 +28,6 @@ uses
 
 {$R *.res}
 
-{$R Escape.res}
-
 begin
   { Initialize data structures }
   Encoding:=TEncoding.Create;
