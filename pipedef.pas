@@ -234,9 +234,13 @@ procedure TPipeCode.FormCreate(Sender: TObject);
 var
   i: Integer;
 begin
+  CompleteExtend:=(ConfigForm.CompleteExtend.ItemIndex=1);
+  CompleteCompOps:=(ConfigForm.CompleteCompOps.ItemIndex=1);
+  CompleteMemOps:=(ConfigForm.CompleteMemOps.ItemIndex=1);
+  InitializeDropBoxes;
   Grid.DefaultRowHeight:=MSSansSerif8Height+2;
   Grid.RowCount:=ConfigForm.NumOpcodes.Value+1;
-  for i:=1 to Grid.RowCount do
+  for i:=1 to Grid.RowCount-1 do
     Grid.Cells[0,i]:=Encoding.Opcode(i-1);
   Grid.Cells[0,0]:='Opcode';
   Grid.Cells[1,0]:='A Formal';
@@ -248,10 +252,6 @@ begin
   Grid.Cells[7,0]:='ALU';
   Grid.Cells[8,0]:='Comp';
   Grid.Cells[9,0]:='Mem';
-  CompleteExtend:=(ConfigForm.CompleteExtend.ItemIndex=1);
-  CompleteCompOps:=(ConfigForm.CompleteCompOps.ItemIndex=1);
-  CompleteMemOps:=(ConfigForm.CompleteMemOps.ItemIndex=1);
-  InitializeDropBoxes;
   LastDropDownField:=0;
   SetUseDropDown(true);
   Status2.Caption:='';

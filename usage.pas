@@ -249,11 +249,11 @@ procedure TUsageForm.Clear;
 var
   i: Integer;
 begin
-  for i:=1 to 1025 do
+  for i:=1 to Grid.RowCount-1 do
     Grid.Cells[0,i]:='';
   for i:=0 to High(LookupRow) do
     LookupRow[i]:=-1;
-  for i:=0 to 1023 do
+  for i:=0 to high(RowStartTime) do
     RowStartTime[i]:=-1;
   NextIndex:=PSimulator.ActivityStartIndex;
   NextRow:=0
@@ -287,7 +287,7 @@ begin
           RowStartTime[NextRow]:=ActivityStartTime+((NextIndex-ActivityStartIndex) and 1023);
           NextRow:=NextRow+1;
           Grid.Cells[0,NextRow]:=IntToHex(Adr,4)+': '+Disassemble(CodeMemory.Read(Adr,2),Adr,0,false);
-          if NextRow>1023 then
+          if NextRow>Grid.RowCount-2 then
             raise Exception.Create('Failure: usage diagram: row out of range');
         end;
         if p and $40000000<>0 then
