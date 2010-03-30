@@ -424,8 +424,9 @@ begin
   RRB.MaxValue:=NumFormals;
   if RRB.Value>NumFormals then
     RRA.Value:=NumFormals;
-  Grid.RowCount:=NumOpcodes.Value;
-  for Opc:=0 to Grid.RowCount-1 do
+  { +1 to include header row }
+  Grid.RowCount:=NumOpcodes.Value+1;
+  for Opc:=0 to Grid.RowCount-2 do
     Grid.Cells[1,Opc+1]:=DropBox.Items[Ord(OpcodeType[Opc])];
   SetModify(Sender)
 end;
@@ -571,7 +572,7 @@ begin
   NumOpcodes.Value:=64;
   NumRegisters.Value:=32;
   NumRegistersChange(ConfigForm);
-  for i:=1 to Grid.RowCount do
+  for i:=1 to Grid.RowCount-1 do
   begin
     Grid.Cells[1,i]:=DropBox.Items[Ord(OpcodeType[i-1])];
     Grid.Cells[0,i]:='';
@@ -780,7 +781,7 @@ begin
     Error:=true;
   for i:=i to 9 do
     TmpNames.Cells[0,i]:='';
-  for Opc:=0 to Grid.RowCount-1 do
+  for Opc:=0 to Grid.RowCount-2 do
     Grid.Cells[1,Opc+1]:=DropBox.Items[Ord(OpcodeType[Opc])];
   if FileIO.ReadYesNo('BlindRegisterFileReading',Error) then
     RegFileRead.ItemIndex:=0

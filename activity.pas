@@ -55,8 +55,8 @@ procedure TActivityForm.Clear;
 var
   i,j: Integer;
 begin
-  for i:=1 to 1025 do
-    for j:=0 to 5 do
+  for i:=1 to Grid.RowCount-1 do
+    for j:=0 to Grid.ColCount-1 do
       Grid.Cells[j,i]:='';
   for i:=0 to High(LookupColor) do
     LookupColor[i]:=-1;
