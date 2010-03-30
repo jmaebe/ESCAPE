@@ -34,7 +34,7 @@ interface
 uses
   SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
   Forms, Dialogs, ExtCtrls, StdCtrls, Compos, Menus, Common, PipeDef,
-  DataMem, InstrMem, BrkForm, Spin, LResources;
+  DataMem, InstrMem, BrkForm, Spin, LResources, lcltype;
 
 type
   { This is the main form for the pipelined architecture simulator }

@@ -33,7 +33,7 @@ interface
 
 uses
   SysUtils,{WinTypes,WinProcs,}Messages,Classes,Graphics,Controls,Forms,Dialogs,
-  Common,Grids,Compos,Menus,Config,ExtCtrls,StdCtrls,LResources;
+  Common,Grids,Compos,Menus,Config,ExtCtrls,StdCtrls,LResources,lcltype;
 
 type
   TMetaFormal = (foA,foB,foC);

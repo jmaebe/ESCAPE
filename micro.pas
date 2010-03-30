@@ -34,7 +34,7 @@ interface
 uses
   SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
   Forms, Dialogs, ExtCtrls, StdCtrls, Compos, Common, Menus, Config,
-  InstrMem, DataMem, BrkForm, MicroCod, Spin, LResources;
+  InstrMem, DataMem, BrkForm, MicroCod, Spin, LResources, lcltype;
 
 type
   { This is the main form for the microprogrammed architecture simulator }

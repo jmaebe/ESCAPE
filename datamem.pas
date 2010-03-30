@@ -33,7 +33,8 @@ interface
 
 uses
   SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
-  Forms, Dialogs, Grids, StdCtrls, ExtCtrls, Menus,LResources, Common, NewStr;
+  Forms, Dialogs, Grids, StdCtrls, ExtCtrls, Menus,LResources, Common, NewStr,
+  lcltype;
 
 type
   { Data memory form }

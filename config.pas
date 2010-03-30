@@ -34,7 +34,7 @@ interface
 uses
   SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
   Forms, Dialogs, StdCtrls, Compos, Menus, Grids, Common, ExtCtrls, Tabs,
-  Spin, LResources;
+  Spin, LResources, lcltype;
 
 type
   TOpcodeType = (otR, otI, otJ);

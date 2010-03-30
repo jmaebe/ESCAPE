@@ -34,7 +34,7 @@ interface
 uses
   SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
   Forms, Dialogs, StdCtrls, Grids, Buttons, Common, Menus, ExtCtrls,LResources,
-  Compos, NewStr;
+  Compos, NewStr, lcltype;
 
 const
   BufferSize = 32760;

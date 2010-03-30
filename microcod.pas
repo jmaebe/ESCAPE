@@ -34,7 +34,7 @@ interface
 uses
   SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
   Forms, Dialogs, ExtCtrls, Grids, Compos, Tabs, Config, Common, Menus,
-  StdCtrls, LResources, NewStr;
+  StdCtrls, LResources, NewStr, lcltype;
 
 type
   TuCodeField = (ufLabel, ufAdr, ufConst, ufReg, ufALU, ufS1, ufS2,

@@ -33,7 +33,7 @@ interface
 
 uses
   SysUtils,{WinTypes,WinProcs,}Messages,Classes,Graphics,Controls,Forms,Dialogs,
-  StdCtrls,Compos,Menus,ExtCtrls,LResources,Config,Common,NewStr;
+  StdCtrls,Compos,Menus,ExtCtrls,LResources,Config,Common,NewStr,lcltype;
 
 const
   NumBreakPoints = 10; { Must be even! }
