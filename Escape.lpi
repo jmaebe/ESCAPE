@@ -9,7 +9,7 @@
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
       <Icon Value="0"/>
-      <ActiveWindowIndexAtStart Value="0"/>
+      <ActiveEditorIndexAtStart Value="6"/>
     </General>
     <VersionInfo>
       <Language Value=""/>
@@ -28,22 +28,24 @@
         <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="1">
+    <RequiredPackages Count="2">
       <Item1>
         <PackageName Value="LCL"/>
       </Item1>
+      <Item2>
+        <PackageName Value="EscapeComponents"/>
+      </Item2>
     </RequiredPackages>
-    <Units Count="17">
+    <Units Count="18">
       <Unit0>
         <Filename Value="Escape.lpr"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="30" Y="29"/>
-        <TopLine Value="3"/>
+        <CursorPos X="47" Y="21"/>
+        <TopLine Value="1"/>
         <EditorIndex Value="5"/>
-        <WindowIndex Value="0"/>
-        <IsVisibleTab Value="True"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
@@ -55,6 +57,7 @@
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
         <UsageCount Value="20"/>
+        <SyntaxHighlighter Value="Delphi"/>
       </Unit1>
       <Unit2>
         <Filename Value="common.pas"/>
@@ -63,6 +66,7 @@
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
         <UsageCount Value="20"/>
+        <SyntaxHighlighter Value="Delphi"/>
       </Unit2>
       <Unit3>
         <Filename Value="config.pas"/>
@@ -74,6 +78,7 @@
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
         <UsageCount Value="20"/>
+        <SyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
         <Filename Value="datamem.pas"/>
@@ -85,6 +90,7 @@
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
         <UsageCount Value="20"/>
+        <SyntaxHighlighter Value="Delphi"/>
       </Unit4>
       <Unit5>
         <Filename Value="micro.pas"/>
@@ -96,9 +102,9 @@
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
         <EditorIndex Value="0"/>
-        <WindowIndex Value="0"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
       </Unit5>
       <Unit6>
         <Filename Value="pipe.pas"/>
@@ -110,9 +116,9 @@
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
         <EditorIndex Value="1"/>
-        <WindowIndex Value="0"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
       </Unit6>
       <Unit7>
         <Filename Value="usage.pas"/>
@@ -124,9 +130,9 @@
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
         <EditorIndex Value="2"/>
-        <WindowIndex Value="0"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
       </Unit7>
       <Unit8>
         <Filename Value="activity.pas"/>
@@ -138,9 +144,9 @@
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
         <EditorIndex Value="3"/>
-        <WindowIndex Value="0"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
       </Unit8>
       <Unit9>
         <Filename Value="instrmem.pas"/>
@@ -152,9 +158,9 @@
         <CursorPos X="48" Y="12"/>
         <TopLine Value="3"/>
         <EditorIndex Value="4"/>
-        <WindowIndex Value="0"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
       </Unit9>
       <Unit10>
         <Filename Value="range.pas"/>
@@ -165,10 +171,10 @@
         <UnitName Value="Range"/>
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="7"/>
-        <WindowIndex Value="0"/>
+        <EditorIndex Value="8"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
       </Unit10>
       <Unit11>
         <Filename Value="pipedef.pas"/>
@@ -179,10 +185,10 @@
         <UnitName Value="PipeDef"/>
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="8"/>
-        <WindowIndex Value="0"/>
+        <EditorIndex Value="9"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
       </Unit11>
       <Unit12>
         <Filename Value="microcod.pas"/>
@@ -191,10 +197,10 @@
         <UnitName Value="MicroCod"/>
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="9"/>
-        <WindowIndex Value="0"/>
+        <EditorIndex Value="10"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
       </Unit12>
       <Unit13>
         <Filename Value="brkform.pas"/>
@@ -205,10 +211,10 @@
         <UnitName Value="BrkForm"/>
         <CursorPos X="1" Y="1"/>
         <TopLine Value="1"/>
-        <EditorIndex Value="10"/>
-        <WindowIndex Value="0"/>
+        <EditorIndex Value="11"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
       </Unit13>
       <Unit14>
         <Filename Value="about.pas"/>
@@ -217,20 +223,19 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="About"/>
-        <CursorPos X="52" Y="8"/>
-        <TopLine Value="8"/>
-        <EditorIndex Value="11"/>
-        <WindowIndex Value="0"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="12"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
+        <SyntaxHighlighter Value="Delphi"/>
       </Unit14>
       <Unit15>
-        <Filename Value="compos.pas"/>
+        <Filename Value="EscapeComponents/compos.pas"/>
         <UnitName Value="Compos"/>
-        <CursorPos X="25" Y="392"/>
-        <TopLine Value="383"/>
+        <CursorPos X="1" Y="347"/>
+        <TopLine Value="312"/>
         <EditorIndex Value="6"/>
-        <WindowIndex Value="0"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit15>
@@ -239,13 +244,72 @@
         <UsageCount Value="10"/>
         <SyntaxHighlighter Value="None"/>
       </Unit16>
+      <Unit17>
+        <Filename Value="EscapeComponents/newstr.pas"/>
+        <UnitName Value="NewStr"/>
+        <CursorPos X="1" Y="1"/>
+        <TopLine Value="1"/>
+        <EditorIndex Value="7"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit17>
     </Units>
-    <JumpHistory Count="0" HistoryIndex="-1"/>
+    <JumpHistory Count="12" HistoryIndex="11">
+      <Position1>
+        <Filename Value="about.pas"/>
+        <Caret Line="3" Column="117" TopLine="1"/>
+      </Position1>
+      <Position2>
+        <Filename Value="about.pas"/>
+        <Caret Line="55" Column="1" TopLine="1"/>
+      </Position2>
+      <Position3>
+        <Filename Value="EscapeComponents/compos.pas"/>
+        <Caret Line="392" Column="64" TopLine="383"/>
+      </Position3>
+      <Position4>
+        <Filename Value="EscapeComponents/compos.pas"/>
+        <Caret Line="1066" Column="5" TopLine="1011"/>
+      </Position4>
+      <Position5>
+        <Filename Value="EscapeComponents/compos.pas"/>
+        <Caret Line="8" Column="57" TopLine="1"/>
+      </Position5>
+      <Position6>
+        <Filename Value="EscapeComponents/compos.pas"/>
+        <Caret Line="1" Column="98" TopLine="1"/>
+      </Position6>
+      <Position7>
+        <Filename Value="EscapeComponents/compos.pas"/>
+        <Caret Line="50" Column="22" TopLine="22"/>
+      </Position7>
+      <Position8>
+        <Filename Value="EscapeComponents/compos.pas"/>
+        <Caret Line="307" Column="25" TopLine="279"/>
+      </Position8>
+      <Position9>
+        <Filename Value="EscapeComponents/compos.pas"/>
+        <Caret Line="316" Column="30" TopLine="279"/>
+      </Position9>
+      <Position10>
+        <Filename Value="EscapeComponents/compos.pas"/>
+        <Caret Line="319" Column="33" TopLine="279"/>
+      </Position10>
+      <Position11>
+        <Filename Value="EscapeComponents/compos.pas"/>
+        <Caret Line="340" Column="23" TopLine="312"/>
+      </Position11>
+      <Position12>
+        <Filename Value="EscapeComponents/compos.pas"/>
+        <Caret Line="349" Column="20" TopLine="312"/>
+      </Position12>
+    </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="8"/>
     <Parsing>
       <SyntaxOptions>
+        <SyntaxMode Value="Delphi"/>
         <UseAnsiStrings Value="True"/>
       </SyntaxOptions>
     </Parsing>

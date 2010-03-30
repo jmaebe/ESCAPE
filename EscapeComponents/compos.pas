@@ -62,33 +62,6 @@ type
     property Value: LongInt read GetValue write SetValue;
   end;
 
-  { TPowerSpin: Like TSpinEdit, but with values that are a power of 2 }
-  TPowerSpin = class(TSpinEdit)
-  private
-    FMaxExponent: Integer;
-    FMinExponent: Integer;
-    function GetExponent: Integer;
-    procedure SetExponent (NewExpo: Integer);
-    function GetValue2: LongInt;
-    procedure SetValue2 (Val: LongInt);
-    function GetMinValue: LongInt;
-    procedure SetMinValue (NewValue: LongInt);
-    function GetMaxValue: LongInt;
-    procedure SetMaxValue (NewValue: LongInt);
-    function Log2(NewValue: LongInt): Integer;
-    function CheckValue_Expo(NewValue: LongInt; out Expo: Integer): LongInt;
-//    procedure UpClick (Sender: TObject); override;
-//    procedure DownClick (Sender: TObject); override;
-    procedure DoExit; override;
-  published
-    property MinExponent: Integer read FMinExponent write FMinExponent default 0;
-    property MaxExponent: Integer read FMaxExponent write FMaxExponent default 0;
-    property MaxValue: LongInt read GetMaxValue write SetMaxValue;
-    property MinValue: LongInt read GetMinValue write SetMinValue;
-    property Value: LongInt read GetValue2 write SetValue2;
-    property Exponent: Integer read GetExponent write SetExponent;
-  end;
-
   { THexSpin: Like TSpinEdit, but with hexadecimal display and non-fixed increment }
   THexSpin = class(TSpinEdit)
   private
@@ -383,104 +356,14 @@ begin
   Text := IntToStr(Value);
 end;
 
-{ TPowerSpin }
-function TPowerSpin.Log2(NewValue: LongInt): Integer;
-begin
-  if NewValue<1 then
-    NewValue:=1;
-  Result:=0;
-  while NewValue>1 do
-  begin
-    Result:=Result+1;
-    NewValue:=NewValue shr 1;
-  end
-end;
-
-function TPowerSpin.CheckValue_Expo(NewValue: LongInt; out Expo: Integer): LongInt;
-begin
-  Expo:=Log2(NewValue);
-  if (FMaxExponent <> FMinExponent) then
-  begin
-    if Expo < FMinExponent then
-      Expo := FMinExponent
-    else if Expo > FMaxExponent then
-      Expo := FMaxExponent;
-  end;
-  Result := LongInt(1) shl Expo;
-end;
-
-function TPowerSpin.GetExponent: Integer;
-var Expo: Integer;
+function THexSpin.GetValue2: LongInt;
 begin
   try
-    CheckValue_Expo(inherited Value,Expo);
-    Result:=Expo;
+    Result:=CheckValue(NewStrToInt(Text,0,2))
   except
-    Result := FMinExponent
+    Result:=MinValue
   end;
-  Text := IntToStr(LongInt(1) shl Result)
-end;
-
-procedure TPowerSpin.SetExponent (NewExpo: Integer);
-var
-  Expo: Integer;
-begin
-  Text := IntToStr(CheckValue_Expo(LongInt(1) shl NewExpo,Expo))
-end;
-
-function TPowerSpin.GetValue2: LongInt;
-var Expo: Integer;
-begin
-  try
-    Result:=CheckValue_Expo(inherited Value,Expo)
-  except
-    Result := LongInt(1) shl FMinExponent
-  end;
-  Text := IntToStr(Result)
-end;
-
-procedure TPowerSpin.SetValue2 (Val: LongInt);
-var
-  Expo: Integer;
-begin
-  Text := IntToStr(CheckValue_Expo(Val,Expo))
-end;
-
-function TPowerSpin.GetMinValue: LongInt;
-begin
-  Result:=LongInt(1) shl FMinExponent;
-end;
-
-procedure TPowerSpin.SetMinValue (NewValue: LongInt);
-begin
-  FMinExponent:=Log2(NewValue);
-end;
-
-function TPowerSpin.GetMaxValue: LongInt;
-begin
-  Result:=LongInt(1) shl FMaxExponent;
-end;
-
-procedure TPowerSpin.SetMaxValue (NewValue: LongInt);
-begin
-  FMaxExponent:=Log2(NewValue);
-end;
-(*
-procedure TPowerSpin.UpClick (Sender: TObject);
-begin
-  if ReadOnly then MessageBeep(0)
-  else Value := Value shl 1;
-end;
-
-procedure TPowerSpin.DownClick (Sender: TObject);
-begin
-  if ReadOnly then MessageBeep(0)
-  else Value := Value shr 1;
-end;
-*)
-procedure TPowerSpin.DoExit;
-begin
-  GetValue2
+  Text := IntToHex(Result,FDigits)
 end;
 
 { THexSpin }
@@ -494,16 +377,6 @@ begin
     else if Val > MaxValue then
       Result := MaxValue;
   end;
-end;
-
-function THexSpin.GetValue2: LongInt;
-begin
-  try
-    Result:=CheckValue(NewStrToInt(Text,0,2))
-  except
-    Result:=MinValue
-  end;
-  Text := IntToHex(Result,FDigits)
 end;
 
 procedure THexSpin.SetValue2 (Val: LongInt);
@@ -1175,8 +1048,7 @@ end;
 { Component registration }
 procedure Register;
 begin
-  RegisterComponents('Compos', [TEditInteger, TPowerSpin, THexSpin, TIntegerComboBox,
-                            TMuxBox,
+  RegisterComponents('Compos', [TEditInteger, THexSpin, TIntegerComboBox,TMuxBox,
                             TbusBox, TAluBox, TLineBox, TComparatorBox,
                             TNewStringGrid, TRegBox, TRegFileBox, TShape3D])
 end;
