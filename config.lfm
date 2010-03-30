@@ -342,7 +342,6 @@ object ConfigForm: TConfigForm
         ClientHeight = 181
         ClientWidth = 473
         TabOrder = 1
-        OnClick = GroupBox2Click
         object Label3: TLabel
           Left = 8
           Height = 18
