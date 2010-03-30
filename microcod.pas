@@ -33,8 +33,8 @@ interface
 
 uses
   SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
-  Forms, Dialogs, ExtCtrls, Grids, Compos, Tabs, Config, Common, Menus,
-  StdCtrls, LResources, NewStr, lcltype;
+  Forms, Dialogs, ExtCtrls, Grids, Compos, {Tabs,} Config, Common, Menus,
+  StdCtrls,LResources, NewStr, lcltype;
 
 type
   TuCodeField = (ufLabel, ufAdr, ufConst, ufReg, ufALU, ufS1, ufS2,
@@ -48,7 +48,7 @@ type
 
   { The microcode and jump tables form }
   TMicroCode = class(TForm)
-    TabSet: TTabSet;
+//    TabSet: TTabSet;
     Grid1: TNewStringGrid;
     MainMenu1: TMainMenu;
     Grid2: TNewStringGrid;
@@ -520,6 +520,7 @@ procedure TMicroCode.TabSetChange(Sender: TObject; NewTab: Integer;
 var
   Dummy: Boolean;
 begin
+(*
   if TabIndex=0 then
     Grid1SelectCell(Sender,LastCol1,LastRow1,Dummy)
   else
@@ -529,6 +530,7 @@ begin
   ShowGrid;
   if LastDropDownField>=ufReg then
     FieldToDrop(LastDropDownField).Visible:=false
+*)
 end;
 
 procedure TMicroCode.ShowGrid;
@@ -976,12 +978,12 @@ end;
 
 procedure TMicroCode.Microcode1Click(Sender: TObject);
 begin
-  TabSet.TabIndex:=0
+//  TabSet.TabIndex:=0
 end;
 
 procedure TMicroCode.JumpTables1Click(Sender: TObject);
 begin
-  TabSet.TabIndex:=1
+//  TabSet.TabIndex:=1
 end;
 
 procedure TMicroCode.Delete1Click(Sender: TObject);
@@ -1098,7 +1100,7 @@ begin
   Grid1.Selection:=SRect;
   Grid1.Row:=Row;
   Grid1.Col:=Col;
-  TabSet.TabIndex:=0;
+//  TabSet.TabIndex:=0;
   Grid1.PressKey(VK_DOWN,[]);
   Grid1.PressKey(VK_UP,[])
 end;
@@ -1178,7 +1180,7 @@ begin
             Result:=true;
             Grid2.Row:=Opc+1;
             Grid2.Col:=j+1;
-            TabSet.TabIndex:=1;
+//            TabSet.TabIndex:=1;
             Grid2.PressKey(VK_DOWN,[]);
             Grid2.PressKey(VK_UP,[]);
             msg:='Undefined label ('+Grid2.Cells[0,Opc+1]+': '+S+')';
@@ -1458,4 +1460,3 @@ begin
 end;
 
 end.
-
