@@ -108,6 +108,19 @@ type
     property Value: LongInt read GetValue2 write SetValue2;
   end;
 
+  { TIntegerComboBox: a combox containing only integer values, with a value
+      property }
+  TIntegerComboBox = class(TCombobox)
+  private
+    function GetValue: LongInt;
+    procedure SetValue(NewValue: LongInt);
+    function GetExponentValue: LongInt;
+    procedure SetExponentValue(NewExponent: Longint);
+  published
+    property Value: LongInt read GetValue write SetValue;
+    property Exponent: LongInt read GetExponentValue write SetExponentValue;
+  end;
+
   { TRegBox: TEdit with different border }
   TRegBox = class(TCustomPanel)
   private
@@ -1162,9 +1175,55 @@ end;
 { Component registration }
 procedure Register;
 begin
-  RegisterComponents('Compos', [TEditInteger, TPowerSpin, THexSpin, TMuxBox,
+  RegisterComponents('Compos', [TEditInteger, TPowerSpin, THexSpin, TIntegerComboBox,
+                            TMuxBox,
                             TbusBox, TAluBox, TLineBox, TComparatorBox,
                             TNewStringGrid, TRegBox, TRegFileBox, TShape3D])
 end;
+
+{ TIntegerComboBox }
+
+function TIntegerComboBox.GetValue: LongInt;
+  begin
+    if (ItemIndex<0) or
+       (ItemIndex>Items.Count-1) then
+      Result:=-1
+    else
+      Result:=StrToInt(Items[ItemIndex]);
+  end;
+
+procedure TIntegerComboBox.SetValue(NewValue: LongInt);
+  var
+    newindex: longint;
+  begin
+    newindex:=Items.IndexOf(IntToStr(NewValue));
+    if newindex>=0 then
+      ItemIndex:=newindex
+    else
+      ItemIndex:=-1;
+  end;
+
+function Log2(Value: LongInt): Integer;
+begin
+  if Value<1 then
+    Value:=1;
+  Result:=0;
+  while Value>1 do
+  begin
+    Result:=Result+1;
+    Value:=Value shr 1;
+  end
+end;
+
+
+function TIntegerComboBox.GetExponentValue: LongInt;
+  begin
+    Result:=Log2(Value);
+  end;
+
+procedure TIntegerComboBox.SetExponentValue(NewExponent: Longint);
+  begin
+    Value:=1 shl NewExponent;
+  end;
 
 end.
