@@ -306,7 +306,9 @@ begin
     UpdateConfiguration
   end;
   LastRow:=1;
-  LastCol:=0
+  LastCol:=0;
+  Grid.Row:=1;
+  Grid.Col:=0
 end;
 
 procedure TConfigForm.FormClose(Sender: TObject; var Action: TCloseAction);
