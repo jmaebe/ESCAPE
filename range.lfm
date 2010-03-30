@@ -9,14 +9,12 @@ object RangeForm: TRangeForm
   ClientWidth = 271
   Font.Color = clWindowText
   Font.Height = -13
-  Font.Name = 'System'
   Font.Style = []
   FormStyle = fsStayOnTop
   PixelsPerInch = 96
   Position = poScreenCenter
   OnClose = FormClose
   OnShow = FormShow
-  TextHeight = 16
   object Label1: TLabel
     Left = 16
     Top = 11

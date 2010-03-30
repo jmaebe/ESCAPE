@@ -9,13 +9,11 @@ object AboutForm: TAboutForm
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -13
-  Font.Name = 'System'
   Font.Style = []
   Position = poScreenCenter
   OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
-  TextHeight = 16
   object Panel1: TPanel
     Left = 0
     Top = 0

@@ -1,37 +1,34 @@
 object UsageForm: TUsageForm
   Left = 120
+  Height = 254
   Top = 436
   Width = 552
-  Height = 254
   Caption = 'Pipeline Usage Diagram'
-  Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
+  ClientHeight = 254
+  ClientWidth = 552
   Font.Height = -13
-  Font.Name = 'System'
-  Font.Style = []
   Menu = MainMenu1
-  OldCreateOrder = True
-  PopupMenu = PopupMenu1
-  Position = poScreenCenter
   OnCreate = FormCreate
   OnResize = FormResize
-  PixelsPerInch = 96
-  TextHeight = 16
+  PopupMenu = PopupMenu1
+  Position = poScreenCenter
+  LCLVersion = '0.9.29'
+  Visible = False
   object Grid: TStringGrid
     Left = 0
+    Height = 254
     Top = 0
-    Width = 544
-    Height = 208
+    Width = 552
     Align = alClient
     ColCount = 2
-    DefaultRowHeight = 20
     DefaultDrawing = False
+    DefaultRowHeight = 20
     FixedCols = 0
-    RowCount = 1025
     Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goColSizing, goThumbTracking]
+    RowCount = 1025
     ScrollBars = ssVertical
     TabOrder = 0
+    TitleFont.Height = -13
     OnDrawCell = GridDrawCell
     OnMouseUp = GridMouseUp
     OnTopLeftChanged = GridTopLeftChanged
@@ -41,8 +38,8 @@ object UsageForm: TUsageForm
     )
   end
   object MainMenu1: TMainMenu
-    Left = 24
-    Top = 24
+    left = 24
+    top = 24
     object View1: TMenuItem
       Caption = 'View'
       object HideForm1: TMenuItem
@@ -53,8 +50,8 @@ object UsageForm: TUsageForm
     end
   end
   object PopupMenu1: TPopupMenu
-    Left = 24
-    Top = 56
+    left = 24
+    top = 56
     object HideForm2: TMenuItem
       Caption = '&Hide Form'
       ShortCut = 115

@@ -7,7 +7,6 @@ object ConfigForm: TConfigForm
   ClientHeight = 313
   ClientWidth = 496
   Font.Height = -13
-  Font.Name = 'System'
   KeyPreview = True
   Menu = MainMenu1
   OnClose = FormClose
@@ -17,6 +16,7 @@ object ConfigForm: TConfigForm
   PopupMenu = PopupMenu1
   Position = poScreenCenter
   LCLVersion = '0.9.29'
+  Visible = False
   object Label16: TLabel
     Left = 120
     Height = 18

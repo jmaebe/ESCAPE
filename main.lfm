@@ -9,7 +9,6 @@ object MainForm: TMainForm
   ClientHeight = 259
   ClientWidth = 554
   Font.Height = -13
-  Font.Name = 'System'
   OnClose = FormClose
   Position = poScreenCenter
   LCLVersion = '0.9.29'

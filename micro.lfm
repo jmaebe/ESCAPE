@@ -22,7 +22,6 @@ object MicroForm: TMicroForm
   OnKeyDown = FormKeyDown
   OnResize = FormResize
   PixelsPerInch = 96
-  TextHeight = 13
   object LineBox3: TLineBox
     Left = 0
     Top = 18
@@ -49,7 +48,6 @@ object MicroForm: TMicroForm
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = -13
-      Font.Name = 'System'
       Font.Style = [fsBold]
       ParentFont = False
       Transparent = True
@@ -80,7 +78,6 @@ object MicroForm: TMicroForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -13
-    Font.Name = 'System'
     Font.Style = [fsBold]
     ParentFont = False
     PopupMenu = PopupMenu1
@@ -365,7 +362,6 @@ object MicroForm: TMicroForm
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -13
-    Font.Name = 'System'
     Font.Style = [fsBold]
     ParentFont = False
     PopupMenu = PopupMenu1
@@ -541,7 +537,6 @@ object MicroForm: TMicroForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -13
-        Font.Name = 'System'
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 0
@@ -569,7 +564,6 @@ object MicroForm: TMicroForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -13
-        Font.Name = 'System'
         Font.Style = [fsBold]
         MaxLength = 8
         ParentFont = False
@@ -588,7 +582,6 @@ object MicroForm: TMicroForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -13
-        Font.Name = 'System'
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 3
@@ -604,7 +597,6 @@ object MicroForm: TMicroForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -13
-        Font.Name = 'System'
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 4
@@ -618,7 +610,6 @@ object MicroForm: TMicroForm
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -13
-        Font.Name = 'System'
         Font.Style = [fsBold]
         MaxLength = 8
         MaxValue = 100000000

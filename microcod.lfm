@@ -8,7 +8,6 @@ object MicroCode: TMicroCode
   Caption = 'MicroCode'
   Font.Color = clWindowText
   Font.Height = -13
-  Font.Name = 'System'
   Font.Style = []
   KeyPreview = True
   Menu = MainMenu1
@@ -18,7 +17,6 @@ object MicroCode: TMicroCode
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnResize = FormResize
-  TextHeight = 16
   object Grid2: TNewStringGrid
     Left = 192
     Top = 0

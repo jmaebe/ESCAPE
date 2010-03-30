@@ -9,7 +9,6 @@ object ImemForm: TImemForm
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -13
-  Font.Name = 'System'
   Font.Style = []
   KeyPreview = True
   Menu = MainMenu1
@@ -20,7 +19,6 @@ object ImemForm: TImemForm
   OnKeyDown = FormKeyDown
   OnResize = FormResize
   PixelsPerInch = 96
-  TextHeight = 16
   object Status1: TPanel
     Left = 1
     Top = 256
