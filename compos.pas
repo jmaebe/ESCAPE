@@ -743,37 +743,37 @@ end;
 procedure TMuxBox.SetLeftToRight(Value: Boolean);
 begin
   FLeftToRight:=Value;
-  Paint
+  Invalidate;
 end;
 
 procedure TMuxBox.SetInputs(Value: Integer);
 begin
   FInputs:=Value;
-  Paint
+  Invalidate;
 end;
 
 procedure TMuxBox.SetIndex(Value: Integer);
 begin
   FIndex:=Value;
-  Paint
+  Invalidate;
 end;
 
 procedure TMuxBox.SetOverlap(Value: Integer);
 begin
   FOverlap:=Value;
-  Paint
+  Invalidate;
 end;
 
 procedure TMuxBox.SetBarWidth(Value: Integer);
 begin
   FBarWidth:=Value;
-  Paint
+  Invalidate;
 end;
 
 procedure TMuxBox.SetBoxHeight(Value: Integer);
 begin
   FBoxHeight:=Value;
-  Paint
+  Invalidate;
 end;
 
 { TBusBox }
@@ -798,7 +798,7 @@ begin
   if Index>=FInputs then
     raise Exception.Create('Index out of range while writing TBusBox');
   FTerminal[Index]:=Value;
-  Paint
+  Invalidate;
 end;
 
 procedure TBusBox.Paint;
@@ -859,7 +859,7 @@ begin
     raise Exception.Create('Number of inputs out of range (0..256)');
     FInputs:=1
   end;
-  Paint
+  Invalidate;
 end;
 
 function BusTerminal(Position: Integer; TerminalType: TBusTerminalType): TBusTerminal;
@@ -871,19 +871,19 @@ end;
 procedure TBusBox.SetIndex(Value: Integer);
 begin
   FIndex:=Value;
-  Paint
+  Invalidate;
 end;
 
 procedure TBusBox.SetBarWidth(Value: Integer);
 begin
   FBarWidth:=Value;
-  Paint
+  Invalidate;
 end;
 
 procedure TBusBox.SetBoxOverlap(Value: Integer);
 begin
   FBoxOverlap:=Value;
-  Paint
+  Invalidate;
 end;
 
 { TLineBox }
@@ -895,11 +895,13 @@ begin
 end;
 
 destructor TWire.Destroy;
+type
+  PPoint = ^TPoint;
 var
   j: Integer;
 begin
   for j:=0 to Points.Count-1 do
-    Dispose(Points[j]);
+    Dispose(PPoint(Points[j]));
   Points.Free;
   inherited Destroy;
 end;
