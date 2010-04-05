@@ -112,7 +112,6 @@ type
     uARMux: TMuxBox;
     uAR: TRegBox;
     uARLabel2: TLabel;
-    uARLabel1: TLabel;
     Incr: TComparatorBox;
     IncrLabel: TLabel;
     uCodeLabel: TLabel;
@@ -354,7 +353,7 @@ var
   W,i: Integer;
 begin
   { Size Registers }
-  W:=Courier9Width*8+6;
+  W:=Courier9Width*8+12;
   uAR.Width:=W;
   A.Width:=W;
   B.Width:=W;
@@ -425,6 +424,7 @@ end;
 procedure TMicroForm.FormResize(Sender: TObject);
 var
   W,X,Y,i: Integer;
+  TempHeight: Integer;
 begin
   { Size Datapath Panel }
   Datapath.Height:=ClientHeight;
@@ -442,14 +442,18 @@ begin
     Datapath.Width:=357;
   LineBox3.Height:=Datapath.Height-20;
   { Size Register File }
-  RegFile.Height:=Datapath.Height-NumTemps*32-340+124;
+  if NumTemps>0 then
+    TempHeight:=Tmp[0].Height*NumTemps
+  else
+    TempHeight:=0;
+  RegFile.Height:=Datapath.Height-TempHeight-340+124;
   RegFile.Width:=15*Courier9Width+Datapath.Width-355;
   { Show Register File }
   if MSimulator<>nil then
     MSimulator.RegFile.Show(-1);
   { Size and Position Objects }
   C.Left:=RegFile.Left+RegFile.Width+20;
-  X:=RegFile.Left+(RegFile.Width-Courier9Width*8+5) div 2;
+  X:=RegFile.Left+(RegFile.Width-Courier9Width*8+12) div 2;
   for i:=0 to NumTemps-1 do
   begin
     Tmp[i].Top:=RegFile.Top+RegFile.Height+32*i+12;
@@ -527,7 +531,7 @@ begin
     LineBox2.AddWire(MSimulator.ALU,false,Point(ALU.Left+42,ALU.Top+42),true,[RES.Left+5]);
     LineBox2.AddWire(MSimulator.A,false,Point(S1.Left+5,A.Top+10),true,[A.Left]);
     LineBox2.AddWire(MSimulator.B,false,Point(S2.Left+5,B.Top+10),true,[B.Left]);
-    W:=Courier9Width*8+5;
+    W:=Courier9Width*8+12;
     LineBox2.AddWire(MSimulator.RegFile,false,Point(A.Left+W,A.Top+10),true,[RegFile.Left]);
     LineBox2.AddWire(MSimulator.RegFileBis,false,Point(B.Left+W,B.Top+10),true,[RegFile.Left]);
     LineBox2.AddWire(MSimulator.ALU,false,Point(C.Left+W,C.Top+10),true,[RES.Left+5]);

@@ -1,81 +1,82 @@
 object MicroForm: TMicroForm
-  Left = 512
-  Top = 384
-  Width = 640
+  Left = 320
   Height = 480
+  Top = 160
+  Width = 640
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
   ActiveControl = ResetButton
   Caption = 'Microprogrammed Architecture'
-  Font.Charset = DEFAULT_CHARSET
+  ClientHeight = 480
+  ClientWidth = 640
   Font.Color = clBlack
   Font.Height = -11
   Font.Name = 'Microsoft Sans Serif'
-  Font.Style = []
   KeyPreview = True
   Menu = MainMenu1
-  PopupMenu = PopupMenu1
-  Position = poScreenCenter
-  Visible = True
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnResize = FormResize
-  PixelsPerInch = 96
+  PopupMenu = PopupMenu1
+  Position = poScreenCenter
+  LCLVersion = '0.9.29'
+  Visible = True
   object LineBox3: TLineBox
     Left = 0
+    Height = 329
     Top = 18
     Width = 140
-    Height = 329
     BevelOuter = bvNone
+    ClientHeight = 329
+    ClientWidth = 140
     TabOrder = 3
     OnMouseDown = LineBox3MouseDown
     OnMouseUp = LineBox2MouseUp
     object Mem: TShape3D
       Left = 32
+      Height = 69
       Top = 258
       Width = 81
-      Height = 69
       Color = clYellow
       Shape = stRectangle
     end
     object MemLabel1: TLabel
       Left = 48
+      Height = 18
       Top = 276
-      Width = 53
-      Height = 16
+      Width = 51
       Caption = 'Memory'
-      Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = -13
       Font.Style = [fsBold]
+      ParentColor = False
       ParentFont = False
-      Transparent = True
     end
     object MemLabel2: TLabel
       Left = 32
+      Height = 21
       Top = 306
       Width = 81
-      Height = 21
       Alignment = taCenter
       AutoSize = False
       Caption = 'NOP'
-      Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = -11
       Font.Name = 'Microsoft Sans Serif'
       Font.Style = [fsBold]
+      ParentColor = False
       ParentFont = False
-      Transparent = True
     end
   end
   object Datapath: TGroupBox
     Left = 134
+    Height = 425
     Top = 0
     Width = 345
-    Height = 425
     Caption = 'Datapath'
-    Font.Charset = DEFAULT_CHARSET
+    ClientHeight = 402
+    ClientWidth = 337
     Font.Color = clBlack
     Font.Height = -13
     Font.Style = [fsBold]
@@ -83,283 +84,269 @@ object MicroForm: TMicroForm
     PopupMenu = PopupMenu1
     TabOrder = 1
     object LineBox2: TLineBox
-      Left = 2
-      Top = 18
-      Width = 341
-      Height = 405
+      Left = 0
+      Height = 402
+      Top = 0
+      Width = 337
       Align = alClient
       BevelOuter = bvNone
+      ClientHeight = 402
+      ClientWidth = 337
       TabOrder = 0
       OnMouseDown = LineBox2MouseDown
       OnMouseUp = LineBox2MouseUp
       object S1: TBusBox
         Left = 8
+        Height = 369
         Top = 0
         Width = 10
-        Height = 369
         Index = 0
         Inputs = 0
       end
       object S2: TBusBox
         Left = 32
+        Height = 369
         Top = 0
         Width = 10
-        Height = 369
         Index = 0
         Inputs = 0
       end
       object ALU: TAluBox
         Left = 64
+        Height = 84
         Top = 0
         Width = 42
-        Height = 84
         Color = clPurple
       end
       object ALULabel: TLabel
         Left = 85
-        Top = 75
-        Width = 27
         Height = 13
+        Top = 75
+        Width = 25
         Caption = 'NOP'
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
+        ParentColor = False
         ParentFont = False
-        Transparent = True
       end
       object ALabel: TLabel
         Left = 48
-        Top = 89
-        Width = 9
         Height = 13
+        Top = 89
+        Width = 8
         Caption = 'A'
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
+        ParentColor = False
         ParentFont = False
       end
       object BLabel: TLabel
         Left = 48
-        Top = 121
-        Width = 9
         Height = 13
+        Top = 121
+        Width = 8
         Caption = 'B'
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
+        ParentColor = False
         ParentFont = False
       end
       object CLabel: TLabel
         Left = 240
+        Height = 13
         Top = 105
         Width = 9
-        Height = 13
         Caption = 'C'
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
+        ParentColor = False
         ParentFont = False
       end
       object PCLabel: TLabel
         Left = 133
-        Top = 259
-        Width = 17
         Height = 13
+        Top = 259
+        Width = 16
         Alignment = taRightJustify
         Caption = 'PC'
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
+        ParentColor = False
         ParentFont = False
       end
       object MARLabel: TLabel
         Left = 122
-        Top = 291
-        Width = 28
         Height = 13
+        Top = 291
+        Width = 25
         Alignment = taRightJustify
         Caption = 'MAR'
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
+        ParentColor = False
         ParentFont = False
       end
       object MDRLabel: TLabel
         Left = 121
-        Top = 323
-        Width = 29
         Height = 13
+        Top = 323
+        Width = 26
         Alignment = taRightJustify
         Caption = 'MDR'
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
+        ParentColor = False
         ParentFont = False
       end
       object MARMux: TMuxBox
         Left = 88
+        Height = 23
         Top = 312
         Width = 14
-        Height = 23
         LeftToRight = False
         BoxHeight = 3
       end
       object MDRMux: TMuxBox
         Left = 224
+        Height = 23
         Top = 328
         Width = 14
-        Height = 23
         LeftToRight = False
         BoxHeight = 3
       end
       object IRLabel: TLabel
         Left = 64
-        Top = 355
-        Width = 14
         Height = 13
+        Top = 355
+        Width = 12
         Caption = 'IR'
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
+        ParentColor = False
         ParentFont = False
       end
       object RES: TBusBox
         Left = 325
+        Height = 324
         Top = 0
         Width = 10
-        Height = 324
         Index = 0
         Inputs = 0
       end
       object SignExtend: TShape3D
         Left = 48
+        Height = 17
         Top = 360
         Width = 17
-        Height = 17
         Color = clMaroon
         Shape = stEllipse
       end
       object A: TRegBox
         Left = 60
+        Height = 20
         Top = 96
         Width = 61
-        Height = 20
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -12
         Font.Name = 'Courier New'
-        Font.Style = []
         ParentFont = False
       end
       object B: TRegBox
         Left = 60
+        Height = 20
         Top = 126
         Width = 61
-        Height = 20
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -12
         Font.Name = 'Courier New'
-        Font.Style = []
         ParentFont = False
       end
       object RegFile: TRegFileBox
         Left = 143
+        Height = 129
         Top = 48
         Width = 98
-        Height = 129
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -12
         Font.Name = 'Courier New'
-        Font.Style = []
         ParentFont = False
       end
       object C: TRegBox
         Left = 252
+        Height = 20
         Top = 110
         Width = 61
-        Height = 20
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -12
         Font.Name = 'Courier New'
-        Font.Style = []
         ParentFont = False
       end
       object PC: TRegBox
         Left = 156
+        Height = 25
         Top = 256
         Width = 61
-        Height = 20
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -12
         Font.Name = 'Courier New'
-        Font.Style = []
         ParentFont = False
       end
       object MAR: TRegBox
         Left = 156
+        Height = 25
         Top = 296
         Width = 61
-        Height = 20
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -12
         Font.Name = 'Courier New'
-        Font.Style = []
         ParentFont = False
       end
       object MDR: TRegBox
         Left = 156
+        Height = 25
         Top = 328
         Width = 61
-        Height = 20
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -12
         Font.Name = 'Courier New'
-        Font.Style = []
         ParentFont = False
       end
       object IR: TRegBox
         Left = 112
+        Height = 23
         Top = 360
         Width = 169
-        Height = 18
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'Microsoft Sans Serif'
-        Font.Style = []
         ParentFont = False
       end
     end
   end
   object Control: TGroupBox
     Left = 0
+    Height = 265
     Top = 0
     Width = 132
-    Height = 265
     Caption = 'Control'
-    Font.Charset = DEFAULT_CHARSET
+    ClientHeight = 242
+    ClientWidth = 124
     Font.Color = clBlack
     Font.Height = -13
     Font.Style = [fsBold]
@@ -367,246 +354,222 @@ object MicroForm: TMicroForm
     PopupMenu = PopupMenu1
     TabOrder = 0
     object LineBox1: TLineBox
-      Left = 2
-      Top = 18
-      Width = 128
-      Height = 245
+      Left = 0
+      Height = 242
+      Top = 0
+      Width = 124
       Align = alClient
       BevelOuter = bvNone
+      ClientHeight = 242
+      ClientWidth = 124
       TabOrder = 0
       OnMouseDown = LineBox1MouseDown
       OnMouseUp = LineBox2MouseUp
       object Jump: TShape3D
         Left = 30
+        Height = 49
         Top = 182
         Width = 81
-        Height = 49
         Color = clGreen
         Shape = stRectangle
       end
       object uCode: TShape3D
         Left = 30
+        Height = 49
         Top = 126
         Width = 81
-        Height = 49
         Color = clGreen
         Shape = stRectangle
       end
       object uARMux: TMuxBox
         Left = 13
+        Height = 30
         Top = 81
         Width = 14
-        Height = 30
         Inputs = 3
         BoxHeight = 3
       end
       object uARLabel2: TLabel
         Left = 51
-        Top = 70
-        Width = 18
         Height = 13
-        Caption = 'AR'
-        Font.Charset = DEFAULT_CHARSET
+        Top = 70
+        Width = 22
+        Caption = 'µAR'
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object uARLabel1: TLabel
-        Left = 42
-        Top = 68
-        Width = 8
-        Height = 16
-        Caption = 'm'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlack
-        Font.Height = -13
-        Font.Name = 'Symbol'
-        Font.Style = [fsBold]
+        ParentColor = False
         ParentFont = False
       end
       object Incr: TComparatorBox
         Left = 50
+        Height = 63
         Top = 6
         Width = 42
-        Height = 63
         Color = clOlive
         LeftToRight = False
       end
       object IncrLabel: TLabel
         Left = 62
+        Height = 23
         Top = 24
-        Width = 24
-        Height = 24
+        Width = 23
         Caption = '+1'
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -19
         Font.Name = 'Microsoft Sans Serif'
         Font.Style = [fsBold]
+        ParentColor = False
         ParentFont = False
-        Transparent = True
       end
       object uCodeLabel: TLabel
         Left = 38
+        Height = 18
         Top = 142
-        Width = 67
-        Height = 16
+        Width = 65
         Caption = 'Microcode'
-        Color = clLime
         ParentColor = False
-        Transparent = True
       end
       object JumpLabel: TLabel
         Left = 34
-        Top = 198
-        Width = 75
         Height = 16
+        Top = 198
+        Width = 72
         Caption = 'Jump Table'
-        Color = clYellow
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -13
         Font.Name = 'Arial'
         Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False
-        Transparent = True
       end
       object uAR: TRegBox
         Left = 42
+        Height = 20
         Top = 86
         Width = 61
-        Height = 20
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -12
         Font.Name = 'Courier New'
-        Font.Style = []
         ParentFont = False
       end
     end
   end
   object Panel1: TPanel
     Left = 535
+    Height = 425
     Top = 7
     Width = 97
-    Height = 425
     BevelInner = bvLowered
+    ClientHeight = 425
+    ClientWidth = 97
     TabOrder = 2
     object Panel2: TPanel
       Left = 2
+      Height = 289
       Top = 64
       Width = 93
-      Height = 289
       BevelOuter = bvNone
+      ClientHeight = 289
+      ClientWidth = 93
       TabOrder = 0
       object Label17: TLabel
         Left = 6
-        Top = 88
-        Width = 34
         Height = 13
+        Top = 88
+        Width = 37
         Caption = 'Cycles:'
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'Microsoft Sans Serif'
-        Font.Style = []
+        ParentColor = False
         ParentFont = False
       end
       object Label18: TLabel
         Left = 6
-        Top = 160
-        Width = 26
         Height = 13
+        Top = 160
+        Width = 29
         Caption = 'Time:'
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'Microsoft Sans Serif'
-        Font.Style = []
+        ParentColor = False
         ParentFont = False
       end
       object ResetButton: TButton
         Left = 6
+        Height = 25
         Top = 8
         Width = 81
-        Height = 25
         Caption = 'Reset'
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -13
         Font.Style = [fsBold]
+        OnClick = ResetButtonClick
         ParentFont = False
         TabOrder = 0
-        OnClick = ResetButtonClick
       end
       object MultiCycleCheck: TCheckBox
         Left = 6
+        Height = 18
         Top = 64
-        Width = 87
-        Height = 17
+        Width = 92
         Caption = 'multiple cycles'
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'Microsoft Sans Serif'
-        Font.Style = []
         ParentFont = False
         TabOrder = 1
       end
       object Clock: TEditInteger
         Left = 6
+        Height = 22
         Top = 176
         Width = 81
-        Height = 24
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -13
         Font.Style = [fsBold]
+        OnExit = ClockExit
         ParentFont = False
         TabOrder = 2
         Text = '0'
-        OnExit = ClockExit
         MaxValue = 99999999
         Value = 0
       end
       object ClockButton: TButton
         Left = 6
+        Height = 25
         Top = 224
         Width = 81
-        Height = 25
         Caption = '&Clock'
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -13
         Font.Style = [fsBold]
+        OnClick = ClockButtonClick
         ParentFont = False
         TabOrder = 3
-        OnClick = ClockButtonClick
       end
       object RewindButton: TButton
         Left = 6
+        Height = 25
         Top = 256
         Width = 81
-        Height = 25
         Caption = '&Rewind'
         Enabled = False
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -13
         Font.Style = [fsBold]
+        OnClick = RewindButtonClick
         ParentFont = False
         TabOrder = 4
-        OnClick = RewindButtonClick
       end
       object MultiCycle: TSpinEdit
         Left = 6
+        Height = 16
         Top = 104
         Width = 81
-        Height = 26
-        Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Height = -13
         Font.Style = [fsBold]
@@ -620,20 +583,16 @@ object MicroForm: TMicroForm
   end
   object WireValue: TMemo
     Left = 408
+    Height = 33
     Top = 212
     Width = 105
-    Height = 33
-    Ctl3D = False
-    Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Microsoft Sans Serif'
-    Font.Style = []
     Lines.Strings = (
       'Driver: '
       'Value: '
     )
-    ParentCtl3D = False
     ParentFont = False
     ReadOnly = True
     TabOrder = 4
@@ -641,8 +600,8 @@ object MicroForm: TMicroForm
     WordWrap = False
   end
   object MainMenu1: TMainMenu
-    Left = 8
-    Top = 368
+    left = 8
+    top = 368
     object File1: TMenuItem
       Caption = '&File'
       object NewProject1: TMenuItem
@@ -735,8 +694,8 @@ object MicroForm: TMicroForm
     end
   end
   object PopupMenu1: TPopupMenu
-    Left = 48
-    Top = 368
+    left = 48
+    top = 368
     object InstructionMemory1: TMenuItem
       Caption = '&Instruction Memory...'
       ShortCut = 116
@@ -777,28 +736,28 @@ object MicroForm: TMicroForm
     end
   end
   object OpenDialog1: TOpenDialog
-    DefaultExt = 'mpr'
+    Title = 'Load Microcode Project'
+    DefaultExt = '.mpr'
     Filter = 'Microcode Project (*.mpr)|*.mpr|All Files (*.*)|*.*'
     Options = [ofHideReadOnly, ofFileMustExist]
-    Title = 'Load Microcode Project'
-    Left = 8
-    Top = 400
+    left = 8
+    top = 400
   end
   object SaveDialog1: TSaveDialog
-    DefaultExt = 'mpr'
+    Title = 'Save Microcode Project'
+    DefaultExt = '.mpr'
     Filter = 'Microcode Project (*.mpr)|*.mpr|All Files (*.*)|*.*'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofPathMustExist]
-    Title = 'Save Microcode Project'
-    Left = 48
-    Top = 400
+    left = 48
+    top = 400
   end
   object SaveDialog2: TSaveDialog
-    DefaultExt = 'tra'
+    Title = 'Set Trace File'
+    DefaultExt = '.tra'
     FileName = 'Untitled.tra'
     Filter = 'Trace Files (*.tra)|*.tra|All Files (*.*)|*.*'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofPathMustExist]
-    Title = 'Set Trace File'
-    Left = 88
-    Top = 400
+    left = 88
+    top = 400
   end
 end
