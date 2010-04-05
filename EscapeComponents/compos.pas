@@ -442,12 +442,15 @@ begin
 end;
 
 procedure TRegBox.WMSize(var Message: TWMSize);
+var
+  PreferredWidth, PreferredHeight: Integer;
 begin
   inherited;
   FPanel.Width:=Width-4;
   FEdit.Width:=Width-1;
   Canvas.Font:=Font;
-  Height:=Canvas.TextHeight('0123456789ABCDEF')+5;
+  FEdit.GetPreferredSize(PreferredWidth,PreferredHeight);
+  Height:=PreferredHeight+5;
   Fpanel.Height:=Height-4;
   FEdit.Height:=Height-2;
   Message.Result:=0;
