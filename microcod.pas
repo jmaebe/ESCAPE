@@ -48,7 +48,9 @@ type
 
   { The microcode and jump tables form }
   TMicroCode = class(TForm)
-//    TabSet: TTabSet;
+    Notebook1: TNotebook;
+    Page1,
+    Page2: TPage;
     Grid1: TNewStringGrid;
     MainMenu1: TMainMenu;
     Grid2: TNewStringGrid;
@@ -125,8 +127,8 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure FormResize(Sender: TObject);
-    procedure TabSetChange(Sender: TObject; NewTab: Integer;
-      var AllowChange: Boolean);
+    procedure Notebook1Changing(Sender: TObject; var AllowChange: Boolean);
+    procedure TabSetChange(Sender: TObject; NewTab: Integer);
     procedure Grid1KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure Grid1MouseUp(Sender: TObject; Button: TMouseButton;
@@ -328,6 +330,10 @@ procedure TMicroCode.FormCreate(Sender: TObject);
 var
   i: Integer;
 begin
+  LastCol1:=1;
+  LastRow1:=0;
+  LastCol2:=1;
+  LastRow2:=0;
   ClipBoardBuffer:=TClipBoardBuffer.Create;
   NumOpcodes:=ConfigForm.NumOpcodes.Value;
   NumJumpTables:=ConfigForm.NumJumpTables.Value;
@@ -361,10 +367,6 @@ begin
   for i:=1 to NumJumpTables do
     Grid2.Cells[i,0]:='Jump Table '+IntToStr(i);
   FillFixed;
-  LastCol1:=1;
-  LastRow1:=0;
-  LastCol2:=1;
-  LastRow2:=0;
   ShowGrid;
   SetOverwrite(true);
   Base:=2;
@@ -372,7 +374,8 @@ begin
   Status3.Caption:='';
   InitializeDropBoxes;
   SetUseDropDown(true);
-  ClearMicroCode
+  ClearMicroCode;
+  Notebook1.ActivePageComponent:=Page1;
 end;
 
 procedure TMicroCode.InitializeDropBoxes;
@@ -492,54 +495,65 @@ procedure TMicroCode.FormResize(Sender: TObject);
 var
   W,i: Integer;
 begin
-  if TabIndex=0 then
+  Notebook1.Width:=ClientWidth;
+  Notebook1.Height:=ClientHeight;
+  if NoteBook1.ActivePageComponent=Page1 then
   begin
-    Grid1.Width:=ClientWidth;
-    Grid1.Height:=ClientHeight-41;
+    Page1.Width:=Page1.ClientWidth-8;
+    Page1.Height:=Page1.ClientHeight-8;
+    Grid1.Width:=Page1.ClientWidth-16;
+    Grid1.Height:=Page1.ClientHeight-52;
     W:=5*MSSansSerif8Width;
     Grid1.ColWidths[0]:=W;
     for i:=1 to 12 do
       Grid1.ColWidths[i]:=((Grid1.ClientWidth-W)*i) div 13 +W-Grid1.CellRect(i,0).Left;
     Grid1.ColWidths[13]:=Grid1.ClientWidth-Grid1.CellRect(13,0).Left-1;
-    Status3.Width:=Width-248;
-    Status1.Top:=ClientHeight-38;
-    Status2.Top:=ClientHeight-38;
-    Status3.Top:=ClientHeight-38
+    Status3.Width:=Page1.ClientWidth-(Status2.Left+Status2.Width+3);
+    Status1.Top:=Grid1.Top+Grid1.Height+16;
+    Status2.Top:=Status1.Top;
+    Status3.Top:=Status1.Top;
   end else
   begin
-    Grid2.Width:=ClientWidth;
-    Grid2.Height:=ClientHeight-22;
+    Page2.Width:=Page2.ClientWidth-8;
+    Page2.Height:=Page2.ClientHeight-8;
+    Grid2.Width:=Page2.ClientWidth-16;
+    Grid2.Height:=Page2.ClientHeight-32;
     for i:=0 to Grid2.ColCount-2 do
       Grid2.ColWidths[i]:=(Grid2.ClientWidth*(i+1)) div Grid2.ColCount-Grid2.CellRect(i,0).Left;
     Grid2.ColWidths[Grid2.ColCount-1]:=Grid2.ClientWidth-Grid2.CellRect(Grid2.ColCount-1,0).Left-1
   end
 end;
 
-procedure TMicroCode.TabSetChange(Sender: TObject; NewTab: Integer;
-  var AllowChange: Boolean);
+procedure TMicroCode.Notebook1Changing(Sender: TObject; var AllowChange: Boolean);
+begin
+  TabSetChange(Sender,ord(Notebook1.ActivePageComponent=Page1));
+end;
+
+procedure TMicroCode.TabSetChange(Sender: TObject; NewTab: Integer);
 var
   Dummy: Boolean;
 begin
-(*
   if TabIndex=0 then
-    Grid1SelectCell(Sender,LastCol1,LastRow1,Dummy)
+    begin
+      if LastCol1=0 then
+        LastCol1:=1;
+      Grid1SelectCell(Sender,LastCol1,LastRow1,Dummy)
+    end
   else
-    Grid2SelectCell(Sender,LastCol2,LastRow2,Dummy);
+    begin
+      if LastCol2=0 then
+        LastCol2:=1;
+      Grid2SelectCell(Sender,LastCol2,LastRow2,Dummy);
+    end;
   TabIndex:=NewTab;
   FormResize(Sender);
   ShowGrid;
   if LastDropDownField>=ufReg then
     FieldToDrop(LastDropDownField).Visible:=false
-*)
 end;
 
 procedure TMicroCode.ShowGrid;
 begin
-  Grid1.Visible:=(TabIndex=0);
-  Grid2.Visible:=not (TabIndex=0);
-  Status1.Visible:=(TabIndex=0);
-  Status2.Visible:=(TabIndex=0);
-  Status3.Visible:=(TabIndex=0);
   Cut1.Enabled:=(TabIndex=0);
   Copy1.Enabled:=(TabIndex=0);
   Paste1.Enabled:=(TabIndex=0);
@@ -978,12 +992,12 @@ end;
 
 procedure TMicroCode.Microcode1Click(Sender: TObject);
 begin
-//  TabSet.TabIndex:=0
+  Notebook1.ActivePageComponent:=Page1;
 end;
 
 procedure TMicroCode.JumpTables1Click(Sender: TObject);
 begin
-//  TabSet.TabIndex:=1
+  Notebook1.ActivePageComponent:=Page2;
 end;
 
 procedure TMicroCode.Delete1Click(Sender: TObject);
@@ -1100,7 +1114,7 @@ begin
   Grid1.Selection:=SRect;
   Grid1.Row:=Row;
   Grid1.Col:=Col;
-//  TabSet.TabIndex:=0;
+  Notebook1.ActivePageComponent:=Page1;
   Grid1.PressKey(VK_DOWN,[]);
   Grid1.PressKey(VK_UP,[])
 end;
@@ -1180,7 +1194,7 @@ begin
             Result:=true;
             Grid2.Row:=Opc+1;
             Grid2.Col:=j+1;
-//            TabSet.TabIndex:=1;
+            Notebook1.ActivePageComponent:=Page2;
             Grid2.PressKey(VK_DOWN,[]);
             Grid2.PressKey(VK_UP,[]);
             msg:='Undefined label ('+Grid2.Cells[0,Opc+1]+': '+S+')';
