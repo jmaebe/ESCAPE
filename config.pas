@@ -80,9 +80,6 @@ type
     GroupBox2: TGroupBox;
     Label3: TLabel;
     Label4: TLabel;
-    Label16: TLabel;
-    Label17: TLabel;
-    Label18: TLabel;
     RBox_Opc: TShape;
     RBox_r1: TShape;
     IBox_Opc: TShape;
