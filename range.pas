@@ -39,6 +39,8 @@ uses Config, InstrMem;
 
 procedure TRangeForm.OKButtonClick(Sender: TObject);
 begin
+  if StartRange.Value>StopRange.Value then
+    StartRange.Value:=StopRange.Value;
   ImemForm.SetRange(StartRange.Value,StopRange.Value);
   Close
 end;
