@@ -49,36 +49,32 @@ type
   private
     FMinValue: LongInt;
     FMaxValue: LongInt;
-    procedure CMExit(var Message: TLMExit);   message LM_EXIT;
-    function GetValue: LongInt;
-    procedure SetValue (NewValue: LongInt);
     function CheckValue (NewValue: LongInt): LongInt;
+    procedure SetMaxValue(const AValue: LongInt);
+    procedure SetMinValue(const AValue: LongInt);
   protected
+    procedure CMExit(var Message: TLMExit); message LM_EXIT; virtual;
+    procedure SetValue (NewValue: LongInt); virtual;
+    function GetValue: LongInt; virtual;
     procedure KeyPress(var Key: Char); override;
-    function IsValidChar(Key: Char): Boolean;
+    function IsValidChar(Key: Char): Boolean; Virtual;
   published
-    property MinValue: LongInt read FMinValue write FMinValue default 0;
-    property MaxValue: LongInt read FMaxValue write FMaxValue default 0;
+    property MinValue: LongInt read FMinValue write SetMinValue default 0;
+    property MaxValue: LongInt read FMaxValue write SetMaxValue default 0;
     property Value: LongInt read GetValue write SetValue;
   end;
 
-  { THexSpin: Like TSpinEdit, but with hexadecimal display and non-fixed increment }
-  THexSpin = class(TSpinEdit)
+  { TEditHexInteger: like TEdit, but only for Integer values in hexadecimal form }
+  TEditHexInteger = class(TEditInteger)
   private
-    FIncrement: Integer;
-    FDigits: Integer;
-    function GetValue2: LongInt;
-    procedure SetValue2 (Val: LongInt);
-    function CheckValue(Val: LongInt): LongInt;
-//    procedure UpClick (Sender: TObject); override;
-//    procedure DownClick (Sender: TObject); override;
-    procedure DoExit; override;
+    FDigits: LongInt;
   protected
-    procedure KeyPress(var Key: Char); override;
+    procedure CMExit(var Message: TLMExit); message LM_EXIT; override;
+    procedure SetValue (NewValue: LongInt); override;
+    function GetValue: LongInt; override;
+    function IsValidChar(Key: Char): Boolean; override;
   published
-    property Increment: Integer read FIncrement write FIncrement default 1;
     property Digits: Integer read FDigits write FDigits default 8;
-    property Value: LongInt read GetValue2 write SetValue2;
   end;
 
   { TIntegerComboBox: a combox containing only integer values, with a value
@@ -341,68 +337,28 @@ end;
 function TEditInteger.CheckValue(NewValue: LongInt): LongInt;
 begin
   Result := NewValue;
-  if (FMaxValue <> FMinValue) then
-  begin
-    if NewValue < FMinValue then
-      Result := FMinValue
-    else if NewValue > FMaxValue then
-      Result := FMaxValue;
-  end;
+  if NewValue <= FMinValue then
+    Result := FMinValue
+  else if NewValue > FMaxValue then
+    Result := FMaxValue;
+end;
+
+procedure TEditInteger.SetMaxValue(const AValue: LongInt);
+begin
+  FMaxValue := AValue;
+  Value := CheckValue(Value);
+end;
+
+procedure TEditInteger.SetMinValue(const AValue: LongInt);
+begin
+  FMinValue := AValue;
+  Value := CheckValue(Value);
 end;
 
 procedure TEditInteger.CMExit(var Message: TLMExit);
 begin
   inherited;
   Text := IntToStr(Value);
-end;
-
-function THexSpin.GetValue2: LongInt;
-begin
-  try
-    Result:=CheckValue(NewStrToInt(Text,0,2))
-  except
-    Result:=MinValue
-  end;
-  Text := IntToHex(Result,FDigits)
-end;
-
-{ THexSpin }
-function THexSpin.CheckValue(Val: LongInt): LongInt;
-begin
-  Result := Val;
-  if (MaxValue <> MinValue) then
-  begin
-    if Val < MinValue then
-      Result := MinValue
-    else if Val > MaxValue then
-      Result := MaxValue;
-  end;
-end;
-
-procedure THexSpin.SetValue2 (Val: LongInt);
-begin
-  Text := IntToHex(CheckValue(Val),FDigits)
-end;
-(*
-procedure THexSpin.UpClick (Sender: TObject);
-begin
-  if ReadOnly then MessageBeep(0)
-  else Value := Value + FIncrement;
-end;
-
-procedure THexSpin.DownClick (Sender: TObject);
-begin
-  if ReadOnly then MessageBeep(0)
-  else Value := Value - FIncrement;
-end;
-*)
-procedure THexSpin.DoExit;
-begin
-  GetValue2
-end;
-
-procedure THexSpin.KeyPress(var Key: Char);
-begin
 end;
 
 { TRegBox }
@@ -1048,14 +1004,6 @@ begin
   end
 end;
 
-{ Component registration }
-procedure Register;
-begin
-  RegisterComponents('Compos', [TEditInteger, THexSpin, TIntegerComboBox,TMuxBox,
-                            TbusBox, TAluBox, TLineBox, TComparatorBox,
-                            TNewStringGrid, TRegBox, TRegFileBox, TShape3D])
-end;
-
 { TIntegerComboBox }
 
 function TIntegerComboBox.GetValue: LongInt;
@@ -1100,5 +1048,47 @@ procedure TIntegerComboBox.SetExponentValue(NewExponent: Longint);
   begin
     Value:=1 shl NewExponent;
   end;
+
+{ TEditHexInteger }
+
+procedure TEditHexInteger.CMExit(var Message: TLMExit);
+begin
+  inherited;
+  Text := IntToHex(Value,FDigits);
+end;
+
+procedure TEditHexInteger.SetValue(NewValue: LongInt);
+begin
+  Text := IntToHex(CheckValue(NewValue),FDigits);
+end;
+
+function TEditHexInteger.GetValue: LongInt;
+begin
+  try
+    Result := CheckValue(NewStrToInt(Text,0,2));
+  except
+    Result := FMinValue;
+    Text := IntToHex(Result,FDigits);
+  end;
+end;
+
+function TEditHexInteger.IsValidChar(Key: Char): Boolean;
+begin
+  { Filter the keys }
+  Result := (Key in ['0'..'9','A'..'F','a'..'f']) or
+    ((Key < #32) and (Key <> Chr(VK_RETURN)));
+end;
+
+
+{ Component registration }
+procedure Register;
+begin
+  RegisterComponents('Compos', [TEditInteger, TEditHexInteger,
+                            TIntegerComboBox,TMuxBox,
+                            TbusBox, TAluBox, TLineBox, TComparatorBox,
+                            TNewStringGrid, TRegBox, TRegFileBox, TShape3D])
+end;
+
+
 
 end.

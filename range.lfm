@@ -117,27 +117,27 @@ object RangeForm: TRangeForm
     OnClick = CancelButtonClick
     TabOrder = 1
   end
-  object StartRange: THexSpin
+  object StartRange: TEditHexInteger
     Left = 64
-    Height = 16
+    Height = 22
     Top = 8
-    Width = 57
-    Increment = 4
-    MaxValue = 0
-    OnExit = StartRangeExit
+    Width = 40
+    MaxLength = 4
+    OnEditingDone = StartRangeChange
     TabOrder = 2
+    MaxValue = 65532
     Value = 0
     Digits = 4
   end
-  object StopRange: THexSpin
+  object StopRange: TEditHexInteger
     Left = 200
-    Height = 16
+    Height = 22
     Top = 8
-    Width = 57
-    Increment = 4
-    MaxValue = 0
-    OnExit = StopRangeExit
+    Width = 40
+    MaxLength = 4
+    OnEditingDone = StopRangeChange
     TabOrder = 3
+    MaxValue = 65532
     Value = 0
     Digits = 4
   end

@@ -37,18 +37,21 @@ uses
 
 type
   { Range Form -- used to set the Code Range}
+
+  { TRangeForm }
+
   TRangeForm = class(TForm)
     Label1: TLabel;
     Label2: TLabel;
     OKButton: TBitBtn;
     CancelButton: TBitBtn;
-    StartRange: THexSpin;
-    StopRange: THexSpin;
+    StartRange: TEditHexInteger;
+    StopRange: TEditHexInteger;
     procedure OKButtonClick(Sender: TObject);
     procedure CancelButtonClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure StartRangeExit(Sender: TObject);
-    procedure StopRangeExit(Sender: TObject);
+    procedure StartRangeChange(Sender: TObject);
+    procedure StopRangeChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
   end;
 
@@ -63,8 +66,6 @@ uses Config, InstrMem;
 
 procedure TRangeForm.OKButtonClick(Sender: TObject);
 begin
-  if StartRange.Value>StopRange.Value then
-    StartRange.Value:=StopRange.Value;
   ImemForm.SetRange(StartRange.Value,StopRange.Value);
   Close
 end;
@@ -79,13 +80,13 @@ begin
   Action:=caFree
 end;
 
-procedure TRangeForm.StartRangeExit(Sender: TObject);
+procedure TRangeForm.StartRangeChange(Sender: TObject);
 begin
   StartRange.Value:=StartRange.Value and $FFFC;
   StopRange.MinValue:=StartRange.Value;
 end;
 
-procedure TRangeForm.StopRangeExit(Sender: TObject);
+procedure TRangeForm.StopRangeChange(Sender: TObject);
 begin
   StopRange.Value:=StopRange.Value and $FFFC;
   StartRange.MaxValue:=StopRange.Value;
@@ -95,6 +96,7 @@ procedure TRangeForm.FormShow(Sender: TObject);
 begin
   StartRange.Value:=ImemForm.StartRange;
   StopRange.Value:=ImemForm.StopRange;
+  StartRange.MinValue:=0;
   StartRange.MaxValue:=StopRange.Value;
   StopRange.MinValue:=StartRange.Minvalue;
   StopRange.MaxValue:=ConfigForm.ImemSize.Value-4;
