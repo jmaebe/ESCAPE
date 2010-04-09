@@ -1967,14 +1967,16 @@ end;
 
 procedure TPipeForm.LoadProject;
 var
+  ProjDir: String;
   Error: Boolean;
 begin
   FileIO.UseFile(OpenDialog1.FileName);
   Reset(FileIO.F);
   Error:=false;
-  PipeCode.OpenDialog1.FileName:=FileIO.ReadString('PipelineFunctionality',Error);
-  ImemForm.OpenDialog1.FileName:=FileIO.ReadString('InstructionMemory',Error);
-  DmemForm.OpenDialog1.FileName:=FileIO.ReadString('DataMemory',Error);
+  ProjDir:=ExtractFileDir(OpenDialog1.FileName)+DirectorySeparator;
+  PipeCode.OpenDialog1.FileName:=ProjDir+FileIO.ReadString('PipelineFunctionality',Error);
+  ImemForm.OpenDialog1.FileName:=ProjDir+FileIO.ReadString('InstructionMemory',Error);
+  DmemForm.OpenDialog1.FileName:=ProjDir+FileIO.ReadString('DataMemory',Error);
   DMemAccessTime:=FileIO.ReadInteger('MemoryAccessTime',Error);
   PSimulator.DMem.SetSpeed(DMemAccessTime);
   SetEnableForwarding(FileIO.ReadYesNo('Forwarding',Error));

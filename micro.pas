@@ -1250,14 +1250,16 @@ end;
 
 procedure TMicroForm.LoadProject;
 var
+  ProjDir: String;
   Error: Boolean;
 begin
   FileIO.UseFile(OpenDialog1.FileName);
   Reset(FileIO.F);
   Error:=false;
-  MicroCode.OpenDialog1.FileName:=FileIO.ReadString('Microcode',Error);
-  ImemForm.OpenDialog1.FileName:=FileIO.ReadString('InstructionMemory',Error);
-  DmemForm.OpenDialog1.FileName:=FileIO.ReadString('DataMemory',Error);
+  ProjDir:=ExtractFileDir(OpenDialog1.FileName)+DirectorySeparator;
+  MicroCode.OpenDialog1.FileName:=ProjDir+FileIO.ReadString('Microcode',Error);
+  ImemForm.OpenDialog1.FileName:=ProjDir+FileIO.ReadString('InstructionMemory',Error);
+  DmemForm.OpenDialog1.FileName:=ProjDir+FileIO.ReadString('DataMemory',Error);
   MemAccessTime:=FileIO.ReadInteger('MemoryAccessTime',Error);
   MSimulator.Mem.SetSpeed(MemAccessTime);
   CloseFile(FileIO.F);
