@@ -115,7 +115,7 @@ object ConfigForm: TConfigForm
     Height = 500
     Top = 0
     Width = 696
-    PageIndex = 2
+    PageIndex = 1
     TabOrder = 1
     object Page1: TPage
       Caption = 'General Options'
