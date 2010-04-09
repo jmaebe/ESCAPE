@@ -1,14 +1,14 @@
 object PipeForm: TPipeForm
-  Left = 576
+  Left = 300
   Height = 480
-  Top = 151
-  Width = 640
+  Top = 272
+  Width = 680
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
   ActiveControl = ResetButton
   Caption = 'Pipelined Architecture'
   ClientHeight = 480
-  ClientWidth = 640
+  ClientWidth = 680
   Font.Color = clBlack
   Font.Height = -11
   Font.Name = 'Microsoft Sans Serif'
@@ -18,17 +18,18 @@ object PipeForm: TPipeForm
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnResize = FormResize
+  OnShow = FormResize
   PopupMenu = PopupMenu1
   Position = poScreenCenter
   LCLVersion = '0.9.29'
   Visible = True
   object Control: TGroupBox
     Left = 96
-    Height = 81
+    Height = 84
     Top = 288
     Width = 537
     Caption = 'Control Unit'
-    ClientHeight = 58
+    ClientHeight = 62
     ClientWidth = 529
     Font.Color = clBlack
     Font.Height = -13
@@ -37,12 +38,12 @@ object PipeForm: TPipeForm
     TabOrder = 1
     object LineBox3: TLineBox
       Left = 0
-      Height = 58
+      Height = 62
       Top = 0
       Width = 529
       Align = alClient
       BevelOuter = bvNone
-      ClientHeight = 58
+      ClientHeight = 62
       ClientWidth = 529
       TabOrder = 0
       OnMouseDown = LineBox3MouseDown
@@ -164,7 +165,7 @@ object PipeForm: TPipeForm
       end
       object IR: TRegBox
         Left = 18
-        Height = 18
+        Height = 31
         Top = 3
         Width = 73
         Font.Color = clBlack
@@ -174,7 +175,7 @@ object PipeForm: TPipeForm
       end
       object IR1: TRegBox
         Left = 144
-        Height = 18
+        Height = 31
         Top = 3
         Width = 81
         Font.Color = clBlack
@@ -184,7 +185,7 @@ object PipeForm: TPipeForm
       end
       object ST1: TRegBox
         Left = 144
-        Height = 18
+        Height = 31
         Top = 39
         Width = 81
         Font.Color = clBlack
@@ -194,7 +195,7 @@ object PipeForm: TPipeForm
       end
       object IR2: TRegBox
         Left = 296
-        Height = 18
+        Height = 31
         Top = 3
         Width = 73
         Font.Color = clBlack
@@ -204,7 +205,7 @@ object PipeForm: TPipeForm
       end
       object ST2: TRegBox
         Left = 296
-        Height = 18
+        Height = 31
         Top = 39
         Width = 73
         Font.Color = clBlack
@@ -214,7 +215,7 @@ object PipeForm: TPipeForm
       end
       object ST3: TRegBox
         Left = 432
-        Height = 18
+        Height = 31
         Top = 39
         Width = 65
         Font.Color = clBlack
@@ -224,7 +225,7 @@ object PipeForm: TPipeForm
       end
       object IR3: TRegBox
         Left = 432
-        Height = 18
+        Height = 31
         Top = 3
         Width = 65
         Font.Color = clBlack
@@ -246,21 +247,21 @@ object PipeForm: TPipeForm
   end
   object LineBox5: TLineBox
     Left = 328
-    Height = 7
+    Height = 8
     Top = 288
     Width = 17
     BevelOuter = bvNone
-    TabOrder = 5
+    TabOrder = 4
     OnMouseDown = LineBox5MouseDown
     OnMouseUp = LineBox1MouseUp
   end
   object LineBox2: TLineBox
     Left = 0
-    Height = 81
+    Height = 84
     Top = 288
     Width = 96
     BevelOuter = bvNone
-    ClientHeight = 81
+    ClientHeight = 84
     ClientWidth = 96
     TabOrder = 3
     OnMouseDown = LineBox2MouseDown
@@ -314,13 +315,13 @@ object PipeForm: TPipeForm
     end
   end
   object Datapath: TGroupBox
-    Left = 0
-    Height = 289
+    Left = 8
+    Height = 288
     Top = 0
-    Width = 633
+    Width = 625
     Caption = 'Datapath'
     ClientHeight = 266
-    ClientWidth = 625
+    ClientWidth = 617
     Font.Color = clBlack
     Font.Height = -13
     Font.Style = [fsBold]
@@ -330,11 +331,11 @@ object PipeForm: TPipeForm
       Left = 0
       Height = 266
       Top = 0
-      Width = 625
+      Width = 617
       Align = alClient
       BevelOuter = bvNone
       ClientHeight = 266
-      ClientWidth = 625
+      ClientWidth = 617
       TabOrder = 0
       OnMouseDown = LineBox1MouseDown
       OnMouseUp = LineBox1MouseUp
@@ -599,7 +600,7 @@ object PipeForm: TPipeForm
       end
       object PC: TRegBox
         Left = 18
-        Height = 20
+        Height = 31
         Top = 0
         Width = 61
         Font.Color = clBlack
@@ -609,7 +610,7 @@ object PipeForm: TPipeForm
       end
       object PC1: TRegBox
         Left = 236
-        Height = 20
+        Height = 31
         Top = 0
         Width = 61
         Font.Color = clBlack
@@ -619,7 +620,7 @@ object PipeForm: TPipeForm
       end
       object Cond: TRegBox
         Left = 436
-        Height = 20
+        Height = 31
         Top = 16
         Width = 14
         Font.Color = clBlack
@@ -639,7 +640,7 @@ object PipeForm: TPipeForm
       end
       object A: TRegBox
         Left = 244
-        Height = 20
+        Height = 31
         Top = 152
         Width = 61
         Font.Color = clBlack
@@ -649,7 +650,7 @@ object PipeForm: TPipeForm
       end
       object B: TRegBox
         Left = 244
-        Height = 20
+        Height = 31
         Top = 208
         Width = 61
         Font.Color = clBlack
@@ -659,7 +660,7 @@ object PipeForm: TPipeForm
       end
       object RES1: TRegBox
         Left = 412
-        Height = 20
+        Height = 31
         Top = 184
         Width = 61
         Font.Color = clBlack
@@ -669,7 +670,7 @@ object PipeForm: TPipeForm
       end
       object MAR: TRegBox
         Left = 412
-        Height = 20
+        Height = 31
         Top = 112
         Width = 61
         Font.Color = clBlack
@@ -679,7 +680,7 @@ object PipeForm: TPipeForm
       end
       object SMDR: TRegBox
         Left = 412
-        Height = 20
+        Height = 31
         Top = 64
         Width = 61
         Font.Color = clBlack
@@ -689,7 +690,7 @@ object PipeForm: TPipeForm
       end
       object LMDR: TRegBox
         Left = 524
-        Height = 20
+        Height = 31
         Top = 136
         Width = 61
         Font.Color = clBlack
@@ -699,7 +700,7 @@ object PipeForm: TPipeForm
       end
       object RES2: TRegBox
         Left = 524
-        Height = 20
+        Height = 31
         Top = 184
         Width = 61
         Font.Color = clBlack
@@ -710,22 +711,22 @@ object PipeForm: TPipeForm
     end
     object Mask1: TPanel
       Left = 538
-      Height = 87
-      Top = 8
-      Width = 95
+      Height = 92
+      Top = 0
+      Width = 87
       BevelInner = bvRaised
       BevelOuter = bvLowered
       TabOrder = 1
     end
   end
   object Panel1: TPanel
-    Left = 0
+    Left = 8
     Height = 56
-    Top = 376
-    Width = 632
+    Top = 384
+    Width = 624
     BevelInner = bvLowered
     ClientHeight = 56
-    ClientWidth = 632
+    ClientWidth = 624
     TabOrder = 2
     object Panel2: TPanel
       Left = 40
@@ -829,20 +830,38 @@ object PipeForm: TPipeForm
       end
     end
   end
+  object WireValue: TMemo
+    Left = 432
+    Height = 33
+    Top = 248
+    Width = 105
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Microsoft Sans Serif'
+    Lines.Strings = (
+      'Driver: '
+      'Value: '
+    )
+    ParentFont = False
+    ReadOnly = True
+    TabOrder = 5
+    Visible = False
+    WordWrap = False
+  end
   object LineBox4: TLineBox
     Left = 540
-    Height = 93
+    Height = 104
     Top = 0
     Width = 93
     BevelOuter = bvNone
-    ClientHeight = 93
+    ClientHeight = 104
     ClientWidth = 93
-    TabOrder = 4
+    TabOrder = 6
     OnMouseDown = LineBox4MouseDown
     OnMouseUp = LineBox1MouseUp
     object Dmem: TShape3D
-      Left = 14
-      Height = 65
+      Left = 12
+      Height = 75
       Top = 22
       Width = 75
       Color = clYellow
@@ -888,24 +907,6 @@ object PipeForm: TPipeForm
       ParentColor = False
       ParentFont = False
     end
-  end
-  object WireValue: TMemo
-    Left = 432
-    Height = 33
-    Top = 248
-    Width = 105
-    Font.Color = clBlack
-    Font.Height = -11
-    Font.Name = 'Microsoft Sans Serif'
-    Lines.Strings = (
-      'Driver: '
-      'Value: '
-    )
-    ParentFont = False
-    ReadOnly = True
-    TabOrder = 6
-    Visible = False
-    WordWrap = False
   end
   object MainMenu1: TMainMenu
     left = 16

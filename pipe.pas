@@ -549,17 +549,20 @@ var
   W,H,H2: Integer;
   C2,C2Max,C3,C3Min,C4,C4Max: Integer;
   X1,X2: Integer;
+
+  LineBox1toLineBox4YAdj,
+  LineBox1toLineBox4XAdj: Integer;
 begin
   { Size Datapath Panel }
-  Datapath.Height:=ClientHeight-144;
-  if Datapath.Height<265 then
-    Datapath.Height:=265;
-  Datapath.Width:=ClientWidth;
+  Datapath.Height:=ClientHeight-152;
+  if Datapath.Height<266 then
+    Datapath.Height:=266;
+  Datapath.Width:=ClientWidth-2*DataPath.Left;
   if Datapath.Width<632 then
     Datapath.Width:=632;
   { Size and Position Control Panel }
   Control.Top:=Datapath.Height;
-  Control.Width:=Datapath.Width-96;
+  Control.Width:=ClientWidth-Control.Left-DataPath.Left;
   LineBox2.Top:=Datapath.Height;
   LineBox3.Width:=Control.Width;
   LineBox5.Top:=Datapath.Height;
@@ -569,7 +572,7 @@ begin
   else
     W:=0;
   Panel1.Top:=Control.Top+88;
-  Panel1.Width:=ClientWidth;
+  Panel1.Width:=ClientWidth-2*DataPath.Left;
   Panel2.Left:=W;
   { Size Register File }
   RegFile.Height:=Datapath.Height-48;
@@ -614,10 +617,10 @@ begin
   A.Left:=C2-A.Width div 2;
   B.Left:=A.Left;
   PC1.Left:=A.Left;
-  AMux.Left:=A.Left-25;
+  AMux.Left:=A.Left-24;
   BMux.Left:=AMux.Left;
   RegFile.Width:=AMux.Left-18-RegFile.Left;
-  CompMux.Left:=A.Left+95;
+  CompMux.Left:=A.Left+96;
   S1Mux.Left:=CompMux.Left;
   S2Mux.Left:=CompMux.Left;
   SignExtend.Left:=(C2+C3-IR2Label.Width-2) div 2 -8;
@@ -632,6 +635,9 @@ begin
   LMDR.Left:=C4-LMDR.Width div 2;
   RES2.Left:=LMDR.Left;
   WBMux.Left:=RES2.Left+52;
+  { Calculate translations of coordinates between different line boxes }
+  LineBox1toLineBox4YAdj:=(LineBox4.ClientOrigin.Y-LineBox4.Top)-(LineBox1.ClientOrigin.Y-LineBox1.Top);
+  LineBox1toLineBox4XAdj:=(LineBox4.ClientOrigin.X-LineBox4.Left)-(LineBox1.ClientOrigin.X-LineBox1.Left);
   { Size and Position components in Control Panel}
   IR.Width:=W;
   IR1.Width:=W;
@@ -650,14 +656,14 @@ begin
   Null1.Left:=(IR1.Left+IR1.Width+IR2.Left) div 2 - 8;
   Null2.Left:=(IR2.Left+IR2.Width+IR3.Left) div 2 - 8;
   { Position Masks }
-  Mask1.Left:=SMDR.Left+SMDR.Width+27;
-  Mask1.Width:=Datapath.Width-Mask1.Left;
-  Mask1.Height:=Datapath.Height-165;
-  if Mask1.Height>155 then
-    Mask1.Height:=155;
+  Mask1.Left:=SMDR.Left+SMDR.Width+32;
+  Mask1.Width:=Datapath.Width-Mask1.Left-8;
+  Mask1.Height:=Datapath.Height-176;
+  if Mask1.Height>152 then
+    Mask1.Height:=152;
   LineBox4.Left:=Mask1.Left+2;
   LineBox4.Width:=Mask1.Width-2;
-  LineBox4.Height:=Mask1.Height+6;
+  LineBox4.Height:=Mask1.Height-LineBox1toLineBox4YAdj;
   Dmem.Top:=Mask1.Height-70;
   { Position Labels }
   IncrLabel.Top:=Incr.Top+20;
@@ -766,9 +772,9 @@ begin
     LineBox1.AddWire(PSimulator.LMDR,false,Point(LMDR.Left+LMDR.Width,LMDR.Top+10),true,
       [LMDR.Left+LMDR.Width+20,WBMux.Position[1],WBMux.Left+WBMux.Width-1]);
     LineBox1.AddWire(PSimulator.SMDR,false,Point(SMDR.Left+SMDR.Width,SMDR.Top+10),true,
-      [SMDR.Left+SMDR.Width+7,Dmem.Top-11,Width-50]);
+      [SMDR.Left+SMDR.Width+7,Dmem.Top+LineBox1toLineBox4YAdj+10,LineBox4.Left]);
     LineBox1.AddWire(PSimulator.MAR,false,Point(MAR.Left+MAR.Width,MAR.Top+10),true,
-      [MAR.Left+MAR.Width+17,Dmem.Top+37,Width-50]);
+      [MAR.Left+MAR.Width+17,Dmem.Top+(MAR.Top-SMDR.Top)+LineBox1toLineBox4YAdj+10,LineBox4.Left]);
     X1:=LMDR.Left-10;
     X2:=LineBox4.Left+Dmem.Left+Dmem.Width+10;
     if X1>X2 then
@@ -776,9 +782,9 @@ begin
       X1:=(X1+X2) div 2;
       X2:=X1
     end;
-    H:=LineBox4.Height-18;
-    LineBox1.AddWire(PSimulator.Dmem,false,Point(X2,H),false,
-      [(H+LMDRLabel.Top) div 2,X1,LMDR.Top+10,LMDR.Left]);
+    H:=Dmem.Top+Dmem.Height div 2+10;
+    LineBox1.AddWire(PSimulator.Dmem,false,Point(X2+LineBox1toLineBox4XAdj,Mask1.Top+Mask1.Height),false,
+      [(H+LMDRLabel.Top-LineBox1toLineBox4YAdj) div 2,X1,LMDR.Top+10,LMDR.Left]);
     W:=(ALU.Left+ALU.Width+RES1.Left) div 2;
     LineBox1.AddWire(PSimulator.ALU,false,Point(RES1.Left,RES1.Top+10),true,
       [W,MAR.Top+10,MAR.Left]);
@@ -797,10 +803,10 @@ begin
     LineBox3.AddWire(PSimulator.Null1Y,false,Point(Null1.Left+Null1.Width,H),true,[ST2.Left]);
     LineBox3.AddWire(PSimulator.STY2,false,Point(ST2.Left+ST2.Width,H),true,[Null2.Left]);
     LineBox3.AddWire(PSimulator.Null2Y,false,Point(Null2.Left+Null2.Width,H),true,[ST3.Left]);
-    LineBox4.AddWire(PSimulator.SMDR,false,Point(0,Dmem.Top+7),true,[Dmem.Left]);
-    LineBox4.AddWire(PSimulator.MAR,false,Point(0,Dmem.Top+55),true,[Dmem.Left]);
+    LineBox4.AddWire(PSimulator.SMDR,false,Point(0,Dmem.Top+10),true,[Dmem.Left]);
+    LineBox4.AddWire(PSimulator.MAR,false,Point(0,Dmem.Top+(MAR.Top-SMDR.Top)+10),true,[Dmem.Left]);
     LineBox4.AddWire(PSimulator.Dmem,false,Point(Dmem.Left+Dmem.Width,Dmem.Top+Dmem.Height div 2),true,
-      [X2-LineBox4.Left+2,Dmem.Top+100]);
+      [X2-LineBox4.Left,Mask1.Top+Mask1.Height-LineBox1toLineBox4YAdj]);
     LineBox5.AddWire(PSimulator.IR1,false,Point(8,0),false,[LineBox5.Height]);
     LineBox6.AddWire(PSimulator.IR1,false,Point(8,0),false,[LineBox6.Height]);
   end;
@@ -815,7 +821,7 @@ var
   W: Integer;
 begin
   { Size Registers }
-  W:=Courier9Width*8+6;
+  W:=Courier9Width*8+12;
   PC.Width:=W;
   PC1.Width:=W;
   A.Width:=W;
@@ -841,7 +847,6 @@ begin
   DisableTrace;
   TraceDialog:=SaveDialog2;
   ClearProject;
-  FormResize(Sender)
 end;
 
 procedure TDecoderX.Connect(Inputs: array of TDataSource);
