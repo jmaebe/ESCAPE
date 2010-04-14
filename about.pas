@@ -37,13 +37,10 @@ uses {WinTypes, WinProcs,} Classes, Graphics, Forms, Controls, StdCtrls,
 type
   { This is the 'About' form }
   TAboutForm = class(TForm)
-    Panel1: TPanel;
-    OKButton: TBitBtn;
     Memo1: TMemo;
     Panel2: TPanel;
     ProgramIcon: TImage;
     Label1: TLabel;
-    procedure OKButtonClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
   end;
@@ -57,11 +54,6 @@ implementation
 
 uses
   Main;
-
-procedure TAboutForm.OKButtonClick(Sender: TObject);
-begin
-  Close
-end;
 
 procedure TAboutForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
