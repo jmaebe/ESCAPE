@@ -1,7 +1,7 @@
 object UsageForm: TUsageForm
-  Left = 364
+  Left = 551
   Height = 254
-  Top = 273
+  Top = 280
   Width = 552
   Caption = 'Pipeline Usage Diagram'
   ClientHeight = 254
@@ -10,10 +10,10 @@ object UsageForm: TUsageForm
   Menu = MainMenu1
   OnCreate = FormCreate
   OnResize = FormResize
+  OnShow = FormResize
   PopupMenu = PopupMenu1
   Position = poScreenCenter
   LCLVersion = '0.9.29'
-  Visible = False
   object Grid: TStringGrid
     Left = 0
     Height = 254
