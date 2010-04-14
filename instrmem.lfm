@@ -1,118 +1,91 @@
 object ImemForm: TImemForm
-  Left = 501
-  Top = 284
-  Width = 494
+  Left = 581
   Height = 345
+  Top = 483
+  Width = 494
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
   Caption = 'Instruction View'
-  Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
+  ClientHeight = 345
+  ClientWidth = 494
   Font.Height = -13
-  Font.Style = []
   KeyPreview = True
   Menu = MainMenu1
-  PopupMenu = PopupMenu1
-  Position = poScreenCenter
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnResize = FormResize
-  PixelsPerInch = 96
+  OnShow = FormResize
+  PopupMenu = PopupMenu1
+  Position = poScreenCenter
+  LCLVersion = '0.9.29'
   object Status1: TPanel
     Left = 1
+    Height = 17
     Top = 256
     Width = 124
-    Height = 17
     Alignment = taLeftJustify
     BevelOuter = bvLowered
     Caption = 'Status1'
-    Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Microsoft Sans Serif'
-    Font.Style = []
     ParentFont = False
     TabOrder = 0
   end
   object Status2: TPanel
     Left = 128
+    Height = 17
     Top = 256
     Width = 109
-    Height = 17
     Alignment = taLeftJustify
     BevelOuter = bvLowered
     Caption = 'Status2'
-    Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Microsoft Sans Serif'
-    Font.Style = []
     ParentFont = False
     TabOrder = 1
   end
   object Status3: TPanel
     Left = 240
+    Height = 17
     Top = 256
     Width = 370
-    Height = 17
     Alignment = taLeftJustify
     BevelOuter = bvLowered
     Caption = 'Status3'
-    Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Microsoft Sans Serif'
-    Font.Style = []
     ParentFont = False
     TabOrder = 2
   end
   object Grid: TNewStringGrid
     Left = 0
+    Height = 217
     Top = 0
     Width = 369
-    Height = 217
     ColCount = 3
     FixedColor = clWhite
     FixedCols = 0
-    RowCount = 20
     FixedRows = 0
-    Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
     Font.Height = -13
     Font.Name = 'Courier New'
-    Font.Style = []
     Options = [goVertLine, goRangeSelect, goDrawFocusSelected, goTabs, goAlwaysShowEditor, goThumbTracking]
     ParentFont = False
+    RowCount = 20
     ScrollBars = ssVertical
     TabOrder = 3
+    TitleFont.Color = clBlack
+    TitleFont.Height = -13
+    TitleFont.Name = 'Courier New'
     OnDblClick = GridDblClick
     OnKeyDown = GridKeyDown
     OnKeyPress = GridKeyPress
     OnMouseUp = GridMouseUp
     OnSelectCell = GridSelectCell
-    RowHeights = (
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-    )
   end
   object MainMenu1: TMainMenu
     object File1: TMenuItem
@@ -206,7 +179,7 @@ object ImemForm: TImemForm
     end
   end
   object PopupMenu1: TPopupMenu
-    Left = 32
+    left = 32
     object Cut2: TMenuItem
       Caption = 'Cu&t'
       ShortCut = 16472
@@ -257,17 +230,17 @@ object ImemForm: TImemForm
     end
   end
   object OpenDialog1: TOpenDialog
-    DefaultExt = 'cod'
+    Title = 'Load Instruction Memory '
+    DefaultExt = '.cod'
     Filter = 'Code Memory (*.cod)|*.cod|All Files (*.*)|*.*'
     Options = [ofHideReadOnly, ofFileMustExist]
-    Title = 'Load Instruction Memory '
-    Left = 72
+    left = 72
   end
   object SaveDialog1: TSaveDialog
-    DefaultExt = 'cod'
+    Title = 'Save Instruction Memory'
+    DefaultExt = '.cod'
     Filter = 'Code Memory (*.cod)|*.cod|All Files (*.*)|*.*'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofPathMustExist]
-    Title = 'Save Instruction Memory'
-    Left = 104
+    left = 104
   end
 end
