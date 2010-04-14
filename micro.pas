@@ -427,11 +427,11 @@ var
   TempHeight: Integer;
 begin
   { Size Datapath Panel }
-  Datapath.Height:=ClientHeight;
+  Datapath.Height:=ClientHeight-16;
   Y:=340+NumTemps*32;
   if Y<392 then
     Y:=392;
-  if ClientHeight<Y then
+  if ClientHeight-16<Y then
   begin
     VertScrollBar.Visible:=true;
     Datapath.Height:=Y
@@ -446,8 +446,8 @@ begin
     TempHeight:=Tmp[0].Height*NumTemps
   else
     TempHeight:=0;
-  RegFile.Height:=Datapath.Height-TempHeight-340+124;
-  RegFile.Width:=15*Courier9Width+Datapath.Width-355;
+  RegFile.Height:=Datapath.Height-TempHeight-8-340+124;
+  RegFile.Width:=15*Courier9Width+Datapath.Width-365;
   { Show Register File }
   if MSimulator<>nil then
     MSimulator.RegFile.Show(-1);
@@ -478,12 +478,12 @@ begin
   RES.Height:=MDR.Top+10;
   Mem.Top:=Datapath.Height-141;
   { Size and Position Panel }
-  if ClientHeight>289 then
-    W:=(ClientHeight-289) div 2
+  if ClientHeight-16>289 then
+    W:=(ClientHeight-16-289) div 2
   else
     W:=0;
   Panel1.Left:=Datapath.Left+Datapath.Width+6;
-  Panel1.Height:=ClientHeight-7;
+  Panel1.Height:=ClientHeight-16-7;
   Panel2.Top:=W;
   { Position Labels }
   CLabel.Top:=C.Top-5;

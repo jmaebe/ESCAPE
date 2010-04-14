@@ -1,7 +1,7 @@
 object MicroForm: TMicroForm
   Left = 320
   Height = 480
-  Top = 160
+  Top = 272
   Width = 640
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
@@ -75,7 +75,7 @@ object MicroForm: TMicroForm
     Top = 0
     Width = 345
     Caption = 'Datapath'
-    ClientHeight = 402
+    ClientHeight = 403
     ClientWidth = 337
     Font.Color = clBlack
     Font.Height = -13
@@ -85,12 +85,12 @@ object MicroForm: TMicroForm
     TabOrder = 1
     object LineBox2: TLineBox
       Left = 0
-      Height = 402
+      Height = 403
       Top = 0
       Width = 337
       Align = alClient
       BevelOuter = bvNone
-      ClientHeight = 402
+      ClientHeight = 403
       ClientWidth = 337
       TabOrder = 0
       OnMouseDown = LineBox2MouseDown
@@ -259,7 +259,7 @@ object MicroForm: TMicroForm
       end
       object A: TRegBox
         Left = 60
-        Height = 20
+        Height = 31
         Top = 96
         Width = 61
         Font.Color = clBlack
@@ -269,7 +269,7 @@ object MicroForm: TMicroForm
       end
       object B: TRegBox
         Left = 60
-        Height = 20
+        Height = 31
         Top = 126
         Width = 61
         Font.Color = clBlack
@@ -289,7 +289,7 @@ object MicroForm: TMicroForm
       end
       object C: TRegBox
         Left = 252
-        Height = 20
+        Height = 31
         Top = 110
         Width = 61
         Font.Color = clBlack
@@ -299,7 +299,7 @@ object MicroForm: TMicroForm
       end
       object PC: TRegBox
         Left = 156
-        Height = 25
+        Height = 31
         Top = 256
         Width = 61
         Font.Color = clBlack
@@ -309,7 +309,7 @@ object MicroForm: TMicroForm
       end
       object MAR: TRegBox
         Left = 156
-        Height = 25
+        Height = 31
         Top = 296
         Width = 61
         Font.Color = clBlack
@@ -319,7 +319,7 @@ object MicroForm: TMicroForm
       end
       object MDR: TRegBox
         Left = 156
-        Height = 25
+        Height = 31
         Top = 328
         Width = 61
         Font.Color = clBlack
@@ -329,7 +329,7 @@ object MicroForm: TMicroForm
       end
       object IR: TRegBox
         Left = 112
-        Height = 23
+        Height = 31
         Top = 360
         Width = 169
         Font.Color = clBlack
@@ -345,7 +345,7 @@ object MicroForm: TMicroForm
     Top = 0
     Width = 132
     Caption = 'Control'
-    ClientHeight = 242
+    ClientHeight = 243
     ClientWidth = 124
     Font.Color = clBlack
     Font.Height = -13
@@ -355,12 +355,12 @@ object MicroForm: TMicroForm
     TabOrder = 0
     object LineBox1: TLineBox
       Left = 0
-      Height = 242
+      Height = 243
       Top = 0
       Width = 124
       Align = alClient
       BevelOuter = bvNone
-      ClientHeight = 242
+      ClientHeight = 243
       ClientWidth = 124
       TabOrder = 0
       OnMouseDown = LineBox1MouseDown
@@ -446,7 +446,7 @@ object MicroForm: TMicroForm
       end
       object uAR: TRegBox
         Left = 42
-        Height = 20
+        Height = 31
         Top = 86
         Width = 61
         Font.Color = clBlack
