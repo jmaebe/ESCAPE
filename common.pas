@@ -575,8 +575,6 @@ type
   function AppliMessage(Msg,Cap: string; Flags: Word): Integer;
   { Set Modify on the current simulation form }
   procedure SetModifyOnSimForm;
-  { Return the relative file location if possible }
-  function RelativeDir(Name: string): string;
 
 var
   Unravel: TUnravel;
@@ -2203,33 +2201,6 @@ procedure TClipBoardBuffer.FromClipBoard;
 begin
   ClipBoard.GetTextBuf(Buffer,BufferSize);
   Pointer:=Buffer
-end;
-
-function RelativeDir(Name: string): string;
-var
-  CurrentDir,d: string;
-  p,q,i: Integer;
-begin
-  GetDir(0,CurrentDir);
-  if CurrentDir[Length(CurrentDir)]<>'\' then
-    CurrentDir:=CurrentDir+'\';
-  Result:=ExpandFileName(Name);
-  if CompareText(CurrentDir[1],Result[1])=0 then
-  begin
-    repeat
-      p:=Pos('\',CurrentDir);
-      d:=Copy(CurrentDir,1,p);
-      q:=Pos(d,Result);
-      if q=1 then
-      begin
-        CurrentDir:=Copy(CurrentDir,p+1,1000);
-        Result:=Copy(Result,p+1,1000)
-      end
-    until (q<>1) or (Length(CurrentDir)=0);
-    for i:=1 to Length(CurrentDir) do
-      if CurrentDir[i]='\' then
-        Result:='..\'+Result
-  end
 end;
 
 end.

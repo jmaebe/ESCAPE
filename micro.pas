@@ -1278,13 +1278,16 @@ begin
 end;
 
 procedure TMicroForm.SaveProject;
+var
+  BaseDir: String;
 begin
+  BaseDir:=ExtractFileDir(SaveDialog1.FileName)+DirectorySeparator;
   FileIO.UseFile(SaveDialog1.FileName);
   Rewrite(FileIO.F);
   Writeln(FileIO.F,'[Microprogrammed Architecture Project]');
-  FileIO.WriteString('Microcode',RelativeDir(MicroCode.SaveDialog1.FileName));
-  FileIO.WriteString('InstructionMemory',RelativeDir(ImemForm.SaveDialog1.FileName));
-  FileIO.WriteString('DataMemory',RelativeDir(DmemForm.SaveDialog1.FileName));
+  FileIO.WriteString('Microcode',ExtractRelativepath(BaseDir,MicroCode.SaveDialog1.FileName));
+  FileIO.WriteString('InstructionMemory',ExtractRelativepath(BaseDir,ImemForm.SaveDialog1.FileName));
+  FileIO.WriteString('DataMemory',ExtractRelativepath(BaseDir,DmemForm.SaveDialog1.FileName));
   FileIO.WriteInteger('MemoryAccessTime',MemAccessTime);
   CloseFile(FileIO.F);
   SaveProject1.Enabled:=false;

@@ -1996,13 +1996,16 @@ begin
 end;
 
 procedure TPipeForm.SaveProject;
+var
+  BaseDir: String;
 begin
+  BaseDir:=ExtractFileDir(SaveDialog1.FileName)+DirectorySeparator;
   FileIO.UseFile(SaveDialog1.FileName);
   Rewrite(FileIO.F);
   Writeln(FileIO.F,'[Pipelined Architecture Project]');
-  FileIO.WriteString('PipelineFunctionality',RelativeDir(PipeCode.SaveDialog1.FileName));
-  FileIO.WriteString('InstructionMemory',RelativeDir(ImemForm.SaveDialog1.FileName));
-  FileIO.WriteString('DataMemory',RelativeDir(DmemForm.SaveDialog1.FileName));
+  FileIO.WriteString('PipelineFunctionality',ExtractRelativepath(BaseDir,PipeCode.SaveDialog1.FileName));
+  FileIO.WriteString('InstructionMemory',ExtractRelativepath(BaseDir,ImemForm.SaveDialog1.FileName));
+  FileIO.WriteString('DataMemory',ExtractRelativepath(BaseDir,DmemForm.SaveDialog1.FileName));
   FileIO.WriteInteger('MemoryAccessTime',DMemAccessTime);
   FileIO.WriteYesNo('Forwarding',Forwarding);
   FileIO.WriteInteger('DelaySlot',DelaySlot);
