@@ -1,7 +1,7 @@
 object MicroCode: TMicroCode
-  Left = 262
+  Left = 153
   Height = 654
-  Top = 46
+  Top = 185
   Width = 973
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
@@ -15,25 +15,26 @@ object MicroCode: TMicroCode
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnResize = FormResize
+  OnShow = FormResize
   Position = poScreenCenter
   LCLVersion = '0.9.29'
   Visible = True
   object Notebook1: TNotebook
-    Left = 0
+    Left = 8
     Height = 600
-    Top = 0
+    Top = 8
     Width = 952
     OnChanging = Notebook1Changing
-    PageIndex = 0
+    PageIndex = 1
     TabOrder = 0
     object Page1: TPage
       Caption = 'Microcode'
       ClientWidth = 946
       ClientHeight = 561
       object Grid1: TNewStringGrid
-        Left = 5
+        Left = 8
         Height = 400
-        Top = 0
+        Top = 8
         Width = 909
         ColCount = 14
         DefaultRowHeight = 20
@@ -105,7 +106,7 @@ object MicroCode: TMicroCode
       object Grid2: TNewStringGrid
         Left = 8
         Height = 121
-        Top = 0
+        Top = 8
         Width = 333
         DefaultRowHeight = 20
         FixedCols = 0

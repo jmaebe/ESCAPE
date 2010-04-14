@@ -184,6 +184,7 @@ type
     Base: Integer;
     ConstantHexWidth: Integer;
     procedure ShowGrid;
+    procedure DoFormResize(tab: Integer);
     procedure FillFixed;
     procedure SetOverwrite(Value: Boolean);
     procedure SetUseDropDown(Value: Boolean);
@@ -362,7 +363,6 @@ begin
   Grid2.RowCount:=NumOpCodes+1;
   Grid2.ColCount:=NumJumpTables+1;
   Grid2.DefaultRowHeight:=MSSansSerif8Height+2;
-  Grid2.Left:=0;
   Grid2.Cells[0,0]:='Opcode';
   for i:=1 to NumJumpTables do
     Grid2.Cells[i,0]:='Jump Table '+IntToStr(i);
@@ -492,15 +492,20 @@ begin
 end;
 
 procedure TMicroCode.FormResize(Sender: TObject);
+begin
+  DoFormResize(ord(NoteBook1.ActivePageComponent<>Page1));
+end;
+
+procedure TMicroCode.DoFormResize(Tab: Integer);
 var
   W,i: Integer;
 begin
-  Notebook1.Width:=ClientWidth;
-  Notebook1.Height:=ClientHeight;
-  if NoteBook1.ActivePageComponent=Page1 then
+  Notebook1.Width:=ClientWidth-2*Notebook1.Left;
+  Notebook1.Height:=ClientHeight-2*NoteBook1.Top;
+  if Tab=0 then
   begin
-    Page1.Width:=Page1.ClientWidth-8;
-    Page1.Height:=Page1.ClientHeight-8;
+    Page1.Width:=NoteBook1.ClientWidth-8;
+    Page1.Height:=NoteBook1.ClientHeight-32-Page1.Top;
     Grid1.Width:=Page1.ClientWidth-16;
     Grid1.Height:=Page1.ClientHeight-52;
     W:=5*MSSansSerif8Width;
@@ -514,8 +519,8 @@ begin
     Status3.Top:=Status1.Top;
   end else
   begin
-    Page2.Width:=Page2.ClientWidth-8;
-    Page2.Height:=Page2.ClientHeight-8;
+    Page2.Width:=NoteBook1.ClientWidth-8;
+    Page2.Height:=NoteBook1.ClientHeight-32-Page2.Top;
     Grid2.Width:=Page2.ClientWidth-16;
     Grid2.Height:=Page2.ClientHeight-32;
     for i:=0 to Grid2.ColCount-2 do
@@ -546,8 +551,8 @@ begin
       Grid2SelectCell(Sender,LastCol2,LastRow2,Dummy);
     end;
   TabIndex:=NewTab;
-  FormResize(Sender);
   ShowGrid;
+  DoFormResize(NewTab);
   if LastDropDownField>=ufReg then
     FieldToDrop(LastDropDownField).Visible:=false
 end;
