@@ -40,7 +40,6 @@ uses {WinTypes, WinProcs,} Classes, Graphics, Forms, Controls, StdCtrls,
 type
   { This form is used to launch the simulator or to pop up the configuration form }
   TMainForm = class(TForm)
-    Panel1: TPanel;
     Panel2: TPanel;
     Pipe: TButton;
     micro: TButton;
