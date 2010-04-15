@@ -486,7 +486,7 @@ type
     procedure CheckBreak;
   public
     { The simulator enables buttons and menu items, and reads values from spinedits, etc... }
-    constructor Create(RwndBtn: TButton; RwndChk: TMenuItem; GenTrace: TMenuItem;
+    constructor Create(Parent: TForm; RwndBtn: TButton; RwndChk: TMenuItem; GenTrace: TMenuItem;
       MltCyc: TSpinEdit; MltCycChk: TCheckBox; Clk: TEditInteger;
       ChkStab: Boolean); virtual;
     destructor Destroy; override;
@@ -1887,7 +1887,7 @@ begin
     Result:=RWMem.LastMAR
 end;
 
-constructor TSimulator.Create(RwndBtn: TButton; RwndChk: TMenuItem;
+constructor TSimulator.Create(Parent: TForm; RwndBtn: TButton; RwndChk: TMenuItem;
       GenTrace: TMenuItem; MltCyc: TSpinEdit; MltCycChk: TCheckBox;
       Clk: TEditInteger; ChkStab: Boolean);
 begin
@@ -1901,9 +1901,9 @@ begin
   Clock:=Clk;
   TrackChanges:=RewindCheck.Checked;
   ShowValues:=true;
-  Application.CreateForm(TImemForm, ImemForm);
-  Application.CreateForm(TDmemForm, DmemForm);
-  Application.CreateForm(TBreakForm, BreakForm);
+  ImemForm:=TImemForm.Create(parent);
+  DmemForm:=TDmemForm.Create(parent);
+  BreakForm:=TBreakForm.Create(parent);
   ImemForm.Hide;
   DmemForm.Hide;
   BreakForm.Hide
@@ -1911,9 +1911,9 @@ end;
 
 destructor TSimulator.Destroy;
 begin
-  ImemForm.Destroy;
-  DmemForm.Destroy;
-  BreakForm.Destroy;
+  ImemForm.Free;
+  DmemForm.Free;
+  BreakForm.Free;
   inherited Destroy
 end;
 
@@ -2125,7 +2125,7 @@ end;
 
 procedure AboutBox;
 begin
-  Application.CreateForm(TAboutForm, AboutForm);
+  AboutForm:=TAboutForm.Create(Application);
   AboutForm.Hide;
   AboutForm.ShowModal
 end;

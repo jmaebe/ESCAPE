@@ -521,7 +521,7 @@ type
     ActivityStartTime: LongInt;
     ActivityTime: LongInt;
     ActivityData: array [0..4,0..1023] of LongInt;
-    constructor Create(RwndBtn: TButton; RwndChk: TMenuItem;
+    constructor Create(Parent: TForm; RwndBtn: TButton; RwndChk: TMenuItem;
        GenTrace: TMenuItem; MltCyc: TSpinEdit; MltCycChk: TCheckBox;
        Clk: TEditInteger; ChkStab: Boolean); override;
     destructor Destroy; override;
@@ -834,9 +834,9 @@ begin
   RES2.Width:=W;
   RewindCheck.Checked:=true;
   GenTrace.Checked:=false;
-  Application.CreateForm(TPipeCode, PipeCode);
+  PipeCode:=TPipeCode.Create(self);
   PipeCode.Hide;
-  PSimulator:=TPSimulator.Create(RewindButton, RewindCheck, GenTrace,
+  PSimulator:=TPSimulator.Create(self, RewindButton, RewindCheck, GenTrace,
               MultiCycle,MultiCycleCheck, Clock, false);
   RewindCheck.Checked:=true;
   RewindCheck2.Checked:=true;
@@ -1304,7 +1304,7 @@ begin
     Result:=1
 end;
 
-constructor TPSimulator.Create(RwndBtn: TButton; RwndChk: TMenuItem;
+constructor TPSimulator.Create(Parent: TForm; RwndBtn: TButton; RwndChk: TMenuItem;
        GenTrace: TMenuItem; MltCyc: TSpinEdit; MltCycChk: TCheckBox;
        Clk: TEditInteger; ChkStab: Boolean);
 var
@@ -1314,7 +1314,7 @@ begin
   DataMemory:=TMemoryInterface.Create(ctData);
   CodeCaptionBase:='Instruction Memory';
   DataCaptionBase:='Data Memory';
-  inherited Create(RwndBtn, RwndChk, GenTrace, MltCyc, MltCycChk, Clk, false);
+  inherited Create(Parent, RwndBtn, RwndChk, GenTrace, MltCyc, MltCycChk, Clk, false);
 
   PC:=TReg.Create(PipeForm.PC,'PC');
   PC1:=TReg.Create(PipeForm.PC1,'PC1');
@@ -1592,14 +1592,13 @@ procedure TPipeForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   if SaveFirst then
   begin
-    PSimulator.Destroy;
-    PipeCode.Destroy;
-    PSimulator:=nil;
+    FreeAndNil(PSimulator);
+    FreeAndNil(PipeCode);
     Action:=caFree;
     if EnablePipelineDiagrams1.Checked then
     begin
-      ActivityForm.Destroy;
-      UsageForm.Destroy
+      FreeAndNil(ActivityForm);
+      FreeAndNil(UsageForm)
     end;
     MainForm.Show
   end else
@@ -2068,15 +2067,15 @@ begin
   PipelineUsageDiagram2.Enabled:=EnablePipelineDiagrams1.Checked;
   if EnablePipelineDiagrams1.Checked then
   begin
-    Application.CreateForm(TActivityForm, ActivityForm);
-    Application.CreateForm(TUsageForm, UsageForm);
+    ActivityForm:=TActivityForm.Create(self);
+    UsageForm:=TUsageForm.Create(self);
     PSimulator.ClearActivity;
     ActivityForm.Hide;
     UsageForm.Hide
   end else
   begin
-    ActivityForm.Destroy;
-    UsageForm.Destroy
+    FreeAndNil(ActivityForm);
+    FreeAndNil(UsageForm)
   end;
 end;
 

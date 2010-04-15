@@ -619,7 +619,7 @@ end;
 
 procedure TImemForm.SetRange1Click(Sender: TObject);
 begin
-  Application.CreateForm(TRangeForm, RangeForm);
+  RangeForm:=TRangeForm.Create(self);
   RangeForm.Hide;
   RangeForm.ShowModal
 end;
