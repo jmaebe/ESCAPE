@@ -253,7 +253,7 @@ begin
       Visible:=False;
       OnClick:=DropDownClick
     end;
-    PipeCode.InsertControl(DropBox);
+    InsertControl(DropBox);
     DropBoxes[i]:=DropBox;
     DropBox.Items.Add('');
     case i of

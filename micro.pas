@@ -14,6 +14,9 @@ uses
 
 type
   { This is the main form for the microprogrammed architecture simulator }
+
+  { TMicroForm }
+
   TMicroForm = class(TForm)
     MainMenu1: TMainMenu;
     Control: TGroupBox;
@@ -303,7 +306,7 @@ type
     RegFileReadB: TRegFileRegister;
     RegFileWrite: TRegFileRegister;
     Void: TConstant;
-    constructor Create(RwndBtn: TButton; RwndChk: TMenuItem; GenTrace: TMenuItem;
+    constructor Create(Parent: TForm; RwndBtn: TButton; RwndChk: TMenuItem; GenTrace: TMenuItem;
       MltCyc: TSpinEdit; MltCycChk: TCheckBox; Clk: TEditInteger;
       ChkStab: Boolean); override;
     destructor Destroy; override;
@@ -373,10 +376,10 @@ begin
   GenTrace.Checked:=false;
   GenTrace2.Checked:=false;
   { Generate microcode form }
-  Application.CreateForm(TMicroCode, MicroCode);
+  MicroCode:=TMicroCode.Create(self);
   MicroCode.Hide;
   { Create simulator (this will generate Imem, Dmem and Breakpoint forms }
-  MSimulator:=TMSimulator.Create(RewindButton, RewindCheck, GenTrace, MultiCycle,
+  MSimulator:=TMSimulator.Create(self, RewindButton, RewindCheck, GenTrace, MultiCycle,
                                  MultiCycleCheck, Clock, true);
   DisableTrace;
   TraceDialog:=SaveDialog2;
@@ -389,9 +392,8 @@ begin
   if SaveFirst then {okay to exit}
   begin
     { Destroy simulator -> destroys Imem, Dmem and Breakpoint forms }
-    MSimulator.Destroy;
-    MicroCode.Destroy;
-    MSimulator:=nil; { To make sure the registerfile won't get redrawn after MSimulator is destroyed }
+    FreeAndNil(MSimulator); { To make sure the registerfile won't get redrawn after MSimulator is destroyed }
+    FreeAndNil(MicroCode);
     Action:=caFree;
     MainForm.Show
   end else
@@ -733,7 +735,7 @@ begin
   Result:=MicroCode.Jump(IR.Value,Table.Value)
 end;
 
-constructor TMSimulator.Create(RwndBtn: TButton; RwndChk: TMenuItem;
+constructor TMSimulator.Create(Parent: TForm; RwndBtn: TButton; RwndChk: TMenuItem;
        GenTrace: TMenuItem; MltCyc: TSpinEdit; MltCycChk: TCheckBox;
        Clk: TEditInteger; ChkStab: Boolean);
 var
@@ -744,7 +746,7 @@ begin
   DataMemory:=CodeMemory;
   CodeCaptionBase:='Memory (Instruction View)';
   DataCaptionBase:='Memory (Data View)';
-  inherited Create(RwndBtn, RwndChk, GenTrace ,MltCyc, MltCycChk, Clk, ChkStab);
+  inherited Create(Parent, RwndBtn, RwndChk, GenTrace ,MltCyc, MltCycChk, Clk, ChkStab);
   { Construct all building blocks for the simulator }
   uAR:=TReg.Create(MicroForm.uAR,'uAR');
   A:=TReg.Create(MicroForm.A,'A');
