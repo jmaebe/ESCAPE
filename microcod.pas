@@ -126,7 +126,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
-    procedure FormResize(Sender: TObject);
+    procedure Grid1Resize(Sender: TObject);
+    procedure Grid2Resize(Sender: TObject);
     procedure Notebook1Changing(Sender: TObject; var AllowChange: Boolean);
     procedure TabSetChange(Sender: TObject; NewTab: Integer);
     procedure Grid1KeyDown(Sender: TObject; var Key: Word;
@@ -184,7 +185,6 @@ type
     Base: Integer;
     ConstantHexWidth: Integer;
     procedure ShowGrid;
-    procedure DoFormResize(tab: Integer);
     procedure FillFixed;
     procedure SetOverwrite(Value: Boolean);
     procedure SetUseDropDown(Value: Boolean);
@@ -232,7 +232,7 @@ var
 implementation
 
 uses
-  Micro;
+  Micro, platformconsts;
 
 {$R *.lfm}
 
@@ -344,7 +344,7 @@ begin
   CompleteMemOps:=(ConfigForm.CompleteMemOps.ItemIndex=1);
   NumConstBits:=ConfigForm.NumConstBits.Value;
   ConstantHexWidth:=(NumConstBits+3) div 4;
-  Grid1.DefaultRowHeight:=MSSansSerif8Height+2;
+  Grid1.DefaultRowHeight:=MSSansSerif8Height+2+MSSansSerif8HeightGridRowFudge;
   Grid1.RowCount:=uCodeRows+1;
   Grid1.Cells[0,0]:='uAR';
   Grid1.Cells[1,0]:='Label';
@@ -362,7 +362,7 @@ begin
   Grid1.Cells[13,0]:='Regs';
   Grid2.RowCount:=NumOpCodes+1;
   Grid2.ColCount:=NumJumpTables+1;
-  Grid2.DefaultRowHeight:=MSSansSerif8Height+2;
+  Grid2.DefaultRowHeight:=MSSansSerif8Height+2+MSSansSerif8HeightGridRowFudge;
   Grid2.Cells[0,0]:='Opcode';
   for i:=1 to NumJumpTables do
     Grid2.Cells[i,0]:='Jump Table '+IntToStr(i);
@@ -434,7 +434,7 @@ begin
   for f:=ufReg to High(TuCodeField) do
   begin
     DropBox:=FieldToDrop(f);
-    DropBox.Height:=DropBox.ItemHeight*DropBox.Items.Count+5
+    DropBox.Height:=DropBox.ItemHeight*DropBox.Items.Count+5+DropBoxHeightFudge;
   end
 end;
 
@@ -491,42 +491,24 @@ begin
   end
 end;
 
-procedure TMicroCode.FormResize(Sender: TObject);
-begin
-  DoFormResize(ord(NoteBook1.ActivePageComponent<>Page1));
-end;
-
-procedure TMicroCode.DoFormResize(Tab: Integer);
+procedure TMicroCode.Grid1Resize(Sender: TObject);
 var
   W,i: Integer;
 begin
-  Notebook1.Width:=ClientWidth-2*Notebook1.Left;
-  Notebook1.Height:=ClientHeight-2*NoteBook1.Top;
-  if Tab=0 then
-  begin
-    Page1.Width:=NoteBook1.ClientWidth-8;
-    Page1.Height:=NoteBook1.ClientHeight-32-Page1.Top;
-    Grid1.Width:=Page1.ClientWidth-16;
-    Grid1.Height:=Page1.ClientHeight-52;
-    W:=5*MSSansSerif8Width;
-    Grid1.ColWidths[0]:=W;
-    for i:=1 to 12 do
-      Grid1.ColWidths[i]:=((Grid1.ClientWidth-W)*i) div 13 +W-Grid1.CellRect(i,0).Left;
-    Grid1.ColWidths[13]:=Grid1.ClientWidth-Grid1.CellRect(13,0).Left-1;
-    Status3.Width:=Page1.ClientWidth-(Status2.Left+Status2.Width+3);
-    Status1.Top:=Grid1.Top+Grid1.Height+16;
-    Status2.Top:=Status1.Top;
-    Status3.Top:=Status1.Top;
-  end else
-  begin
-    Page2.Width:=NoteBook1.ClientWidth-8;
-    Page2.Height:=NoteBook1.ClientHeight-32-Page2.Top;
-    Grid2.Width:=Page2.ClientWidth-16;
-    Grid2.Height:=Page2.ClientHeight-32;
-    for i:=0 to Grid2.ColCount-2 do
-      Grid2.ColWidths[i]:=(Grid2.ClientWidth*(i+1)) div Grid2.ColCount-Grid2.CellRect(i,0).Left;
-    Grid2.ColWidths[Grid2.ColCount-1]:=Grid2.ClientWidth-Grid2.CellRect(Grid2.ColCount-1,0).Left-1
-  end
+  W:=5*MSSansSerif8Width+MSSansSerif8MicroCodeAddrWidthFudge;
+  Grid1.ColWidths[0]:=W;
+  for i:=1 to 12 do
+    Grid1.ColWidths[i]:=((Grid1.ClientWidth-W)*i) div 13 +W-Grid1.CellRect(i,0).Left;
+  Grid1.ColWidths[13]:=Grid1.ClientWidth-Grid1.CellRect(13,0).Left-1;
+end;
+
+procedure TMicroCode.Grid2Resize(Sender: TObject);
+var
+  i: Integer;
+begin
+  for i:=0 to Grid2.ColCount-2 do
+    Grid2.ColWidths[i]:=(Grid2.ClientWidth*(i+1)) div Grid2.ColCount-Grid2.CellRect(i,0).Left;
+  Grid2.ColWidths[Grid2.ColCount-1]:=Grid2.ClientWidth-Grid2.CellRect(Grid2.ColCount-1,0).Left-1
 end;
 
 procedure TMicroCode.Notebook1Changing(Sender: TObject; var AllowChange: Boolean);
@@ -552,7 +534,6 @@ begin
     end;
   TabIndex:=NewTab;
   ShowGrid;
-  DoFormResize(NewTab);
   if LastDropDownField>=ufReg then
     FieldToDrop(LastDropDownField).Visible:=false
 end;

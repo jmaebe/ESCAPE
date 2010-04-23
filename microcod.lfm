@@ -1,41 +1,43 @@
 object MicroCode: TMicroCode
-  Left = 153
-  Height = 654
-  Top = 185
-  Width = 973
+  Left = 136
+  Height = 500
+  Top = 22
+  Width = 972
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
   Caption = 'MicroCode'
-  ClientHeight = 654
-  ClientWidth = 973
+  ClientHeight = 500
+  ClientWidth = 972
   Font.Height = -13
   KeyPreview = True
   Menu = MainMenu1
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
-  OnResize = FormResize
-  OnShow = FormResize
   Position = poScreenCenter
   LCLVersion = '0.9.29'
   Visible = True
   object Notebook1: TNotebook
     Left = 8
-    Height = 600
+    Height = 480
     Top = 8
-    Width = 952
+    Width = 956
+    Anchors = [akTop, akLeft, akRight, akBottom]
     OnChanging = Notebook1Changing
-    PageIndex = 1
+    PageIndex = 0
     TabOrder = 0
     object Page1: TPage
       Caption = 'Microcode'
-      ClientWidth = 946
-      ClientHeight = 561
+      ClientWidth = 950
+      ClientHeight = 441
       object Grid1: TNewStringGrid
         Left = 8
-        Height = 400
+        Height = 407
         Top = 8
-        Width = 909
+        Width = 940
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        BorderSpacing.Left = 8
+        BorderSpacing.Right = 8
         ColCount = 14
         DefaultRowHeight = 20
         FixedCols = 0
@@ -54,14 +56,19 @@ object MicroCode: TMicroCode
         OnKeyDown = Grid1KeyDown
         OnKeyPress = Grid1KeyPress
         OnMouseUp = Grid1MouseUp
+        OnResize = Grid1Resize
         OnSelectCell = Grid1SelectCell
       end
       object Status1: TPanel
+        AnchorSideLeft.Control = Grid1
+        AnchorSideTop.Control = Grid1
+        AnchorSideTop.Side = asrBottom
         Left = 8
-        Height = 17
-        Top = 432
+        Height = 18
+        Top = 419
         Width = 124
         Alignment = taLeftJustify
+        BorderSpacing.Top = 4
         BevelOuter = bvLowered
         Caption = 'Status1'
         Font.Color = clBlack
@@ -71,11 +78,16 @@ object MicroCode: TMicroCode
         TabOrder = 1
       end
       object Status2: TPanel
-        Left = 135
-        Height = 17
-        Top = 432
+        AnchorSideLeft.Control = Status1
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = Status1
+        AnchorSideTop.Side = asrCenter
+        Left = 132
+        Height = 18
+        Top = 419
         Width = 109
         Alignment = taLeftJustify
+        BorderSpacing.Top = 4
         BevelOuter = bvLowered
         Caption = 'Status2'
         Font.Color = clBlack
@@ -85,11 +97,19 @@ object MicroCode: TMicroCode
         TabOrder = 2
       end
       object Status3: TPanel
-        Left = 247
-        Height = 17
-        Top = 432
-        Width = 665
+        AnchorSideLeft.Control = Status2
+        AnchorSideLeft.Side = asrBottom
+        AnchorSideTop.Control = Status2
+        AnchorSideTop.Side = asrCenter
+        AnchorSideRight.Control = Grid1
+        AnchorSideRight.Side = asrBottom
+        Left = 245
+        Height = 18
+        Top = 419
+        Width = 703
         Alignment = taLeftJustify
+        Anchors = [akTop, akRight]
+        BorderSpacing.Top = 4
         BevelOuter = bvLowered
         Caption = 'Status3'
         Font.Color = clBlack
@@ -101,13 +121,16 @@ object MicroCode: TMicroCode
     end
     object Page2: TPage
       Caption = 'Instruction Encoding'
-      ClientWidth = 946
-      ClientHeight = 561
+      ClientWidth = 950
+      ClientHeight = 441
       object Grid2: TNewStringGrid
         Left = 8
-        Height = 121
+        Height = 428
         Top = 8
-        Width = 333
+        Width = 940
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        BorderSpacing.Left = 8
+        BorderSpacing.Right = 8
         DefaultRowHeight = 20
         FixedCols = 0
         Font.Color = clBlack
@@ -125,6 +148,7 @@ object MicroCode: TMicroCode
         OnKeyDown = Grid2KeyDown
         OnKeyPress = Grid2KeyPress
         OnMouseUp = Grid2MouseUp
+        OnResize = Grid2Resize
         OnSelectCell = Grid2SelectCell
       end
     end
