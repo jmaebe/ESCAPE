@@ -1903,9 +1903,7 @@ begin
   ShowValues:=true;
   ImemForm:=TImemForm.Create(parent);
   DmemForm:=TDmemForm.Create(parent);
-  BreakForm:=TBreakForm.Create(parent);
-  ImemForm.Hide;
-  DmemForm.Hide
+  BreakForm:=TBreakForm.Create(parent)
 end;
 
 destructor TSimulator.Destroy;
