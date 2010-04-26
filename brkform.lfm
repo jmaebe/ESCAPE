@@ -1,26 +1,28 @@
 object BreakForm: TBreakForm
-  Left = 112
-  Height = 280
-  Top = 102
-  Width = 488
-  ActiveControl = Organisational
+  Left = 388
+  Height = 236
+  Top = 394
+  Width = 504
+  AutoSize = True
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Breakpoints'
-  ClientHeight = 280
-  ClientWidth = 488
+  ClientHeight = 236
+  ClientWidth = 504
   Font.Height = -13
   KeyPreview = True
   Menu = MainMenu1
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
+  OnResize = FormResize
   Position = poScreenCenter
   LCLVersion = '0.9.29'
   object Organisational: TGroupBox
-    Left = 8
-    Height = 225
-    Top = 8
-    Width = 241
+    Left = 0
+    Height = 236
+    Top = 0
+    Width = 240
+    AutoSize = True
     Caption = 'Organisational Registers'
     Font.Color = clBlack
     Font.Height = -11
@@ -30,10 +32,14 @@ object BreakForm: TBreakForm
     TabOrder = 0
   end
   object RegisterFile: TGroupBox
-    Left = 264
-    Height = 225
-    Top = 8
-    Width = 217
+    AnchorSideLeft.Side = asrBottom
+    Left = 256
+    Height = 236
+    Top = 0
+    Width = 240
+    AutoSize = True
+    BorderSpacing.Left = 16
+    BorderSpacing.Right = 8
     Caption = 'Register File Registers'
     Font.Color = clBlack
     Font.Height = -11

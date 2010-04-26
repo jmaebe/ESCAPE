@@ -60,6 +60,7 @@ type
     N2: TMenuItem;
     HideForm2: TMenuItem;
     procedure FormCreate(Sender: TObject);
+    procedure FormResize(Sender: TObject);
     procedure UnsignedHexadecimal1Click(Sender: TObject);
     procedure UnsignedDecimal1Click(Sender: TObject);
     procedure SignedDecimal1Click(Sender: TObject);
@@ -94,7 +95,9 @@ var
   Box: TComboBox;
   Lab: TLabel;
   Int: TEditInteger;
-  Pan: TPanel;
+  Pan,
+  PrevOrgPan,
+  PrevRegPan: TPanel;
   Chk: TCheckBox;
   Val: TEdit;
   i, RegWidth: Integer;
@@ -106,142 +109,161 @@ begin
   else
     RegWidth:=3
   end;
+  PrevOrgPan:=nil;
+  PrevRegPan:=nil;
   RegWidth:=RegWidth*MSSansSerif8Width+6;
   for i:=0 to NumBreakPoints div 2-1 do
   begin
     Pan:=TPanel.Create(Organisational);
+    Pan.Autosize:=true;
     with Pan do
     begin
-      Left:=16;
-      Top:=24+40*i;
-      Height:=32
+      BorderSpacing.Around:=4;
+      { when PrevRegPan is nil, this will be "8 pixels from the top of
+        the groupbox" }
+      AnchorSide[akTop].Side:=asrBottom;
+      AnchorSide[akTop].Control:=PrevOrgPan;
+      Anchors:=Anchors+[akTop];
     end;
+    PrevOrgPan:=Pan;
     Organisational.InsertControl(Pan);
     Chk:=TCheckBox.Create(Pan);
     CheckBox[i]:=Chk;
     with Chk do
     begin
-      Left:=8;
-      Top:=4;
-      Width:=17;
-      Height:=25;
+      BorderSpacing.Around:=4;
+      AutoSize:=True;
     end;
     Pan.InsertControl(Chk);
+
     Box:=TComboBox.Create(Pan);
     ORBox[i]:=Box;
     with Box do
     begin
-      Left:=32;
-      Top:=5;
-      Width:=73;
-      Height:=21;
+      BorderSpacing.Around:=4;
+      AutoSize:=True;
       Style:=csDropDownList;
-      ItemHeight:=13
+      AnchorToNeighbour(akLeft,8,Chk);
     end;
     Pan.InsertControl(Box);
+    Chk.AnchorVerticalCenterTo(Box);
+
     Lab:=TLabel.Create(Pan);
     with Lab do
     begin
-      Left:=112;
-      Top:=8;
+      BorderSpacing.Around:=4;
       Caption:='=';
       ParentFont:=False;
       Font.Height:=-13;
       Font.Name:='System';
-      Font.Style:=[fsBold]
+      Font.Style:=[fsBold];
+      AnchorToNeighbour(akLeft,8,Box);
+      AnchorVerticalCenterTo(Box);
     end;
     Pan.InsertControl(Lab);
+
     Val:=TEdit.Create(Pan);
     Edit[i]:=Val;
     with Val do
     begin
-      Left:=128;
-      Top:=6;
+      BorderSpacing.Around:=4;
       Width:=MSSansSerif8Width*11+6;
-      Height:=20;
-      OnExit:=ExitValues
+      Height:=8;
+      OnExit:=ExitValues;
+      AnchorToNeighbour(akLeft,8,Lab);
+      AnchorVerticalCenterTo(Lab);
     end;
     Pan.InsertControl(Val);
-    Pan.Width:=Val.Left+Val.Width+8;
-    Organisational.Width:=Pan.Width+32;
-    RegisterFile.Left:=Pan.Width+56;
+
+
     Pan:=TPanel.Create(RegisterFile);
+    Pan.AutoSize:=True;
     with Pan do
     begin
-      Left:=16;
-      Top:=24+40*i;
-      Height:=32
+      BorderSpacing.Around:=4;
+      { when PrevRegPan is nil, this will be "8 pixels from the top of
+        the groupbox" }
+      AnchorSide[akTop].Side:=asrBottom;
+      AnchorSide[akTop].Control:=PrevRegPan;
+      Anchors:=Anchors+[akTop];
     end;
+    PrevRegPan:=Pan;
     RegisterFile.InsertControl(Pan);
+
     Chk:=TCheckBox.Create(Pan);
     CheckBox[i+NumBreakPoints div 2]:=Chk;
     with Chk do
     begin
-      Left:=8;
-      Top:=4;
-      Width:=17;
-      Height:=25;
+      BorderSpacing.Around:=4;
     end;
     Pan.InsertControl(Chk);
+
     Lab:=TLabel.Create(Pan);
     with Lab do
     begin
-      Left:=32;
-      Top:=8;
+      BorderSpacing.Around:=4;
       Caption:='R';
       Font.Height:=-13;
       Font.Name:='System';
       Font.Style:=[fsBold];
-      ParentFont:=False
+      ParentFont:=False;
+      AnchorToNeighbour(akLeft,8,Chk);
     end;
     Pan.InsertControl(Lab);
+    Chk.AnchorVerticalCenterTo(Lab);
+
     Int:=TEditInteger.Create(Pan);
     RFReg[i]:=Int;
     with Int do
     begin
-      Left:=48;
-      Top:=6;
+      BorderSpacing.Around:=4;
       Width:=RegWidth;
-      Height:=20;
       MinValue:=0;
       MaxValue:=ConfigForm.NumRegisters.Value-1;
-      Value:=i+1
+      Value:=i+1;
+      AnchorToNeighbour(akLeft,8,Lab);
+      AnchorVerticalCenterTo(Lab);
     end;
     Pan.InsertControl(Int);
+
     Lab:=TLabel.Create(Pan);
     with Lab do
     begin
-      Left:=Int.Left+32;
-      Top:=8;
+      BorderSpacing.Around:=4;
       Caption:='=';
       ParentFont:=False;
       Font.Height:=-13;
       Font.Name:='System';
-      Font.Style:=[fsBold]
+      Font.Style:=[fsBold];
+      AnchorToNeighbour(akLeft,8,Int);
+      AnchorVerticalCenterTo(Int);
     end;
     Pan.InsertControl(Lab);
+
     Val:=TEdit.Create(Pan);
     Edit[i+NumBreakPoints div 2]:=Val;
     with Val do
     begin
-      Left:=Int.Left+48;
-      Top:=6;
+      BorderSpacing.Around:=4;
       Width:=MSSansSerif8Width*11+6;
       Height:=20;
-      OnExit:=ExitValues
+      OnExit:=ExitValues;
+      AnchorToNeighbour(akLeft,8,Lab);
+      AnchorVerticalCenterTo(Lab);
     end;
     Pan.InsertControl(Val);
-    Pan.Width:=Val.Left+Val.Width+8;
-    RegisterFile.Width:=Pan.Width+32;
     Value[i]:=0;
     Value[i+NumBreakPoints div 2]:=0
   end;
-  Organisational.Height:=24+NumBreakPoints*20;
-  RegisterFile.Height:=24+NumBreakPoints*20;
-  ClientWidth:=RegisterFile.Left+RegisterFile.Width+8;
-  ClientHeight:=RegisterFile.Top+RegisterFile.Height+8;
   Base:=0;
   UpdateBaseMenu
+end;
+
+procedure TBreakForm.FormResize(Sender: TObject);
+begin
+  { using anchors exposes bugs in the LCL }
+  RegisterFile.Top:=0;
+  RegisterFile.Left:=Organisational.Left+Organisational.Width+8;
 end;
 
 procedure TBreakForm.UnsignedHexadecimal1Click(Sender: TObject);
