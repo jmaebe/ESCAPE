@@ -1421,12 +1421,12 @@ var
 begin
   if En.Value<>0 then
   begin
-    Col:=clWindow;
+    Col:=clWhite;
     NewValue:=S.Value
   end
   else begin
     S.Value; {Make sure multiplexers driving this register is updated properly} 
-    Col:=clBtnFace;
+    Col:=clLtGray;
     NewValue:=CurrentValue
   end;
   if ShowValues and (Viewer<>nil) then
@@ -1491,12 +1491,12 @@ var
 begin
   if En.Value<>0 then
   begin
-    Col:=clWindow;
+    Col:=clWhite;
     NewValue:=S.Value;
     NewPC:=PC.Value
   end
   else begin
-    Col:=clBtnFace;
+    Col:=clLtGray;
     NewValue:=CurrentValue;
     NewPC:=CurrentPC
   end;
