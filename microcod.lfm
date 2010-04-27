@@ -1,7 +1,7 @@
 object MicroCode: TMicroCode
-  Left = 136
+  Left = 154
   Height = 500
-  Top = 22
+  Top = 262
   Width = 972
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
@@ -57,6 +57,7 @@ object MicroCode: TMicroCode
         OnKeyPress = Grid1KeyPress
         OnMouseUp = Grid1MouseUp
         OnResize = Grid1Resize
+        OnSelection = Grid1Selection
         OnSelectCell = Grid1SelectCell
       end
       object Status1: TPanel
@@ -149,6 +150,7 @@ object MicroCode: TMicroCode
         OnKeyPress = Grid2KeyPress
         OnMouseUp = Grid2MouseUp
         OnResize = Grid2Resize
+        OnSelection = Grid2Selection
         OnSelectCell = Grid2SelectCell
       end
     end

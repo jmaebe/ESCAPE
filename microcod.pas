@@ -127,7 +127,9 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure Grid1Resize(Sender: TObject);
+    procedure Grid1Selection(Sender: TObject; Col, Row: Integer);
     procedure Grid2Resize(Sender: TObject);
+    procedure Grid2Selection(Sender: TObject; Col, Row: Integer);
     procedure Notebook1Changing(Sender: TObject; var AllowChange: Boolean);
     procedure TabSetChange(Sender: TObject; NewTab: Integer);
     procedure Grid1KeyDown(Sender: TObject; var Key: Word;
@@ -463,21 +465,19 @@ end;
 
 procedure TMicroCode.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
-var
-  Dummy: Boolean;
 begin
   case Key of
     VK_RETURN: begin
       if TabIndex=0 then
       begin
-        Grid1SelectCell(Sender,1,LastRow1,Dummy);
+        Grid1Selection(Sender,1,LastRow1);
         if (not Overwrite) and (Grid1.Row<Grid1.RowCount-1) then
         begin
           InsertLines(Grid1.Row+1,1);
           ClearLines(Grid1.Row+1,Grid1.Row+1)
         end
       end else
-        Grid2SelectCell(Sender,LastCol2,LastRow2,Dummy);
+        Grid2Selection(Sender,LastCol2,LastRow2);
     end;
     VK_INSERT:
       SetOverwrite(not OverWrite);
@@ -517,20 +517,18 @@ begin
 end;
 
 procedure TMicroCode.TabSetChange(Sender: TObject; NewTab: Integer);
-var
-  Dummy: Boolean;
 begin
   if TabIndex=0 then
     begin
       if LastCol1=0 then
         LastCol1:=1;
-      Grid1SelectCell(Sender,LastCol1,LastRow1,Dummy)
+      Grid1Selection(Sender,LastCol1,LastRow1)
     end
   else
     begin
       if LastCol2=0 then
         LastCol2:=1;
-      Grid2SelectCell(Sender,LastCol2,LastRow2,Dummy);
+      Grid2Selection(Sender,LastCol2,LastRow2);
     end;
   TabIndex:=NewTab;
   ShowGrid;
@@ -580,46 +578,55 @@ end;
 
 procedure TMicroCode.Grid1SelectCell(Sender: TObject; Col, Row: Longint;
   var CanSelect: Boolean);
+begin
+  if LastDropDownField>=ufReg then
+    FieldToDrop(LastDropDownField).Visible:=false;
+  if Col=0 then
+    CanSelect:=false
+end;
+
+procedure TMicroCode.Grid1Selection(Sender: TObject; Col, Row: Integer);
 var
   T, uAR: Integer;
   Field: TuCodeField;
   DropBox: TListBox;
+  XFormGridDiff,
+  YFormGridDiff:  Integer;
 begin
-  if LastDropDownField>=ufReg then
-    FieldToDrop(LastDropDownField).Visible:=false;
-  if Col>0 then
+  Field:=ColToField(Col);
+  if UseDropDown and (Field>=ufReg) then
   begin
-    Field:=ColToField(Col);
-    if UseDropDown and (Field>=ufReg) then
-    begin
-      LastDropDownField:=Field;
-      DropBox:=FieldToDrop(Field);
-      uAR:=Row-1;
-      if Field>=ufALU then
-        DropBox.ItemIndex:=MCode[uAR,Field]
-      else
-        DropBox.ItemIndex:=DropReg.Items.IndexOf(Grid1.Cells[Col,Row]);
-      DropBox.Left:=Grid1.CellRect(Col,Row).Left;
-      T:=Grid1.CellRect(Col,Row).Top;
-      if T+DropBox.Height>Grid1.Height then
-        T:=Grid1.Height-DropBox.Height;
-      if Top<=Grid1.DefaultRowHeight then
-        T:=Grid1.DefaultRowHeight+1;
-      DropBox.Top:=T;
-      DropBox.Width:=Grid1.CellRect(Col,Row).Right-Grid1.CellRect(Col,Row).Left+2;
-      DropBox.Visible:=true
-    end
+    LastDropDownField:=Field;
+    DropBox:=FieldToDrop(Field);
+    uAR:=Row-1;
+    if Field>=ufALU then
+      DropBox.ItemIndex:=MCode[uAR,Field]
+    else
+      DropBox.ItemIndex:=DropReg.Items.IndexOf(Grid1.Cells[Col,Row]);
+    DropBox.Width:=Grid1.CellRect(Col,Row).Right-Grid1.CellRect(Col,Row).Left+2;
+    XFormGridDiff:=(Grid1.ClientOrigin.X)-(ClientOrigin.X);
+    YFormGridDiff:=(Grid1.ClientOrigin.Y)-(ClientOrigin.Y);
+{$ifdef LCLCarbon}
+    { the problem with carbon is that the mouse click from selecting the cell
+      propagates to the dropbox, thereby immediately also selecting the item }
+    DropBox.Left:=Grid1.CellRect(Col,Row).Left-DropBox.Width+XFormGridDiff;
+{$else}
+    DropBox.Left:=Grid1.CellRect(Col,Row).Left+XFormGridDiff;
+{$endif}
+    T:=Grid1.CellRect(Col,Row).Top+YFormGridDiff;
+    if T+DropBox.Height>Grid1.Height+YFormGridDiff then
+      T:=Grid1.Height-DropBox.Height+YFormGridDiff;
+    if Top-YFormGridDiff<=Grid1.DefaultRowHeight then
+      T:=Grid1.DefaultRowHeight+1+YFormGridDiff;
+    DropBox.Top:=T;
+    DropBox.Visible:=true
   end;
   uAR:=LastRow1-1;
   Field:=ColToField(LastCol1);
   EnterField(uAR,Field,Grid1.Cells[LastCol1,LastRow1]);
   DisplayField(uAR,Field);
-  if Col=0 then
-    CanSelect:=false
-  else begin
-    LastCol1:=Col;
-    LastRow1:=Row
-  end
+  LastCol1:=Col;
+  LastRow1:=Row
 end;
 
 function TMicroCode.EnterField(uAR: Integer; Field: TuCodeField; S: string): Boolean;
@@ -781,6 +788,12 @@ end;
 
 procedure TMicroCode.Grid2SelectCell(Sender: TObject; Col, Row: Longint;
   var CanSelect: Boolean);
+begin
+  if Col=0 then
+    CanSelect:=false;
+end;
+
+procedure TMicroCode.Grid2Selection(Sender: TObject; Col, Row: Integer);
 var
   Opc,p: Integer;
   Lab: string;
@@ -795,8 +808,6 @@ begin
   end;
   LastCol2:=Col;
   LastRow2:=Row;
-  if Col=0 then
-    CanSelect:=false;
 end;
 
 procedure TMicroCode.InsertLines(StartRow: Integer; NumLines: Integer);
@@ -1208,7 +1219,7 @@ procedure TMicroCode.Assemble1Click(Sender: TObject);
 var
   Dummy: Boolean;
 begin
-  Grid1SelectCell(Sender,1,LastRow1,Dummy);
+  Grid1Selection(Sender,1,LastRow1);
   Assemble('')
 end;
 
