@@ -1,7 +1,7 @@
 object DmemForm: TDmemForm
-  Left = 675
+  Left = 558
   Height = 300
-  Top = 564
+  Top = 460
   Width = 434
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
@@ -17,7 +17,7 @@ object DmemForm: TDmemForm
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnResize = FormResize
-  Position = poScreenCenter
+  Position = poDefault
   LCLVersion = '0.9.29'
   object Grid: TStringGrid
     Left = 0
@@ -40,9 +40,10 @@ object DmemForm: TDmemForm
     TitleFont.Color = clBlack
     TitleFont.Height = -12
     TitleFont.Name = 'Courier New'
+    OnDblClick = GridDblClick
+    OnEditingDone = GridEditingDone
     OnKeyDown = GridKeyDown
     OnKeyPress = GridKeyPress
-    OnMouseMove = GridMouseMove
     OnMouseUp = GridMouseUp
     OnSelectCell = GridSelectCell
   end

@@ -80,6 +80,8 @@ type
     NewFile1: TMenuItem;
     OpenDialog1: TOpenDialog;
     SaveDialog1: TSaveDialog;
+    procedure GridDblClick(Sender: TObject);
+    procedure GridEditingDone(Sender: TObject);
     procedure UnsignedHexadecimal1Click(Sender: TObject);
     procedure Byte1Click(Sender: TObject);
     procedure Half1Click(Sender: TObject);
@@ -183,6 +185,16 @@ begin
   UpdateBaseMenu
 end;
 
+procedure TDmemForm.GridEditingDone(Sender: TObject);
+begin
+  Grid.Options:=Grid.Options-[goEditing];
+end;
+
+procedure TDmemForm.GridDblClick(Sender: TObject);
+begin
+  Grid.Options:=Grid.Options+[goEditing]
+end;
+
 procedure TDmemForm.UnsignedDecimal1Click(Sender: TObject);
 begin
   Base:=1;
@@ -210,6 +222,10 @@ procedure TDmemForm.CalculateGridSize;
 var
   col_count: Integer;
   row_count: LongInt;
+  col_text_width,
+  fixed_text_width: Integer;
+  str: String;
+  i: Integer;
 begin
   if Base=0 then
   begin
@@ -224,16 +240,26 @@ begin
     if Base=2 then
       CellWidth:=CellWidth+1;
   end;
-  col_count:=((Grid.ClientWidth-1) div Courier9Width -FixedWidth) div CellWidth;
+
+  SetLength(str,CellWidth);
+  for i:=1 to length(str) do
+    str[i]:='0';
+  col_text_width:=Grid.Canvas.TextWidth(str);
+  SetLength(str,FixedWidth);
+  for i:=CellWidth+1 to length(str) do
+    str[i]:='0';
+  fixed_text_width:=Grid.Canvas.TextWidth(str);
+
+  col_count:=((Grid.ClientWidth-1) - fixed_text_width) div col_text_width;
   row_count:=(ConfigForm.DmemSize.Value-1) div (col_count*(1 shl GroupSize))+1;
   Grid.ColCount:=col_count+1;
   Grid.RowCount:=row_count;
-  Grid.DefaultColWidth:=CellWidth*Courier9Width;
-  Grid.ColWidths[0]:=FixedWidth*Courier9Width;
-  Grid.ColWidths[col_count]:=(2*CellWidth-1)*Courier9Width div 2;
+  Grid.DefaultColWidth:=col_text_width;
+  Grid.ColWidths[0]:=fixed_text_width;
+//  Grid.ColWidths[col_count]:=(2*CellWidth-1)*Courier9Width div 2;
   Grid.DefaultRowHeight:=Courier9Height+2;
-  GoodWidth:=(col_count*CellWidth+FixedWidth)*Courier9Width+1+Width-Grid.ClientWidth;
-  IncrementalWidth:=CellWidth*Courier9Width;
+  GoodWidth:=(col_count*col_text_width+fixed_text_width)+1+Width-Grid.ClientWidth;
+  IncrementalWidth:=col_text_width;
 end;
 
 procedure TDmemForm.UpdateGrid;
@@ -327,7 +353,7 @@ end;
 procedure TDmemForm.GridMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-  Grid.Options:=Grid.Options-[goEditing];
+//  Grid.Options:=Grid.Options-[goEditing];
 end;
 
 procedure TDmemForm.GridSelectCell(Sender: TObject; Col, Row: Longint;
@@ -483,7 +509,7 @@ procedure TDmemForm.FormKeyDown(Sender: TObject; var Key: Word;
 var
   Dummy: Boolean;
 begin
-  Grid.Options:=Grid.Options+[goEditing];
+//  Grid.Options:=Grid.Options+[goEditing];
   case Key of
     VK_RETURN: GridSelectCell(Sender,LastCol,LastRow,Dummy);
     VK_DELETE: if (Grid.Selection.Left<Grid.Selection.Right) or
