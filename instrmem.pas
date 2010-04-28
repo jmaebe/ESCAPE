@@ -29,6 +29,8 @@ unit InstrMem;
 
 {$MODE Delphi}
 
+{define debug}
+
 interface
 
 uses
@@ -65,7 +67,11 @@ type
   end;
 
   { Instruction memory form }
+
+  { TImemForm }
+
   TImemForm = class(TForm)
+    OverwriteBox: TComboBox;
     MainMenu1: TMainMenu;
     PopupMenu1: TPopupMenu;
     Edit1: TMenuItem;
@@ -108,6 +114,8 @@ type
     SaveDialog1: TSaveDialog;
     procedure FormResize(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure GridEditingDone(Sender: TObject);
+    procedure OverwriteBoxChange(Sender: TObject);
     procedure SetRange1Click(Sender: TObject);
     procedure UnsignedHexadecimal1Click(Sender: TObject);
     procedure UnsignedDecimal1Click(Sender: TObject);
@@ -517,14 +525,14 @@ end;
 procedure TImemForm.FormResize(Sender: TObject);
 begin
   Grid.Width:=ClientWidth;
-  Grid.Height:=ClientHeight-20;
+  Grid.Height:=ClientHeight-Status1.Height-8;
   Grid.ColWidths[0]:=15*Courier10Width;
   Grid.ColWidths[1]:=10*Courier10Width;
   Grid.ColWidths[2]:=Grid.ClientWidth-Grid.CellRect(2,0).Left;
   Status3.Width:=Width-248;
-  Status1.Top:=ClientHeight-17;
-  Status2.Top:=ClientHeight-17;
-  Status3.Top:=ClientHeight-17
+  Status1.Top:=ClientHeight-Status1.Height-4;
+  Status2.Top:=ClientHeight-Status1.Height-4;
+  Status3.Top:=ClientHeight-Status1.Height-4
 end;
 
 procedure TImemForm.FormCreate(Sender: TObject);
@@ -538,6 +546,19 @@ begin
   UnsignedHexadecimal1Click(Sender);
   Status3.Caption:='';
   ClearMemory
+end;
+
+procedure TImemForm.GridEditingDone(Sender: TObject);
+begin
+{$ifdef debug}
+  writeln('editingdone -- disabling editing');
+{$endif}
+  Grid.Options:=Grid.Options-[goEditing];
+end;
+
+procedure TImemForm.OverwriteBoxChange(Sender: TObject);
+begin
+  SetOverwrite(OverwriteBox.ItemIndex=0);
 end;
 
 procedure TImemForm.ShowAll;
@@ -656,13 +677,16 @@ end;
 procedure TImemForm.GridKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
+{$ifdef debug}
+  writeln('key down -- enabling editing');
+{$endif}
   Grid.Options:=Grid.Options+[goEditing]
 end;
 
 procedure TImemForm.GridMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
-  Grid.Options:=Grid.Options-[goEditing]
+//  Grid.Options:=Grid.Options-[goEditing]
 end;
 
 procedure TImemForm.UpdateLastSelection;
@@ -783,10 +807,7 @@ end;
 procedure TImemForm.SetOverwrite(Value: Boolean);
 begin
   Overwrite:=Value;
-  if Overwrite then
-    Status2.Caption:='Overwrite'
-  else
-    Status2.Caption:='Insert';
+  OverwriteBox.ItemIndex:=ord(not(Value));
 end;
 
 procedure TImemForm.SetRange(Start,Stop: LongInt);
@@ -1076,6 +1097,9 @@ end;
 
 procedure TImemForm.GridDblClick(Sender: TObject);
 begin
+{$ifdef debug}
+  writeln('double click -- enabling editing');
+{$endif}
   Grid.Options:=Grid.Options+[goEditing]
 end;
 
