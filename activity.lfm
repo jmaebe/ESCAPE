@@ -15,7 +15,6 @@ object ActivityForm: TActivityForm
   PopupMenu = PopupMenu1
   Position = poScreenCenter
   LCLVersion = '0.9.29'
-  Visible = False
   object Grid: TStringGrid
     Left = 0
     Height = 308
