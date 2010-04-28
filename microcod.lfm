@@ -1,7 +1,7 @@
 object MicroCode: TMicroCode
   Left = 154
   Height = 500
-  Top = 262
+  Top = 150
   Width = 972
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
@@ -16,7 +16,6 @@ object MicroCode: TMicroCode
   OnKeyDown = FormKeyDown
   Position = poScreenCenter
   LCLVersion = '0.9.29'
-  Visible = True
   object Notebook1: TNotebook
     Left = 8
     Height = 480

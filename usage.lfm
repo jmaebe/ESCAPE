@@ -1,7 +1,7 @@
 object UsageForm: TUsageForm
   Left = 364
   Height = 254
-  Top = 385
+  Top = 273
   Width = 552
   Caption = 'Pipeline Usage Diagram'
   ClientHeight = 254
@@ -14,7 +14,6 @@ object UsageForm: TUsageForm
   PopupMenu = PopupMenu1
   Position = poScreenCenter
   LCLVersion = '0.9.29'
-  Visible = True
   object Grid: TStringGrid
     Left = 0
     Height = 238
