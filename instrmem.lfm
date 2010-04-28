@@ -1,10 +1,11 @@
 object ImemForm: TImemForm
-  Left = 581
+  Left = 393
   Height = 345
-  Top = 483
+  Top = 339
   Width = 494
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
+  ActiveControl = Grid
   Caption = 'Instruction View'
   ClientHeight = 345
   ClientWidth = 494
@@ -17,11 +18,11 @@ object ImemForm: TImemForm
   OnResize = FormResize
   OnShow = FormResize
   PopupMenu = PopupMenu1
-  Position = poScreenCenter
+  Position = poDefault
   LCLVersion = '0.9.29'
   object Status1: TPanel
     Left = 1
-    Height = 17
+    Height = 25
     Top = 256
     Width = 124
     Alignment = taLeftJustify
@@ -35,21 +36,38 @@ object ImemForm: TImemForm
   end
   object Status2: TPanel
     Left = 128
-    Height = 17
+    Height = 25
     Top = 256
     Width = 109
     Alignment = taLeftJustify
     BevelOuter = bvLowered
-    Caption = 'Status2'
+    ClientHeight = 25
+    ClientWidth = 109
     Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Microsoft Sans Serif'
     ParentFont = False
     TabOrder = 1
+    object OverwriteBox: TComboBox
+      Left = 0
+      Height = 17
+      Top = 4
+      Width = 100
+      ItemHeight = 0
+      ItemIndex = 0
+      Items.Strings = (
+        'Overwrite'
+        'Insert'
+      )
+      OnChange = OverwriteBoxChange
+      Style = csDropDownList
+      TabOrder = 0
+      Text = 'Overwrite'
+    end
   end
   object Status3: TPanel
     Left = 240
-    Height = 17
+    Height = 25
     Top = 256
     Width = 370
     Alignment = taLeftJustify
@@ -82,6 +100,7 @@ object ImemForm: TImemForm
     TitleFont.Height = -13
     TitleFont.Name = 'Courier New'
     OnDblClick = GridDblClick
+    OnEditingDone = GridEditingDone
     OnKeyDown = GridKeyDown
     OnKeyPress = GridKeyPress
     OnMouseUp = GridMouseUp
