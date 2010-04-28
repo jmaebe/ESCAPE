@@ -551,7 +551,9 @@ var
   X1,X2: Integer;
 
   LineBox1toLineBox4YAdj,
-  LineBox1toLineBox4XAdj: Integer;
+  LineBox1toLineBox4XAdj,
+  LineBox1toFormYAdj,
+  LineBox1toFormXAdj: Integer;
 begin
   { Size Datapath Panel }
   Datapath.Height:=ClientHeight-152;
@@ -635,9 +637,6 @@ begin
   LMDR.Left:=C4-LMDR.Width div 2;
   RES2.Left:=LMDR.Left;
   WBMux.Left:=RES2.Left+52;
-  { Calculate translations of coordinates between different line boxes }
-  LineBox1toLineBox4YAdj:=(LineBox4.ClientOrigin.Y-LineBox4.Top)-(LineBox1.ClientOrigin.Y-LineBox1.Top);
-  LineBox1toLineBox4XAdj:=(LineBox4.ClientOrigin.X-LineBox4.Left)-(LineBox1.ClientOrigin.X-LineBox1.Left);
   { Size and Position components in Control Panel}
   IR.Width:=W;
   IR1.Width:=W;
@@ -655,16 +654,23 @@ begin
   Decoder.Left:=(IR.Left+IR.Width+IR1.Left) div 2 - 20;
   Null1.Left:=(IR1.Left+IR1.Width+IR2.Left) div 2 - 8;
   Null2.Left:=(IR2.Left+IR2.Width+IR3.Left) div 2 - 8;
+  { Calculate translations of coordinates between different line boxes }
+  LineBox1toFormYAdj:=(LineBox1.ClientOrigin.Y-LineBox1.Top)-(ClientOrigin.Y-LineBox1.Top);
+  LineBox1toFormXAdj:=(LineBox1.ClientOrigin.X-LineBox1.Left)-(ClientOrigin.X-LineBox1.Left);
   { Position Masks }
   Mask1.Left:=SMDR.Left+SMDR.Width+32;
   Mask1.Width:=Datapath.Width-Mask1.Left-8;
   Mask1.Height:=Datapath.Height-176;
   if Mask1.Height>152 then
     Mask1.Height:=152;
-  LineBox4.Left:=Mask1.Left+2;
-  LineBox4.Width:=Mask1.Width-2;
-  LineBox4.Height:=Mask1.Height-LineBox1toLineBox4YAdj;
-  Dmem.Top:=Mask1.Height-70;
+  LineBox4.Top:=Mask1.Top+2+LineBox1toFormYAdj;
+  LineBox4.Left:=Mask1.Left+2+LineBox1toFormXAdj;
+  LineBox4.Width:=Mask1.Width-4;
+  LineBox4.Height:=Mask1.Height-4;
+  Dmem.Top:=Mask1.Height-90;
+
+  LineBox1toLineBox4YAdj:=(LineBox4.ClientOrigin.Y-LineBox4.Top)-(LineBox1.ClientOrigin.Y-LineBox1.Top);
+  LineBox1toLineBox4XAdj:=(LineBox4.ClientOrigin.X-LineBox4.Left)-(LineBox1.ClientOrigin.X-LineBox1.Left);
   { Position Labels }
   IncrLabel.Top:=Incr.Top+20;
   CompLabel.Left:=Comp.Left;
@@ -760,7 +766,7 @@ begin
     LineBox1.AddWire(PSimulator.IncrMux,false,Point(IncrMux.Left,H),true,[Incr.Left+Incr.Width]);
     W:=(Incr.Left+Incr.Width+IncrMux.Left) div 2;
     LineBox1.AddWire(PSimulator.IncrMux,true,Point(W,H),false,[Datapath.Height]);
-    LineBox2.AddWire(PSimulator.IncrMux,false,Point(W+2,0),false,[Imem.Top]);
+    LineBox2.AddWire(PSimulator.IncrMux,false,Point(W+10,0),false,[Imem.Top]);
     H:=SMDR.Top+10;
     LineBox1.AddWire(PSimulator.CompMux,false,Point(CompMux.Left+CompMux.Width,H),true,[SMDR.Left]);
     H2:=COND.Top+10;
@@ -772,9 +778,9 @@ begin
     LineBox1.AddWire(PSimulator.LMDR,false,Point(LMDR.Left+LMDR.Width,LMDR.Top+10),true,
       [LMDR.Left+LMDR.Width+20,WBMux.Position[1],WBMux.Left+WBMux.Width-1]);
     LineBox1.AddWire(PSimulator.SMDR,false,Point(SMDR.Left+SMDR.Width,SMDR.Top+10),true,
-      [SMDR.Left+SMDR.Width+7,Dmem.Top+LineBox1toLineBox4YAdj+10,LineBox4.Left]);
+      [SMDR.Left+SMDR.Width+7,Dmem.Top+12,LineBox4.Left-LineBox1toFormXAdj]);
     LineBox1.AddWire(PSimulator.MAR,false,Point(MAR.Left+MAR.Width,MAR.Top+10),true,
-      [MAR.Left+MAR.Width+17,Dmem.Top+(MAR.Top-SMDR.Top)+LineBox1toLineBox4YAdj+10,LineBox4.Left]);
+      [MAR.Left+MAR.Width+17,Dmem.Top+(MAR.Top-SMDR.Top)+12,LineBox4.Left-LineBox1toFormXAdj]);
     X1:=LMDR.Left-10;
     X2:=LineBox4.Left+Dmem.Left+Dmem.Width+10;
     if X1>X2 then
@@ -790,7 +796,7 @@ begin
       [W,MAR.Top+10,MAR.Left]);
     LineBox1.AddWire(PSimulator.ALU,true,Point(W,ALU.Top+42),true,[ALU.Left+ALU.Width]);
     H:=IR.Top+10;
-    LineBox2.AddWire(PSimulator.Imem,false,Point(Imem.Left+Imem.Width,H+18),true,[LineBox2.Width]);
+    LineBox2.AddWire(PSimulator.Imem,false,Point(Imem.Left+Imem.Width,H+24),true,[LineBox2.Width]);
     LineBox3.AddWire(PSimulator.Imem,false,Point(0,H),true,[IR.Left]);
     LineBox3.AddWire(PSimulator.IR,false,Point(IR.Left+IR.Width,H),true,[IR1.Left]);
     LineBox3.AddWire(PSimulator.IR1,false,Point(IR1.Left+IR1.Width,H),true,[IR2.Left]);
@@ -2218,14 +2224,14 @@ begin
   WireValue.Color:=Application.HintColor;
   WireValue.Lines[0]:='Driver: '+Source.Name;
   WireValue.Lines[1]:='Value: '+Source.StrValue;
-  WireValue.Height:=MSSansSerif8Height*2+5;
+  WireValue.Height:=MSSansSerif8Height*2+16;
   l0:=Canvas.TextWidth(WireValue.Lines[0]);
   l1:=Canvas.TextWidth(WireValue.Lines[1]);
   if l0>l1 then
     l:=l0
   else
     l:=l1;
-  WireValue.Width:=l+5;
+  WireValue.Width:=l+12;
   WireValue.Top:=Y-WireValue.Height-3;
   if WireValue.Top<0 then
     WireValue.Top:=Y+24;
