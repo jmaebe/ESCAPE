@@ -379,14 +379,21 @@ begin
 end;
 
 constructor TRegBox.Create(AOwner: TComponent);
+var
+  PreferredWidth, PreferredHeight: Integer;
 begin
   inherited Create(AOwner);
   FPanel:=TCustomPanel.Create(Self);
   FPanel.Parent:=Self;
   FEdit:=TEdit.Create(FPanel);
   FEdit.Parent:=FPanel;
-  FPanel.Left:=Left+2;
-  FPanel.Top:=Top+2;
+  // so getpreferredsize can return an appropriate height if called before
+  // a value has been assigned
+  FEdit.Text:='0';
+  FEdit.GetPreferredSize(PreferredWidth,PreferredHeight);
+  Height:=PreferredHeight+2;
+  FPanel.Left:=Left+1;
+  FPanel.Top:=Top+1;
   FEdit.BorderStyle:=bsNone;
   FEdit.ReadOnly:=true;
   FEdit.Color:=clWindow
@@ -394,21 +401,21 @@ end;
 
 procedure TRegBox.Paint;
 begin
-  Draw3DBox(Canvas,Width,Height)
+  Draw3DBox(Canvas,FPanel.Width,FPanel.Height)
 end;
 
 procedure TRegBox.WMSize(var Message: TWMSize);
 var
   PreferredWidth, PreferredHeight: Integer;
 begin
+  FEdit.GetPreferredSize(PreferredWidth,PreferredHeight);
+  Message.Height:=PreferredHeight+2;
   inherited;
-  FPanel.Width:=Width-4;
+  FPanel.Width:=Width-2;
   FEdit.Width:=Width-1;
   Canvas.Font:=Font;
-  FEdit.GetPreferredSize(PreferredWidth,PreferredHeight);
-  Height:=PreferredHeight+5;
-  Fpanel.Height:=Height-4;
-  FEdit.Height:=Height-2;
+  Fpanel.Height:=PreferredHeight-1;
+  FEdit.Height:=PreferredHeight-1;
   Message.Result:=0;
 end;
 
@@ -463,8 +470,8 @@ end;
 procedure TRegFileBox.WMSize(var Message: TWMSize);
 begin
   inherited;
-  FMemo.Width:=Width-5;
-  FMemo.Height:=Height-5;
+  FMemo.Width:=Width-4;
+  FMemo.Height:=Height-4;
   Message.Result:=0;
 end;
 
