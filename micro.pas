@@ -371,13 +371,14 @@ begin
     Tmp[i]:=TRegBox.Create(LineBox2);
     with Tmp[i] do
     begin
-      Width:=W;
+      Text:='00000000';
       Font.Color:=clBlack;
       Font.Height:=-12;
       Font.Name:='Courier New';
       Font.Style:=[];
       ParentFont:=False;
-      ReadOnly:=True
+      ReadOnly:=True;
+      Width:=W
     end;
     LineBox2.InsertControl(Tmp[i]);
     TmpLabel[i]:=TLabel.Create(LineBox2);
@@ -407,7 +408,7 @@ begin
   DisableTrace;
   TraceDialog:=SaveDialog2;
   ClearProject;
-  FormResize(Sender)
+  FormResize(Sender);
 end;
 
 procedure TMicroForm.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -1384,14 +1385,14 @@ begin
   WireValue.Color:=Application.HintColor;
   WireValue.Lines[0]:='Driver: '+Source.Name;
   WireValue.Lines[1]:='Value: '+Source.StrValue;
-  WireValue.Height:=MSSansSerif8Height*2+5;
+  WireValue.Height:=MSSansSerif8Height*2+16;
   l0:=Canvas.TextWidth(WireValue.Lines[0]);
   l1:=Canvas.TextWidth(WireValue.Lines[1]);
   if l0>l1 then
     l:=l0
   else
     l:=l1;
-  WireValue.Width:=l+5;
+  WireValue.Width:=l+12;
   WireValue.Top:=Y-WireValue.Height-3;
   if WireValue.Top<0 then
     WireValue.Top:=Y+24;
