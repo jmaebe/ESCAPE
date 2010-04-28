@@ -1,7 +1,7 @@
 object AboutForm: TAboutForm
-  Left = 302
+  Left = 300
   Height = 260
-  Top = 548
+  Top = 394
   Width = 554
   BorderStyle = bsDialog
   Caption = 'About Escape...'
@@ -12,6 +12,7 @@ object AboutForm: TAboutForm
   OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '0.9.29'
+  Visible = True
   object Memo1: TMemo
     Left = 344
     Height = 199
@@ -33,7 +34,7 @@ object AboutForm: TAboutForm
       'Ported to Lazarus/Free Pascal by'
       'Jonas Maebe.'
       ''
-      'Bug reports: please send e-mail to '
+      'Bug reports: please send email to '
       'jonas.maebe@elis.ugent.be'
     )
     ParentFont = False
@@ -41,11 +42,11 @@ object AboutForm: TAboutForm
     TabOrder = 0
   end
   object Label1: TLabel
-    Left = 392
+    Left = 384
     Height = 18
     Top = 24
-    Width = 90
-    Caption = 'Escape v1.1.6'
+    Width = 107
+    Caption = 'Escape v1.2.0ß1'
     ParentColor = False
   end
   object Panel2: TPanel

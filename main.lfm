@@ -11,12 +11,13 @@ object MainForm: TMainForm
   OnClose = FormClose
   Position = poScreenCenter
   LCLVersion = '0.9.29'
+  Visible = True
   object Label1: TLabel
-    Left = 400
+    Left = 384
     Height = 18
     Top = 24
-    Width = 90
-    Caption = 'Escape v1.1.6'
+    Width = 107
+    Caption = 'Escape v1.2.0ß1'
     ParentColor = False
   end
   object Panel2: TPanel
