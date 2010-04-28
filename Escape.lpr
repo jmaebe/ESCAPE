@@ -29,6 +29,8 @@ uses
 {$R *.res}
 
 begin
+  { for compatibility with the Delphi version }
+  DefaultTextLineBreakStyle:=tlbsCRLF;
   { Initialize data structures }
   Encoding:=TEncoding.Create;
   Unravel:=TUnravel.Create;
