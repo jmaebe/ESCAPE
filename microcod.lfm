@@ -160,6 +160,7 @@ object MicroCode: TMicroCode
     Height = 13
     Top = 152
     Width = 81
+    ClickOnSelChange = False
     Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Microsoft Sans Serif'
@@ -183,6 +184,7 @@ object MicroCode: TMicroCode
     Height = 13
     Top = 176
     Width = 81
+    ClickOnSelChange = False
     Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Microsoft Sans Serif'
@@ -202,6 +204,7 @@ object MicroCode: TMicroCode
     Height = 13
     Top = 200
     Width = 81
+    ClickOnSelChange = False
     Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Microsoft Sans Serif'
@@ -225,6 +228,7 @@ object MicroCode: TMicroCode
     Height = 13
     Top = 224
     Width = 81
+    ClickOnSelChange = False
     Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Microsoft Sans Serif'
@@ -248,6 +252,7 @@ object MicroCode: TMicroCode
     Height = 13
     Top = 200
     Width = 89
+    ClickOnSelChange = False
     Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Microsoft Sans Serif'
@@ -269,6 +274,7 @@ object MicroCode: TMicroCode
     Height = 13
     Top = 176
     Width = 89
+    ClickOnSelChange = False
     Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Microsoft Sans Serif'
@@ -287,6 +293,7 @@ object MicroCode: TMicroCode
     Height = 13
     Top = 152
     Width = 89
+    ClickOnSelChange = False
     Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Microsoft Sans Serif'
@@ -312,6 +319,7 @@ object MicroCode: TMicroCode
     Height = 13
     Top = 128
     Width = 89
+    ClickOnSelChange = False
     Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Microsoft Sans Serif'
@@ -331,6 +339,7 @@ object MicroCode: TMicroCode
     Height = 17
     Top = 128
     Width = 81
+    ClickOnSelChange = False
     Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Microsoft Sans Serif'
@@ -361,6 +370,7 @@ object MicroCode: TMicroCode
     Height = 13
     Top = 224
     Width = 89
+    ClickOnSelChange = False
     Font.Color = clBlack
     Font.Height = -11
     Font.Name = 'Microsoft Sans Serif'

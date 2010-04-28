@@ -606,13 +606,7 @@ begin
     DropBox.Width:=Grid1.CellRect(Col,Row).Right-Grid1.CellRect(Col,Row).Left+2;
     XFormGridDiff:=(Grid1.ClientOrigin.X)-(ClientOrigin.X);
     YFormGridDiff:=(Grid1.ClientOrigin.Y)-(ClientOrigin.Y);
-{$ifdef LCLCarbon}
-    { the problem with carbon is that the mouse click from selecting the cell
-      propagates to the dropbox, thereby immediately also selecting the item }
-    DropBox.Left:=Grid1.CellRect(Col,Row).Left-DropBox.Width+XFormGridDiff;
-{$else}
     DropBox.Left:=Grid1.CellRect(Col,Row).Left+XFormGridDiff;
-{$endif}
     T:=Grid1.CellRect(Col,Row).Top+YFormGridDiff;
     if T+DropBox.Height>Grid1.Height+YFormGridDiff then
       T:=Grid1.Height-DropBox.Height+YFormGridDiff;
