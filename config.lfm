@@ -1,7 +1,7 @@
 object ConfigForm: TConfigForm
-  Left = 285
+  Left = 286
   Height = 524
-  Top = 111
+  Top = 250
   Width = 707
   Caption = 'ConfigForm'
   ClientHeight = 524
@@ -16,6 +16,7 @@ object ConfigForm: TConfigForm
   PopupMenu = PopupMenu1
   Position = poScreenCenter
   LCLVersion = '0.9.29'
+  Visible = True
   object Courier101: TLabel
     Left = 600
     Height = 16
@@ -115,7 +116,7 @@ object ConfigForm: TConfigForm
     Height = 500
     Top = 0
     Width = 696
-    PageIndex = 1
+    PageIndex = 0
     TabOrder = 1
     object Page1: TPage
       Caption = 'General Options'
@@ -156,7 +157,7 @@ object ConfigForm: TConfigForm
         end
         object ImemSize: TIntegerComboBox
           Left = 145
-          Height = 20
+          Height = 17
           Top = 77
           Width = 80
           DropDownCount = 10
@@ -183,7 +184,7 @@ object ConfigForm: TConfigForm
         end
         object DmemSize: TIntegerComboBox
           Left = 145
-          Height = 20
+          Height = 17
           Top = 29
           Width = 80
           DropDownCount = 10
@@ -627,7 +628,7 @@ object ConfigForm: TConfigForm
         end
         object NumOpcodes: TIntegerComboBox
           Left = 152
-          Height = 20
+          Height = 17
           Top = 22
           Width = 65
           ItemHeight = 0
@@ -648,7 +649,7 @@ object ConfigForm: TConfigForm
         end
         object NumRegisters: TIntegerComboBox
           Left = 152
-          Height = 20
+          Height = 17
           Top = 54
           Width = 65
           ItemHeight = 0
