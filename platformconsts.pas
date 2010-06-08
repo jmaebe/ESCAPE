@@ -26,6 +26,13 @@ Const
   DropBoxHeightFudge = 0;
 {$endif}
 
+{$ifdef LCLGtk2}
+  { microcod constants }
+  MSSansSerif8HeightGridRowFudge = 0;
+  MSSansSerif8MicroCodeAddrWidthFudge = 0;
+  DropBoxHeightFudge = 0;
+{$endif}
+
 implementation
 
 end.
