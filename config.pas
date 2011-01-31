@@ -57,11 +57,11 @@ type
     NumRegisters: TIntegerComboBox;
     NumOpcodes: TIntegerComboBox;
     TabSet1: TPageControl;
-    Notebook1: TNotebook;
+    Notebook1: TPageControl;
     Page1,
     Page2,
     Page3,
-    Page4: TPage;
+    Page4: TTabSheet;
     MicroStuff: TGroupBox;
     Label7: TLabel;
     Label9: TLabel;

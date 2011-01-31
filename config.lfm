@@ -1,11 +1,11 @@
 object ConfigForm: TConfigForm
   Left = 286
-  Height = 524
+  Height = 502
   Top = 138
-  Width = 707
+  Width = 718
   Caption = 'ConfigForm'
-  ClientHeight = 524
-  ClientWidth = 707
+  ClientHeight = 502
+  ClientWidth = 718
   Font.Height = -13
   KeyPreview = True
   Menu = MainMenu1
@@ -15,7 +15,8 @@ object ConfigForm: TConfigForm
   OnResize = FormResize
   PopupMenu = PopupMenu1
   Position = poScreenCenter
-  LCLVersion = '0.9.29'
+  LCLVersion = '0.9.31'
+  Visible = True
   object Courier101: TLabel
     Left = 600
     Height = 16
@@ -101,8 +102,8 @@ object ConfigForm: TConfigForm
   object TabSet1: TPageControl
     Left = 0
     Height = 21
-    Top = 503
-    Width = 707
+    Top = 481
+    Width = 718
     Align = alBottom
     Font.Height = -11
     Font.Name = 'Microsoft Sans Serif'
@@ -110,17 +111,18 @@ object ConfigForm: TConfigForm
     TabOrder = 0
     OnChange = TabSet1Change
   end
-  object Notebook1: TNotebook
+  object Notebook1: TPageControl
     Left = 0
     Height = 500
     Top = 0
-    Width = 696
-    PageIndex = 0
+    Width = 712
+    ActivePage = Page1
+    TabIndex = 0
     TabOrder = 1
-    object Page1: TPage
+    object Page1: TTabSheet
       Caption = 'General Options'
-      ClientWidth = 690
       ClientHeight = 461
+      ClientWidth = 706
       object GroupBox1: TGroupBox
         Left = 248
         Height = 161
@@ -132,15 +134,15 @@ object ConfigForm: TConfigForm
         TabOrder = 1
         object Label1: TLabel
           Left = 16
-          Height = 18
+          Height = 17
           Top = 72
-          Width = 117
+          Width = 118
           Caption = 'Code Memory Size'
           ParentColor = False
         end
         object Label2: TLabel
           Left = 16
-          Height = 18
+          Height = 17
           Top = 32
           Width = 114
           Caption = 'Data Memory Size'
@@ -148,15 +150,15 @@ object ConfigForm: TConfigForm
         end
         object Label12: TLabel
           Left = 16
-          Height = 18
+          Height = 17
           Top = 88
-          Width = 125
+          Width = 126
           Caption = 'Default Code Range'
           ParentColor = False
         end
         object ImemSize: TIntegerComboBox
           Left = 145
-          Height = 20
+          Height = 17
           Top = 77
           Width = 80
           DropDownCount = 10
@@ -183,7 +185,7 @@ object ConfigForm: TConfigForm
         end
         object DmemSize: TIntegerComboBox
           Left = 145
-          Height = 20
+          Height = 17
           Top = 29
           Width = 80
           DropDownCount = 10
@@ -304,10 +306,10 @@ object ConfigForm: TConfigForm
         TabOrder = 4
       end
     end
-    object Page2: TPage
+    object Page2: TTabSheet
       Caption = 'Instruction Encoding'
-      ClientWidth = 690
       ClientHeight = 461
+      ClientWidth = 690
       object GroupBox2: TGroupBox
         Left = 8
         Height = 204
@@ -319,17 +321,17 @@ object ConfigForm: TConfigForm
         TabOrder = 1
         object Label3: TLabel
           Left = 8
-          Height = 18
+          Height = 17
           Top = 56
-          Width = 129
+          Width = 131
           Caption = 'Number of Registers'
           ParentColor = False
         end
         object Label4: TLabel
           Left = 8
-          Height = 18
+          Height = 17
           Top = 24
-          Width = 126
+          Width = 128
           Caption = 'Number of Opcodes'
           ParentColor = False
         end
@@ -419,25 +421,25 @@ object ConfigForm: TConfigForm
         end
         object Label22: TLabel
           Left = 248
-          Height = 18
+          Height = 17
           Top = 16
-          Width = 42
+          Width = 44
           Caption = 'R-type'
           ParentColor = False
         end
         object Label23: TLabel
           Left = 248
-          Height = 18
+          Height = 17
           Top = 72
-          Width = 38
+          Width = 39
           Caption = 'I-type'
           ParentColor = False
         end
         object Label24: TLabel
           Left = 248
-          Height = 18
+          Height = 17
           Top = 128
-          Width = 41
+          Width = 40
           Caption = 'J-type'
           ParentColor = False
         end
@@ -573,7 +575,7 @@ object ConfigForm: TConfigForm
         end
         object Label38: TLabel
           Left = 8
-          Height = 18
+          Height = 17
           Top = 122
           Width = 109
           Caption = 'Immediate 2 Size'
@@ -581,7 +583,7 @@ object ConfigForm: TConfigForm
         end
         object Label39: TLabel
           Left = 8
-          Height = 18
+          Height = 17
           Top = 90
           Width = 109
           Caption = 'Immediate 1 Size'
@@ -589,9 +591,9 @@ object ConfigForm: TConfigForm
         end
         object Label40: TLabel
           Left = 8
-          Height = 18
+          Height = 17
           Top = 154
-          Width = 120
+          Width = 123
           Caption = 'Number of Formals'
           ParentColor = False
         end
@@ -627,7 +629,7 @@ object ConfigForm: TConfigForm
         end
         object NumOpcodes: TIntegerComboBox
           Left = 152
-          Height = 20
+          Height = 19
           Top = 22
           Width = 65
           ItemHeight = 0
@@ -648,7 +650,7 @@ object ConfigForm: TConfigForm
         end
         object NumRegisters: TIntegerComboBox
           Left = 152
-          Height = 20
+          Height = 19
           Top = 54
           Width = 65
           ItemHeight = 0
@@ -715,10 +717,10 @@ object ConfigForm: TConfigForm
         Visible = False
       end
     end
-    object Page3: TPage
+    object Page3: TTabSheet
       Caption = 'Microprogrammed Architecture'
-      ClientWidth = 690
       ClientHeight = 461
+      ClientWidth = 690
       object MicroStuff: TGroupBox
         Left = 8
         Height = 209
@@ -730,7 +732,7 @@ object ConfigForm: TConfigForm
         TabOrder = 2
         object Label7: TLabel
           Left = 8
-          Height = 18
+          Height = 17
           Top = 24
           Width = 90
           Caption = 'RR    Formal A'
@@ -738,7 +740,7 @@ object ConfigForm: TConfigForm
         end
         object Label9: TLabel
           Left = 160
-          Height = 18
+          Height = 17
           Top = 24
           Width = 56
           Caption = 'Formal B'
@@ -809,17 +811,17 @@ object ConfigForm: TConfigForm
         TabOrder = 1
         object Label10: TLabel
           Left = 12
-          Height = 18
+          Height = 17
           Top = 24
-          Width = 95
+          Width = 96
           Caption = 'Microcode Size'
           ParentColor = False
         end
         object Label11: TLabel
           Left = 12
-          Height = 18
+          Height = 17
           Top = 56
-          Width = 127
+          Width = 123
           Caption = 'Constant Size (bits)'
           ParentColor = False
         end
@@ -889,9 +891,9 @@ object ConfigForm: TConfigForm
         TabOrder = 3
         object Label6: TLabel
           Left = 12
-          Height = 18
+          Height = 17
           Top = 24
-          Width = 112
+          Width = 114
           Caption = 'Number of Tables'
           ParentColor = False
         end
@@ -908,10 +910,10 @@ object ConfigForm: TConfigForm
         end
       end
     end
-    object Page4: TPage
+    object Page4: TTabSheet
       Caption = 'Pipelined Architecture'
-      ClientWidth = 690
       ClientHeight = 461
+      ClientWidth = 690
       object RegFileRead: TRadioGroup
         Left = 8
         Height = 89
