@@ -33,7 +33,7 @@ interface
 
 uses
   SysUtils, {WinTypes, WinProcs,} Messages, Classes, Graphics, Controls,
-  Forms, Dialogs, ExtCtrls, Grids, Compos, {Tabs,} Config, Common, Menus,
+  Forms, Dialogs, ComCtrls, ExtCtrls, Grids, Compos, {Tabs,} Config, Common, Menus,
   StdCtrls,LResources, NewStr, lcltype;
 
 type
@@ -48,9 +48,9 @@ type
 
   { The microcode and jump tables form }
   TMicroCode = class(TForm)
-    Notebook1: TNotebook;
+    Notebook1: TPageControl;
     Page1,
-    Page2: TPage;
+    Page2: TTabSheet;
     Grid1: TNewStringGrid;
     MainMenu1: TMainMenu;
     Grid2: TNewStringGrid;
@@ -377,7 +377,7 @@ begin
   InitializeDropBoxes;
   SetUseDropDown(true);
   ClearMicroCode;
-  Notebook1.ActivePageComponent:=Page1;
+  Notebook1.ActivePage:=Page1;
 end;
 
 procedure TMicroCode.InitializeDropBoxes;
@@ -513,7 +513,7 @@ end;
 
 procedure TMicroCode.Notebook1Changing(Sender: TObject; var AllowChange: Boolean);
 begin
-  TabSetChange(Sender,ord(Notebook1.ActivePageComponent=Page1));
+  TabSetChange(Sender,ord(Notebook1.ActivePage=Page1));
 end;
 
 procedure TMicroCode.TabSetChange(Sender: TObject; NewTab: Integer);
@@ -983,12 +983,12 @@ end;
 
 procedure TMicroCode.Microcode1Click(Sender: TObject);
 begin
-  Notebook1.ActivePageComponent:=Page1;
+  Notebook1.ActivePage:=Page1;
 end;
 
 procedure TMicroCode.JumpTables1Click(Sender: TObject);
 begin
-  Notebook1.ActivePageComponent:=Page2;
+  Notebook1.ActivePage:=Page2;
 end;
 
 procedure TMicroCode.Delete1Click(Sender: TObject);
@@ -1105,7 +1105,7 @@ begin
   Grid1.Selection:=SRect;
   Grid1.Row:=Row;
   Grid1.Col:=Col;
-  Notebook1.ActivePageComponent:=Page1;
+  Notebook1.ActivePage:=Page1;
   Grid1.PressKey(VK_DOWN,[]);
   Grid1.PressKey(VK_UP,[])
 end;
@@ -1185,7 +1185,7 @@ begin
             Result:=true;
             Grid2.Row:=Opc+1;
             Grid2.Col:=j+1;
-            Notebook1.ActivePageComponent:=Page2;
+            Notebook1.ActivePage:=Page2;
             Grid2.PressKey(VK_DOWN,[]);
             Grid2.PressKey(VK_UP,[]);
             msg:='Undefined label ('+Grid2.Cells[0,Opc+1]+': '+S+')';
