@@ -92,8 +92,6 @@ type
     procedure SelectAll1Click(Sender: TObject);
     procedure GridMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure GridSelectCell(Sender: TObject; Col, Row: Longint;
-      var CanSelect: Boolean);
     procedure About1Click(Sender: TObject);
     procedure OpenFile1Click(Sender: TObject);
     procedure SaveFile1Click(Sender: TObject);
@@ -106,8 +104,6 @@ type
     procedure Fill1Click(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
-    procedure GridKeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure HideForm1Click(Sender: TObject);
     procedure NewFile1Click(Sender: TObject);
@@ -119,8 +115,6 @@ type
     FixedWidth: Integer;
     GroupSize: Integer;
     Base: Integer;
-    LastRow: Integer;
-    LastCol: Integer;
     procedure UpdateGroupSizeMenu;
     procedure AdjustSize;
     procedure UpdateBaseMenu;
@@ -186,13 +180,26 @@ begin
 end;
 
 procedure TDmemForm.GridEditingDone(Sender: TObject);
+var
+  Address,NewValue: Longint;
 begin
-  Grid.Options:=Grid.Options-[goEditing];
+  Address:=(Grid.Row*(Grid.ColCount-1)+Grid.Col-1)*(1 shl GroupSize);
+  if (Address<0) or (Address>=ConfigForm.DmemSize.Value) then
+    Grid.Cells[Grid.Col,Grid.Row]:=''
+  else begin
+    NewValue:=NewStrToInt(Grid.Cells[Grid.Col,Grid.Row],Base,GroupSize);
+    if DataMemory.Read(Address,GroupSize)<>NewValue then
+    begin
+      DataMemory.Write(Address,NewValue,GroupSize);
+      DataMemory.ChangedValue(Address)
+    end else
+    ShowSingleAddress(Address)
+  end
 end;
 
 procedure TDmemForm.GridDblClick(Sender: TObject);
 begin
-  Grid.Options:=Grid.Options+[goEditing]
+//  Grid.Options:=Grid.Options+[goEditing]
 end;
 
 procedure TDmemForm.UnsignedDecimal1Click(Sender: TObject);
@@ -288,8 +295,6 @@ end;
 
 procedure TDmemForm.FormCreate(Sender: TObject);
 begin
-  LastCol:=1;
-  LastRow:=0;
   Word1Click(Sender);
   UnsignedHexadecimal1Click(Sender);
   ClearMemory
@@ -354,30 +359,6 @@ procedure TDmemForm.GridMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
 //  Grid.Options:=Grid.Options-[goEditing];
-end;
-
-procedure TDmemForm.GridSelectCell(Sender: TObject; Col, Row: Longint;
-  var CanSelect: Boolean);
-  var Address,NewValue: LongInt;
-begin
-  if (LastCol>0) and (LastCol<=Grid.ColCount-1) and (LastRow>=0)
-      and (LastRow<=Grid.RowCount-1) then
-  begin
-    Address:=(LastRow*(Grid.ColCount-1)+LastCol-1)*(1 shl GroupSize);
-    if (Address<0) or (Address>=ConfigForm.DmemSize.Value) then
-      Grid.Cells[LastCol,LastRow]:=''
-    else begin
-      NewValue:=NewStrToInt(Grid.Cells[LastCol,LastRow],Base,GroupSize);
-      if DataMemory.Read(Address,GroupSize)<>NewValue then
-      begin
-        DataMemory.Write(Address,NewValue,GroupSize);
-        DataMemory.ChangedValue(Address)
-      end else
-      ShowSingleAddress(Address)
-    end
-  end;
-  LastCol:=Col;
-  LastRow:=Row
 end;
 
 procedure TDmemForm.About1Click(Sender: TObject);
@@ -509,9 +490,7 @@ procedure TDmemForm.FormKeyDown(Sender: TObject; var Key: Word;
 var
   Dummy: Boolean;
 begin
-//  Grid.Options:=Grid.Options+[goEditing];
   case Key of
-    VK_RETURN: GridSelectCell(Sender,LastCol,LastRow,Dummy);
     VK_DELETE: if (Grid.Selection.Left<Grid.Selection.Right) or
                   (Grid.Selection.Top<Grid.Selection.Bottom) then
                begin
@@ -519,12 +498,6 @@ begin
                  Key:=0
                end
   end
-end;
-
-procedure TDmemForm.GridKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-  Grid.Options:=Grid.Options+[goEditing]
 end;
 
 procedure TDmemForm.FormClose(Sender: TObject; var Action: TCloseAction);

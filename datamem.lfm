@@ -18,7 +18,7 @@ object DmemForm: TDmemForm
   OnKeyDown = FormKeyDown
   OnResize = FormResize
   Position = poDefault
-  LCLVersion = '0.9.29'
+  LCLVersion = '0.9.31'
   object Grid: TStringGrid
     Left = 0
     Height = 300
@@ -31,7 +31,7 @@ object DmemForm: TDmemForm
     Font.Color = clBlack
     Font.Height = -12
     Font.Name = 'Courier New'
-    Options = [goRangeSelect, goDrawFocusSelected, goAlwaysShowEditor, goThumbTracking]
+    Options = [goRangeSelect, goDrawFocusSelected, goEditing, goThumbTracking]
     ParentFont = False
     PopupMenu = PopupMenu1
     RowCount = 10
@@ -42,10 +42,8 @@ object DmemForm: TDmemForm
     TitleFont.Name = 'Courier New'
     OnDblClick = GridDblClick
     OnEditingDone = GridEditingDone
-    OnKeyDown = GridKeyDown
     OnKeyPress = GridKeyPress
     OnMouseUp = GridMouseUp
-    OnSelectCell = GridSelectCell
   end
   object MainMenu1: TMainMenu
     object File1: TMenuItem

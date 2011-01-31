@@ -120,10 +120,6 @@ type
     procedure UnsignedHexadecimal1Click(Sender: TObject);
     procedure UnsignedDecimal1Click(Sender: TObject);
     procedure SignedDecimal1Click(Sender: TObject);
-    procedure GridKeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
-    procedure GridMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
     procedure GridSelectCell(Sender: TObject; Col, Row: Longint;
       var CanSelect: Boolean);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
@@ -141,11 +137,8 @@ type
     procedure HideForm1Click(Sender: TObject);
     procedure NewFile1Click(Sender: TObject);
     procedure GridKeyPress(Sender: TObject; var Key: Char);
-    procedure GridDblClick(Sender: TObject);
   private
     Base: Integer;
-    LastRow: Integer;
-    LastCol: Integer;
     Overwrite: Boolean;
     ClipBoardBuffer: TClipBoardBuffer;
     procedure UpdateBaseMenu;
@@ -173,7 +166,7 @@ type
     procedure ShowAll;
     procedure ShowRegion(BeginRegion, EndRegion: LongInt);
     procedure ShowSingleAddress(Address: LongInt);
-    procedure UpdateLastSelection;
+    procedure UpdateCurrentSelection;
     destructor Destroy; override;
   end;
 
@@ -537,8 +530,6 @@ end;
 
 procedure TImemForm.FormCreate(Sender: TObject);
 begin
-  LastCol:=1;
-  LastRow:=0;
   ClipBoardBuffer:=TClipBoardBuffer.Create;
   SetOverwrite(true);
   Grid.DefaultRowHeight:=Courier10Height+2;
@@ -550,10 +541,7 @@ end;
 
 procedure TImemForm.GridEditingDone(Sender: TObject);
 begin
-{$ifdef debug}
-  writeln('editingdone -- disabling editing');
-{$endif}
-  Grid.Options:=Grid.Options-[goEditing];
+  UpdateCurrentSelection
 end;
 
 procedure TImemForm.OverwriteBoxChange(Sender: TObject);
@@ -674,45 +662,22 @@ begin
    ShowAll
 end;
 
-procedure TImemForm.GridKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-{$ifdef debug}
-  writeln('key down -- enabling editing');
-{$endif}
-  Grid.Options:=Grid.Options+[goEditing]
-end;
-
-procedure TImemForm.GridMouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-begin
-//  Grid.Options:=Grid.Options-[goEditing]
-end;
-
-procedure TImemForm.UpdateLastSelection;
-var
-  Dummy: Boolean;
-begin
-  GridSelectCell(ImemForm,LastCol,LastRow,Dummy);
-end;
-
-procedure TImemForm.GridSelectCell(Sender: TObject; Col, Row: Longint;
-  var CanSelect: Boolean);
+procedure TImemForm.UpdateCurrentSelection;
 var
   Address: LongInt;
   Line: string;
   OldLab: string;
 begin
-  Address:=LastRow*4+StartRange;
-  Line:=Grid.Cells[LastCol,LastRow];
+  Address:=Grid.Row*4+StartRange;
+  Line:=Grid.Cells[Grid.Col,Grid.Row];
   Status3.Caption:='';
-  case LastCol of
+  case Grid.Col of
     1: begin
          OldLab:=Labels.GetLabel(Address);
          case ChangeLabel(Address,Line) of
            clNumber: begin {starts with a number}
                Status3.Caption:='Labels cannot start with a numeric character';
-               Grid.Cells[LastCol,LastRow]:=OldLab
+               Grid.Cells[Grid.Col,Grid.Row]:=OldLab
              end;
            clExists: begin {duplicate label}
                Status3.Caption:='Label "'+Line+'" already exists';
@@ -723,12 +688,13 @@ begin
        end;
     2: Assemble(Line,Address)
   end;
+end;
+
+procedure TImemForm.GridSelectCell(Sender: TObject; Col, Row: Longint;
+  var CanSelect: Boolean);
+begin
   if Col=0 then
     CanSelect:=false
-  else begin
-    LastCol:=Col;
-    LastRow:=Row
-  end
 end;
 
 procedure TImemForm.AssembleRegion(StartAddress,EndAddress: LongInt);
@@ -769,28 +735,15 @@ procedure TImemForm.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   case Key of
-    VK_DOWN: begin
-      Grid.PressKey(VK_DOWN,Shift);
-      Grid.PressKey(VK_F2,[]);
-      Key:=VK_HOME
-    end;
-    VK_UP: begin
-      Grid.PressKey(VK_UP,Shift);
-      Grid.PressKey(VK_F2,[]);
-      Key:=VK_HOME
-    end;
     VK_RETURN: begin
-      if LastRow=Grid.RowCount-1 then
-        UpdateLastSelection;
+      if Grid.Row=Grid.RowCount-1 then
+        UpdateCurrentSelection;
       if (not Overwrite) and (Grid.Row<Grid.RowCount-1) then
       begin
         InsertLines(Grid.Row+1,1);
         ClearLines(Grid.Row+1,Grid.Row+1);
         AssembleRegion(StartRange,StopRange)
       end;
-      Grid.PressKey(VK_DOWN,[]);
-      Grid.PressKey(VK_F2,[]);
-      Key:=VK_HOME
     end;
     VK_INSERT:
       SetOverwrite(not OverWrite);
@@ -977,8 +930,7 @@ begin
   Grid.Selection:=SRect;
   Grid.Row:=Row;
   Grid.Col:=Col;
-  Grid.PressKey(VK_DOWN,[]);
-  Grid.PressKey(VK_UP,[])
+  Grid.SetFocus;
 end;
 
 procedure TImemForm.ShowCaption;
@@ -1043,7 +995,7 @@ procedure TImemForm.SaveFile;
 var
   Row: LongInt;
 begin
-  UpdateLastSelection;
+  UpdateCurrentSelection;
   FileIO.UseFile(SaveDialog1.FileName);
   Rewrite(FileIO.F);
   Writeln(FileIO.F,'[Code Memory Content]');
@@ -1093,14 +1045,6 @@ end;
 procedure TImemForm.GridKeyPress(Sender: TObject; var Key: Char);
 begin
   SetModify
-end;
-
-procedure TImemForm.GridDblClick(Sender: TObject);
-begin
-{$ifdef debug}
-  writeln('double click -- enabling editing');
-{$endif}
-  Grid.Options:=Grid.Options+[goEditing]
 end;
 
 end.

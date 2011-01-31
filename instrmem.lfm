@@ -19,7 +19,7 @@ object ImemForm: TImemForm
   OnShow = FormResize
   PopupMenu = PopupMenu1
   Position = poDefault
-  LCLVersion = '0.9.29'
+  LCLVersion = '0.9.31'
   object Status1: TPanel
     Left = 1
     Height = 25
@@ -81,9 +81,10 @@ object ImemForm: TImemForm
   end
   object Grid: TNewStringGrid
     Left = 0
-    Height = 217
+    Height = 280
     Top = 0
-    Width = 369
+    Width = 424
+    AutoAdvance = aaDown
     ColCount = 3
     FixedColor = clWhite
     FixedCols = 0
@@ -91,7 +92,7 @@ object ImemForm: TImemForm
     Font.Color = clBlack
     Font.Height = -13
     Font.Name = 'Courier New'
-    Options = [goVertLine, goRangeSelect, goDrawFocusSelected, goTabs, goAlwaysShowEditor, goThumbTracking]
+    Options = [goVertLine, goRangeSelect, goDrawFocusSelected, goEditing, goTabs, goThumbTracking]
     ParentFont = False
     RowCount = 20
     ScrollBars = ssVertical
@@ -99,11 +100,8 @@ object ImemForm: TImemForm
     TitleFont.Color = clBlack
     TitleFont.Height = -13
     TitleFont.Name = 'Courier New'
-    OnDblClick = GridDblClick
     OnEditingDone = GridEditingDone
-    OnKeyDown = GridKeyDown
     OnKeyPress = GridKeyPress
-    OnMouseUp = GridMouseUp
     OnSelectCell = GridSelectCell
   end
   object MainMenu1: TMainMenu

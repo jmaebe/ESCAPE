@@ -1947,7 +1947,7 @@ end;
 
 procedure TSimulator.ResetClick;
 begin
-  ImemForm.UpdateLastSelection;
+  ImemForm.UpdateCurrentSelection;
   Reset;
   Evaluate;
   Clock.Value:=ActualClock
@@ -1983,7 +1983,7 @@ var
 begin
   SimError:=[];
   BreakForm.UpdateAllValues;
-  ImemForm.UpdateLastSelection;
+  ImemForm.UpdateCurrentSelection;
   if Clocks>1 then
   begin
     ShowValues:=false;
