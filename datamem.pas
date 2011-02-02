@@ -82,6 +82,7 @@ type
     SaveDialog1: TSaveDialog;
     procedure GridDblClick(Sender: TObject);
     procedure GridEditingDone(Sender: TObject);
+    procedure GridResize(Sender: TObject);
     procedure UnsignedHexadecimal1Click(Sender: TObject);
     procedure Byte1Click(Sender: TObject);
     procedure Half1Click(Sender: TObject);
@@ -195,6 +196,12 @@ begin
     end else
     ShowSingleAddress(Address)
   end
+end;
+
+procedure TDmemForm.GridResize(Sender: TObject);
+begin
+  CalculateGridSize;
+  UpdateGrid
 end;
 
 procedure TDmemForm.GridDblClick(Sender: TObject);
@@ -464,8 +471,6 @@ begin
     Width:=300;
   if Height<200 then
     Height:=200;
-  CalculateGridSize;
-  UpdateGrid
 end;
 
 procedure TDmemForm.GridMouseMove(Sender: TObject; Shift: TShiftState; X,

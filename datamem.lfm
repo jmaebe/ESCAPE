@@ -44,6 +44,7 @@ object DmemForm: TDmemForm
     OnEditingDone = GridEditingDone
     OnKeyPress = GridKeyPress
     OnMouseUp = GridMouseUp
+    OnResize = GridResize
   end
   object MainMenu1: TMainMenu
     object File1: TMenuItem
