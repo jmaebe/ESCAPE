@@ -1,23 +1,23 @@
 object MainForm: TMainForm
-  Left = 448
-  Height = 259
-  Top = 323
-  Width = 554
+  Left = 363
+  Height = 261
+  Top = 382
+  Width = 582
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Welcome to Escape !'
-  ClientHeight = 259
-  ClientWidth = 554
+  ClientHeight = 261
+  ClientWidth = 582
   Font.Height = -13
   OnClose = FormClose
   Position = poScreenCenter
-  LCLVersion = '0.9.29'
+  LCLVersion = '0.9.31'
   Visible = True
   object Label1: TLabel
-    Left = 384
-    Height = 18
+    Left = 392
+    Height = 17
     Top = 24
-    Width = 107
-    Caption = 'Escape v1.2.0ß1'
+    Width = 104
+    Caption = 'Escape v1.2.0ß2'
     ParentColor = False
   end
   object Panel2: TPanel
@@ -2479,7 +2479,7 @@ object MainForm: TMainForm
     Left = 344
     Height = 33
     Top = 208
-    Width = 193
+    Width = 225
     Caption = 'Pipelined Architecture'
     Font.Color = clBlack
     Font.Height = -13
@@ -2493,7 +2493,7 @@ object MainForm: TMainForm
     Left = 344
     Height = 33
     Top = 160
-    Width = 193
+    Width = 224
     Caption = 'Microprogrammed Architecture'
     Font.Color = clBlack
     Font.Height = -13
@@ -2506,7 +2506,7 @@ object MainForm: TMainForm
     Left = 344
     Height = 33
     Top = 112
-    Width = 193
+    Width = 224
     Caption = 'Configure '
     Font.Color = clBlack
     Font.Height = -13
@@ -2516,7 +2516,7 @@ object MainForm: TMainForm
     TabOrder = 3
   end
   object Memo2: TMemo
-    Left = 344
+    Left = 360
     Height = 49
     Top = 48
     Width = 193
