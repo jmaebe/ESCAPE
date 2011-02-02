@@ -1,23 +1,23 @@
 object AboutForm: TAboutForm
   Left = 363
-  Height = 260
-  Top = 382
-  Width = 554
+  Height = 259
+  Top = 371
+  Width = 583
   BorderStyle = bsDialog
   Caption = 'About Escape...'
-  ClientHeight = 260
-  ClientWidth = 554
+  ClientHeight = 259
+  ClientWidth = 583
   Font.Height = -13
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '0.9.31'
+  LCLVersion = '0.9.29'
   Visible = True
   object Memo1: TMemo
     Left = 344
-    Height = 199
-    Top = 49
-    Width = 201
+    Height = 207
+    Top = 41
+    Width = 232
     BorderStyle = bsNone
     Color = clBtnFace
     Font.Color = clBlack
@@ -36,6 +36,7 @@ object AboutForm: TAboutForm
       ''
       'Bug reports: please send email to '
       'jonas.maebe@elis.ugent.be'
+      ''
     )
     ParentFont = False
     ReadOnly = True
@@ -43,10 +44,10 @@ object AboutForm: TAboutForm
   end
   object Label1: TLabel
     Left = 384
-    Height = 17
-    Top = 24
-    Width = 104
-    Caption = 'Escape v1.2.0ß2'
+    Height = 18
+    Top = 16
+    Width = 107
+    Caption = 'Escape v1.2.0ß1'
     ParentColor = False
   end
   object Panel2: TPanel
