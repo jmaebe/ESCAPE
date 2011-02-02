@@ -115,6 +115,7 @@ type
     procedure FormResize(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure GridEditingDone(Sender: TObject);
+    procedure GridResize(Sender: TObject);
     procedure OverwriteBoxChange(Sender: TObject);
     procedure SetRange1Click(Sender: TObject);
     procedure UnsignedHexadecimal1Click(Sender: TObject);
@@ -517,11 +518,6 @@ end;
 
 procedure TImemForm.FormResize(Sender: TObject);
 begin
-  Grid.Width:=ClientWidth;
-  Grid.Height:=ClientHeight-Status1.Height-8;
-  Grid.ColWidths[0]:=15*Courier10Width;
-  Grid.ColWidths[1]:=10*Courier10Width;
-  Grid.ColWidths[2]:=Grid.ClientWidth-Grid.CellRect(2,0).Left;
   Status3.Width:=Width-248;
   Status1.Top:=ClientHeight-Status1.Height-4;
   Status2.Top:=ClientHeight-Status1.Height-4;
@@ -542,6 +538,15 @@ end;
 procedure TImemForm.GridEditingDone(Sender: TObject);
 begin
   UpdateCurrentSelection
+end;
+
+procedure TImemForm.GridResize(Sender: TObject);
+begin
+  Grid.Width:=ClientWidth-2*Grid.BorderWidth;
+  Grid.Height:=ClientHeight-Status1.Height-8;
+  Grid.ColWidths[0]:=15*Courier10Width;
+  Grid.ColWidths[1]:=10*Courier10Width;
+  Grid.ColWidths[2]:=Grid.ClientWidth-Grid.CellRect(2,0).Left;
 end;
 
 procedure TImemForm.OverwriteBoxChange(Sender: TObject);
