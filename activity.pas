@@ -37,6 +37,9 @@ uses
 
 type
   { This is the Pipeline Activity form }
+
+  { TActivityForm }
+
   TActivityForm = class(TForm)
     Grid: TStringGrid;
     MainMenu1: TMainMenu;
@@ -47,8 +50,8 @@ type
     procedure GridDrawCell(Sender: TObject; Col, Row: Longint;
       Rect: TRect; State: TGridDrawState);
     procedure FormCreate(Sender: TObject);
+    procedure GridResize(Sender: TObject);
     procedure HideForm1Click(Sender: TObject);
-    procedure FormResize(Sender: TObject);
   private
     { 6 colors are used -- each istruction is assigned a color }
     LookupColor: array [0..32768 div 4-1] of Integer; {bits 2-0: color, bit 4: 1 when stalled}
@@ -231,12 +234,7 @@ begin
   Grid.Cells[5,0]:='WB'
 end;
 
-procedure TActivityForm.HideForm1Click(Sender: TObject);
-begin
-  Hide
-end;
-
-procedure TActivityForm.FormResize(Sender: TObject);
+procedure TActivityForm.GridResize(Sender: TObject);
 var
   i,W: Integer;
 begin
@@ -245,6 +243,11 @@ begin
   for i:=1 to 4 do
     Grid.ColWidths[i]:=((Grid.ClientWidth-W)*i) div 5 +W-Grid.CellRect(i,0).Left;
   Grid.ColWidths[5]:=Grid.ClientWidth-Grid.CellRect(5,0).Left-1
+end;
+
+procedure TActivityForm.HideForm1Click(Sender: TObject);
+begin
+  Hide
 end;
 
 end.

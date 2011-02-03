@@ -37,6 +37,9 @@ uses
 
 type
   { Pipeline Usage Form }
+
+  { TUsageForm }
+
   TUsageForm = class(TForm)
     MainMenu1: TMainMenu;
     View1: TMenuItem;
@@ -44,12 +47,10 @@ type
     PopupMenu1: TPopupMenu;
     HideForm2: TMenuItem;
     Grid: TStringGrid;
+    procedure GridResize(Sender: TObject);
     procedure HideForm1Click(Sender: TObject);
-    procedure FormResize(Sender: TObject);
     procedure GridDrawCell(Sender: TObject; Col, Row: Longint; Rect: TRect;
       State: TGridDrawState);
-    procedure GridMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
     procedure FormCreate(Sender: TObject);
     procedure GridTopLeftChanged(Sender: TObject);
   private
@@ -85,7 +86,7 @@ begin
   Hide
 end;
 
-procedure TUsageForm.FormResize(Sender: TObject);
+procedure TUsageForm.GridResize(Sender: TObject);
 begin
   Grid.ColWidths[1]:=Grid.ClientWidth-Grid.CellRect(1,0).Left-1
 end;
@@ -237,12 +238,6 @@ begin
         Stalled:=(p and $40000000<>0)
     end
   end
-end;
-
-procedure TUsageForm.GridMouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-begin
-  FormResize(Sender)
 end;
 
 procedure TUsageForm.Clear;

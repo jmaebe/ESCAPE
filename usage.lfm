@@ -4,19 +4,17 @@ object UsageForm: TUsageForm
   Top = 273
   Width = 552
   Caption = 'Pipeline Usage Diagram'
-  ClientHeight = 254
+  ClientHeight = 232
   ClientWidth = 552
   Font.Height = -13
   Menu = MainMenu1
   OnCreate = FormCreate
-  OnResize = FormResize
-  OnShow = FormResize
   PopupMenu = PopupMenu1
   Position = poScreenCenter
   LCLVersion = '0.9.29'
   object Grid: TStringGrid
     Left = 0
-    Height = 238
+    Height = 216
     Top = 0
     Width = 552
     Anchors = [akTop, akLeft, akRight, akBottom]
@@ -30,7 +28,7 @@ object UsageForm: TUsageForm
     TabOrder = 0
     TitleFont.Height = -13
     OnDrawCell = GridDrawCell
-    OnMouseUp = GridMouseUp
+    OnResize = GridResize
     OnTopLeftChanged = GridTopLeftChanged
     ColWidths = (
       164

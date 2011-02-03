@@ -4,20 +4,19 @@ object ActivityForm: TActivityForm
   Top = 246
   Width = 474
   Caption = 'Pipeline Activity Diagram'
-  ClientHeight = 308
+  ClientHeight = 289
   ClientWidth = 474
   Font.Color = clBlack
   Font.Height = -11
   Font.Name = 'Microsoft Sans Serif'
   Menu = MainMenu1
   OnCreate = FormCreate
-  OnResize = FormResize
   PopupMenu = PopupMenu1
   Position = poScreenCenter
   LCLVersion = '0.9.29'
   object Grid: TStringGrid
     Left = 0
-    Height = 308
+    Height = 289
     Top = 0
     Width = 474
     Align = alClient
@@ -34,6 +33,7 @@ object ActivityForm: TActivityForm
     TitleFont.Height = -11
     TitleFont.Name = 'Microsoft Sans Serif'
     OnDrawCell = GridDrawCell
+    OnResize = GridResize
   end
   object MainMenu1: TMainMenu
     left = 72
