@@ -132,10 +132,6 @@ type
     procedure Grid2Selection(Sender: TObject; Col, Row: Integer);
     procedure Notebook1Changing(Sender: TObject; var AllowChange: Boolean);
     procedure TabSetChange(Sender: TObject; NewTab: Integer);
-    procedure Grid1KeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
-    procedure Grid1MouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
     procedure Grid1SelectCell(Sender: TObject; Col, Row: Longint;
       var CanSelect: Boolean);
     procedure Grid2SelectCell(Sender: TObject; Col, Row: Longint;
@@ -156,14 +152,11 @@ type
     procedure SaveFile1Click(Sender: TObject);
     procedure SaveFileAs1Click(Sender: TObject);
     procedure Paste1Click(Sender: TObject);
-    procedure SetCursor(Row, Col: Integer);
+    procedure SetCursorPage1(Row, Col: Integer);
+    procedure SetCursorPage2(Row, Col: Integer);
     procedure CloseFile1Click(Sender: TObject);
     procedure Assemble1Click(Sender: TObject);
     procedure Fill1Click(Sender: TObject);
-    procedure Grid2KeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
-    procedure Grid2MouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
     procedure CopyOpcodes1Click(Sender: TObject);
     procedure HideForm1Click(Sender: TObject);
     procedure NewFile1Click(Sender: TObject);
@@ -457,9 +450,15 @@ begin
   DropdownMode1.Checked:=Value;
   DropdownMode2.Checked:=Value;
   if UseDropDown then
-    Status1.Caption:='Dropdown Mode'
+    begin
+      Status1.Caption:='Dropdown Mode';
+      Grid1.Options:=Grid1.Options-[goEditing]
+    end
   else
-    Status1.Caption:='Edit Mode';
+    begin
+      Status1.Caption:='Edit Mode';
+      Grid1.Options:=Grid1.Options+[goEditing]
+    end;
   Grid1.EditorMode:=not Value
 end;
 
@@ -562,18 +561,6 @@ begin
     Grid1.Cells[0,uAR+1]:=IntToHex(uAR,4);
   for Opc:=0 to NumOpcodes-1 do
     Grid2.Cells[0,Opc+1]:=Encoding.Opcode(Opc)
-end;
-
-procedure TMicroCode.Grid1KeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-  Grid1.Options:=Grid1.Options+[goEditing]
-end;
-
-procedure TMicroCode.Grid1MouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-begin
-  Grid1.Options:=Grid1.Options-[goEditing]
 end;
 
 procedure TMicroCode.Grid1SelectCell(Sender: TObject; Col, Row: Longint;
@@ -994,7 +981,7 @@ end;
 procedure TMicroCode.Delete1Click(Sender: TObject);
 begin
   DeleteLines(Grid1.Selection.Top,Grid1.Selection.Bottom-Grid1.Selection.Top+1);
-  SetCursor(Grid1.Selection.Top,1)
+  SetCursorPage1(Grid1.Selection.Top,1)
 end;
 
 procedure TMicroCode.Cut1Click(Sender: TObject);
@@ -1011,7 +998,7 @@ begin
   for Row:=Grid1.Selection.top to Grid1.Selection.Bottom do
     ClipBoardBuffer.AddLine(RowToStr(Row));
   ClipBoardBuffer.ToClipBoard;
-  SetCursor(Grid1.Row,1)
+  SetCursorPage1(Grid1.Row,1)
 end;
 
 procedure TMicroCode.OpenFile1Click(Sender: TObject);
@@ -1058,9 +1045,9 @@ begin
     Row:=Row+1
   end;
   if Row<Grid1.RowCount-1 then
-    SetCursor(Row,1)
+    SetCursorPage1(Row,1)
   else
-    SetCursor(Grid1.RowCount-1,1)
+    SetCursorPage1(Grid1.RowCount-1,1)
 end;
 
 function TMicroCode.RowToStr(Row: Integer): string;
@@ -1094,7 +1081,7 @@ begin
   end
 end;
 
-procedure TMicroCode.SetCursor(Row, Col: Integer);
+procedure TMicroCode.SetCursorPage1(Row, Col: Integer);
 var
   SRect: TGridRect;
 begin
@@ -1102,12 +1089,24 @@ begin
   SRect.Bottom:=Row;
   SRect.Left:=Col;
   SRect.Right:=Col;
-  Grid1.Selection:=SRect;
-  Grid1.Row:=Row;
-  Grid1.Col:=Col;
+  Grid2.Selection:=SRect;
+  Grid2.Row:=Row;
+  Grid2.Col:=Col;
   Notebook1.ActivePage:=Page1;
-  Grid1.PressKey(VK_DOWN,[]);
-  Grid1.PressKey(VK_UP,[])
+end;
+
+procedure TMicroCode.SetCursorPage2(Row, Col: Integer);
+var
+  SRect: TGridRect;
+begin
+  SRect.Top:=Row;
+  SRect.Bottom:=Row;
+  SRect.Left:=Col;
+  SRect.Right:=Col;
+  Grid2.Selection:=SRect;
+  Grid2.Row:=Row;
+  Grid2.Col:=Col;
+  Notebook1.ActivePage:=Page2;
 end;
 
 procedure TMicroCode.CloseFile1Click(Sender: TObject);
@@ -1142,7 +1141,7 @@ begin
       Labels.AddObject(S,L);
     except
       Result:=true;
-      SetCursor(uAR+1,1);
+      SetCursorPage1(uAR+1,1);
       msg:='Duplicate labels are not allowed ('+IntToHex(uAR,4)+': '+S+')';
       break
     end
@@ -1160,7 +1159,7 @@ begin
         if Index<0 then
         begin
           Result:=true;
-          SetCursor(uAR+1,Col);
+          SetCursorPage1(uAR+1,Col);
           msg:='Undefined label ('+IntToHex(uAR,4)+': '+S+')';
           break
         end;
@@ -1183,11 +1182,7 @@ begin
           if Index<0 then
           begin
             Result:=true;
-            Grid2.Row:=Opc+1;
-            Grid2.Col:=j+1;
-            Notebook1.ActivePage:=Page2;
-            Grid2.PressKey(VK_DOWN,[]);
-            Grid2.PressKey(VK_UP,[]);
+            SetCursorPage2(Opc+1,j+1);
             msg:='Undefined label ('+Grid2.Cells[0,Opc+1]+': '+S+')';
             break
           end;
@@ -1233,18 +1228,6 @@ begin
         Grid2.Cells[j,i]:=L;
     SetModify
   end
-end;
-
-procedure TMicroCode.Grid2KeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
-  Grid2.Options:=Grid2.Options+[goEditing]
-end;
-
-procedure TMicroCode.Grid2MouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-begin
-  Grid2.Options:=Grid2.Options-[goEditing]
 end;
 
 procedure TMicroCode.CopyOpcodes1Click(Sender: TObject);

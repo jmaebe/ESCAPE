@@ -1,7 +1,7 @@
 object MicroCode: TMicroCode
   Left = 154
   Height = 500
-  Top = 262
+  Top = 150
   Width = 972
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
@@ -45,7 +45,7 @@ object MicroCode: TMicroCode
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'Microsoft Sans Serif'
-        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goTabs, goThumbTracking]
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goEditing, goTabs, goThumbTracking]
         ParentFont = False
         PopupMenu = PopupMenu1
         RowCount = 20
@@ -54,9 +54,7 @@ object MicroCode: TMicroCode
         TitleFont.Color = clBlack
         TitleFont.Height = -11
         TitleFont.Name = 'Microsoft Sans Serif'
-        OnKeyDown = Grid1KeyDown
         OnKeyPress = Grid1KeyPress
-        OnMouseUp = Grid1MouseUp
         OnResize = Grid1Resize
         OnSelection = Grid1Selection
         OnSelectCell = Grid1SelectCell
@@ -138,7 +136,7 @@ object MicroCode: TMicroCode
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'Microsoft Sans Serif'
-        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goTabs, goAlwaysShowEditor, goThumbTracking]
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goDrawFocusSelected, goEditing, goTabs, goAlwaysShowEditor, goThumbTracking]
         ParentFont = False
         PopupMenu = PopupMenu2
         RowCount = 20
@@ -147,9 +145,7 @@ object MicroCode: TMicroCode
         TitleFont.Color = clBlack
         TitleFont.Height = -11
         TitleFont.Name = 'Microsoft Sans Serif'
-        OnKeyDown = Grid2KeyDown
         OnKeyPress = Grid2KeyPress
-        OnMouseUp = Grid2MouseUp
         OnResize = Grid2Resize
         OnSelection = Grid2Selection
         OnSelectCell = Grid2SelectCell
