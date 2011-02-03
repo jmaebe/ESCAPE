@@ -16,8 +16,8 @@ object MainForm: TMainForm
     Left = 392
     Height = 18
     Top = 16
-    Width = 107
-    Caption = 'Escape v1.2.0ß2'
+    Width = 116
+    Caption = 'Escape v1.2.0RC1'
     ParentColor = False
   end
   object Panel2: TPanel
@@ -2530,6 +2530,7 @@ object MainForm: TMainForm
       'Environment for the Simulation'
       'of Computer Architectures for'
       'the Purpose of Education'
+      ''
       ''
     )
     ParentFont = False

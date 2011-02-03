@@ -37,6 +37,7 @@ object AboutForm: TAboutForm
       'Bug reports: please send email to '
       'jonas.maebe@elis.ugent.be'
       ''
+      ''
     )
     ParentFont = False
     ReadOnly = True
@@ -46,8 +47,8 @@ object AboutForm: TAboutForm
     Left = 384
     Height = 18
     Top = 16
-    Width = 107
-    Caption = 'Escape v1.2.0ß1'
+    Width = 116
+    Caption = 'Escape v1.2.0RC1'
     ParentColor = False
   end
   object Panel2: TPanel
