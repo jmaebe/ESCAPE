@@ -880,9 +880,11 @@ end;
 
 procedure TMemoryInterface.ChangedValue(Address: LongInt);
 begin
-  if (CType=ctCode) or (CType=ctBoth) then
+  if ((CType=ctCode) or (CType=ctBoth)) and
+     (Address<ConfigForm.ImemSize.Value)then
     ImemForm.ShowSingleAddress(Address);
-  if (CType=ctData) or (CType=ctBoth) then
+  if ((CType=ctData) or (CType=ctBoth)) and
+     (Address<ConfigForm.DmemSize.Value) then
     DmemForm.ShowSingleAddress(Address);
   MemoryTouched
 end;
