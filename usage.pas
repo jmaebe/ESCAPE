@@ -67,7 +67,9 @@ type
     { Clear the diagram }
     procedure Clear;
     { Add one or more lines to the diagram if necessary }
-    procedure AddLines;
+    procedure AddLines(MaxAmount: Integer);
+    { Remove one or more lines to the diagram if necessary }
+    procedure RemoveLines(Amount: Integer);
     { Display the current line if not in display }
     procedure ShowLine;
   end;
@@ -225,7 +227,7 @@ var
 begin
   with PSimulator do
   begin
-    if (Time<ActivityStartTime) or (Time>ActivityTime) then
+    if (Time<ActivityStartTime) or (Time>ActivityTime) or (Time > ActualClock) then
       Result:=false
     else begin
       Index:=(Time-ActivityStartTime+ActivityStartIndex) and 1023;
@@ -255,22 +257,32 @@ begin
 end;
 
 procedure TUsageForm.ShowLine;
+var
+  DesiredTopRowPos: Integer;
 begin
-  if NextRow<Grid.TopRow then
-    Grid.TopRow:=NextRow;
+  DesiredTopRowPos:=NextRow+1-Grid.VisibleRowCount;
   if Grid.TopRow+Grid.VisibleRowCount-1<NextRow then
-    Grid.TopRow:=NextRow+1-Grid.VisibleRowCount;
+    Grid.TopRow:=DesiredTopRowPos
+  else if Grid.TopRow<>DesiredTopRowPos then
+    if DesiredTopRowPos>0 then
+      Grid.TopRow:=DesiredTopRowPos
+    else
+      Grid.TopRow:=1;
   GridTopLeftChanged(Self)
 end;
 
-procedure TUsageForm.AddLines;
+procedure TUsageForm.AddLines(MaxAmount: Integer);
 var
-  l: Integer;
+  l, AmountAdded: Integer;
   p, Adr: LongInt;
 begin
+  AmountAdded:=0;
   with PSimulator do
     while NextIndex<>ActivityNextIndex do
     begin
+      if AmountAdded>=MaxAmount then
+        break;
+      inc(AmountAdded);
       p:=ActivityData[0,NextIndex];
       if p>=0 then
       begin
@@ -291,6 +303,40 @@ begin
           LookupRow[Adr shr 2]:=LookupRow[Adr shr 2] and $3FFF
       end;
       NextIndex:=(NextIndex+1) and 1023
+    end;
+  ShowLine
+end;
+
+procedure TUsageForm.RemoveLines(Amount: Integer);
+var
+  l, i, ctr, col, PrevIndex: Integer;
+  p, Adr, PrevAdr: LongInt;
+  LastWasStall: boolean;
+begin
+  with PSimulator do
+    for ctr:=1 to Amount do
+    begin
+      if NextRow=0 then
+        break;
+      NextIndex:=(NextIndex-1) and 1023;
+      Adr:=ActivityData[0,NextIndex] and $7fff;
+      PrevIndex:=(NextIndex-1) and 1023;
+      p:=ActivityData[0,PrevIndex];
+      PrevAdr:=p and $7FFF;
+      { if the previous cycle caused a stall on the current address, no line
+        was added in this cycle }
+      if (p and $40000000=0) or
+         (Adr<>PrevAdr) then
+      begin
+        LookupRow[Adr shr 2]:=-1;
+        Grid.Cells[0,NextRow]:='';
+        NextRow:=NextRow-1;
+        if NextRow<0 then
+          raise Exception.Create('Failure: usage diagram: rewind row out of range');
+        RowStartTime[NextRow]:=-1;
+      end;
+      if NextIndex=ActivityStartIndex then
+        break;
     end;
   ShowLine
 end;

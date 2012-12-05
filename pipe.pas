@@ -528,6 +528,7 @@ type
     procedure Evaluate; override;
     procedure Propagate; override;
     procedure Reset; override;
+    procedure Rewind(Clocks: LongInt); override;
     procedure Simulate(Clocks: LongInt); override;
     procedure TraceActivity;
     procedure ClearActivity;
@@ -1767,13 +1768,29 @@ begin
     TraceActivity
 end;
 
-procedure TPSimulator.Simulate(Clocks: LongInt);
+procedure TPSimulator.Rewind(Clocks: LongInt);
+var
+  OldClock: Integer;
 begin
+  OldClock:=ActualClock;
+  inherited Rewind(Clocks);
+  if PipeForm.EnablePipelineDiagrams1.Checked then
+  begin
+    ActivityForm.RemoveLines(OldClock-ActualClock);
+    UsageForm.RemoveLines(OldClock-ActualClock)
+  end;
+end;
+
+procedure TPSimulator.Simulate(Clocks: LongInt);
+var
+  OldClock: Integer;
+begin
+  OldClock:=ActualClock;
   inherited Simulate(Clocks);
   if PipeForm.EnablePipelineDiagrams1.Checked then
   begin
-    ActivityForm.AddLines;
-    UsageForm.AddLines
+    ActivityForm.AddLines(ActualClock-OldClock);
+    UsageForm.AddLines(ActualClock-OldClock)
   end
 end;
 
@@ -2126,9 +2143,9 @@ begin
       ActivityStartIndex:=(ActivityStartIndex+100) and 1023;
       ActivityStartTime:=ActivityStartTime+100;
       ActivityForm.Clear;
-      ActivityForm.AddLines;
+      ActivityForm.AddLines(high(Integer));
       UsageForm.Clear;
-      UsageForm.AddLines
+      UsageForm.AddLines(high(Integer))
     end
   end
 end;
@@ -2142,8 +2159,8 @@ begin
   ActivityForm.Clear;
   UsageForm.Clear;
   TraceActivity;
-  ActivityForm.AddLines;
-  UsageForm.AddLines
+  ActivityForm.AddLines(high(Integer));
+  UsageForm.AddLines(high(Integer))
 end;
 
 procedure TPipeForm.PipelineUsageDiagram1Click(Sender: TObject);

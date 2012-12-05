@@ -63,7 +63,9 @@ type
     { Clears the diagram }
     procedure Clear;
     { Add one or more lines to the diagram if necessary }
-    procedure AddLines;
+    procedure AddLines(MaxAmount: Integer);
+    { Remove one or more lines from the diagram if necessary }
+    procedure RemoveLines(Amount: Integer);
     { Show the last line if not on display }
     procedure ShowLine;
   end;
@@ -93,25 +95,33 @@ end;
 
 procedure TActivityForm.ShowLine;
 var
-  i: Integer;
+  i, DesiredTopRowPos: Integer;
 begin
   i:=(NextIndex-PSimulator.ActivityStartIndex) and 1023;
-  if i<Grid.TopRow then
-    Grid.TopRow:=i;
+  DesiredTopRowPos:=i+1-Grid.VisibleRowCount;
   if Grid.TopRow+Grid.VisibleRowCount-1<i then
-    Grid.TopRow:=i+1-Grid.VisibleRowCount;
+    Grid.TopRow:=DesiredTopRowPos
+  else if Grid.TopRow<>DesiredTopRowPos then
+    if DesiredTopRowPos>0 then
+      Grid.TopRow:=DesiredTopRowPos
+    else
+      Grid.TopRow:=1;
 end;
 
-procedure TActivityForm.AddLines;
+procedure TActivityForm.AddLines(MaxAmount: Integer);
 var
-  Time,i,j,l: Integer;
+  Time,i,j,l,AmountAdded: Integer;
   p, Adr: LongInt;
   s: string;
   c: TColor;
 begin
+  AmountAdded:=0;
   with PSimulator do
     while NextIndex<>ActivityNextIndex do
     begin
+      if (AmountAdded>=MaxAmount) then
+        break;
+      inc(AmountAdded);
       i:=((NextIndex-ActivityStartIndex) and 1023);
       Time:=ActivityStartTime+i;
       Grid.Cells[0,i+1]:=IntToStr(Time);
@@ -149,6 +159,27 @@ begin
         Grid.Cells[j+1,i+1]:=s
       end;
       NextIndex:=(NextIndex+1) and 1023
+    end;
+  ShowLine
+end;
+
+procedure TActivityForm.RemoveLines(Amount: Integer);
+var
+  ctr, i, j: Integer;
+begin
+  with PSimulator do
+    for ctr:=1 to Amount do
+    begin
+      NextIndex:=(NextIndex-1) and 1023;
+      i:=((NextIndex-ActivityStartIndex) and 1023);
+      Grid.Cells[0,i+1]:='';
+      for j:=4 downto 0 do
+      begin
+        Colors[j,i]:=clWhite;
+        Grid.Cells[j+1,i+1]:=''
+      end;
+      if NextIndex=ActivityStartIndex then
+        break;
     end;
   ShowLine
 end;
