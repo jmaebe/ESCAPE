@@ -11,7 +11,7 @@ object AboutForm: TAboutForm
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '0.9.29'
+  LCLVersion = '1.0.3.0'
   Visible = True
   object Memo1: TMemo
     Left = 344
@@ -47,8 +47,8 @@ object AboutForm: TAboutForm
     Left = 384
     Height = 18
     Top = 16
-    Width = 116
-    Caption = 'Escape v1.2.0RC2'
+    Width = 91
+    Caption = 'Escape v1.2.1'
     ParentColor = False
   end
   object Panel2: TPanel
