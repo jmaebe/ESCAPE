@@ -1,14 +1,14 @@
 object PipeForm: TPipeForm
-  Left = 300
-  Height = 480
-  Top = 272
-  Width = 680
+  Left = 0
+  Height = 560
+  Top = 0
+  Width = 900
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
   ActiveControl = LineBox4
   Caption = 'Pipelined Architecture'
-  ClientHeight = 460
-  ClientWidth = 680
+  ClientHeight = 540
+  ClientWidth = 900
   Font.Color = clBlack
   Font.Height = -11
   Font.Name = 'Microsoft Sans Serif'
@@ -20,7 +20,6 @@ object PipeForm: TPipeForm
   OnResize = FormResize
   OnShow = FormResize
   PopupMenu = PopupMenu1
-  Position = poScreenCenter
   LCLVersion = '1.0.3.0'
   Visible = True
   object Control: TGroupBox
@@ -270,7 +269,7 @@ object PipeForm: TPipeForm
       Left = 6
       Height = 65
       Top = 12
-      Width = 75
+      Width = 87
       Color = clYellow
       Shape = stRectangle
     end
@@ -287,7 +286,7 @@ object PipeForm: TPipeForm
       ParentFont = False
     end
     object ImemLabel2: TLabel
-      Left = 16
+      Left = 20
       Height = 18
       Top = 35
       Width = 61
@@ -869,7 +868,7 @@ object PipeForm: TPipeForm
       Shape = stRectangle
     end
     object DmemLabel1: TLabel
-      Left = 38
+      Left = 28
       Height = 18
       Top = 27
       Width = 36
@@ -882,7 +881,7 @@ object PipeForm: TPipeForm
       ParentFont = False
     end
     object DmemLabel2: TLabel
-      Left = 26
+      Left = 18
       Height = 18
       Top = 43
       Width = 61
@@ -894,9 +893,9 @@ object PipeForm: TPipeForm
       ParentFont = False
     end
     object DmemLabel3: TLabel
-      Left = 14
+      Left = 8
       Height = 17
-      Top = 67
+      Top = 64
       Width = 75
       Alignment = taCenter
       AutoSize = False
