@@ -1,14 +1,14 @@
 object ImemForm: TImemForm
   Left = 393
-  Height = 404
+  Height = 346
   Top = 339
-  Width = 739
+  Width = 625
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
   ActiveControl = Grid
   Caption = 'Instruction View'
-  ClientHeight = 382
-  ClientWidth = 739
+  ClientHeight = 326
+  ClientWidth = 625
   Font.Height = -13
   KeyPreview = True
   Menu = MainMenu1
@@ -19,7 +19,7 @@ object ImemForm: TImemForm
   OnShow = FormResize
   PopupMenu = PopupMenu1
   Position = poDefault
-  LCLVersion = '0.9.29'
+  LCLVersion = '1.0.3.0'
   object Status1: TPanel
     Left = 1
     Height = 25
@@ -81,9 +81,10 @@ object ImemForm: TImemForm
   end
   object Grid: TNewStringGrid
     Left = 0
-    Height = 280
+    Height = 326
     Top = 0
-    Width = 424
+    Width = 625
+    Align = alClient
     AutoAdvance = aaDown
     ColCount = 3
     FixedColor = clWhite
