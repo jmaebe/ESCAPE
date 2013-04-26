@@ -80,11 +80,13 @@ object ImemForm: TImemForm
     TabOrder = 2
   end
   object Grid: TNewStringGrid
+    AnchorSideBottom.Control = Status1
     Left = 0
-    Height = 326
+    Height = 256
     Top = 0
     Width = 625
-    Align = alClient
+    Align = alCustom
+    Anchors = [akTop, akLeft, akRight, akBottom]
     AutoAdvance = aaDown
     ColCount = 3
     FixedColor = clWhite
