@@ -1,13 +1,13 @@
 object MicroForm: TMicroForm
-  Left = 0
+  Left = 34
   Height = 500
-  Top = 0
+  Top = 84
   Width = 1000
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
   ActiveControl = ResetButton
   Caption = 'Microprogrammed Architecture'
-  ClientHeight = 480
+  ClientHeight = 473
   ClientWidth = 1000
   Font.Color = clBlack
   Font.Height = -11
@@ -20,7 +20,7 @@ object MicroForm: TMicroForm
   OnResize = FormResize
   OnShow = FormResize
   PopupMenu = PopupMenu1
-  LCLVersion = '1.0.3.0'
+  LCLVersion = '1.0.9.0'
   Visible = True
   object LineBox3: TLineBox
     Left = 0
@@ -45,7 +45,7 @@ object MicroForm: TMicroForm
       Left = 40
       Height = 18
       Top = 276
-      Width = 61
+      Width = 60
       Caption = 'Memory'
       Font.Color = clBlack
       Font.Height = -13
@@ -75,7 +75,7 @@ object MicroForm: TMicroForm
     Top = 0
     Width = 345
     Caption = 'Datapath'
-    ClientHeight = 404
+    ClientHeight = 406
     ClientWidth = 341
     Font.Color = clBlack
     Font.Height = -13
@@ -85,12 +85,12 @@ object MicroForm: TMicroForm
     TabOrder = 1
     object LineBox2: TLineBox
       Left = 0
-      Height = 404
+      Height = 406
       Top = 0
       Width = 341
       Align = alClient
       BevelOuter = bvNone
-      ClientHeight = 404
+      ClientHeight = 406
       ClientWidth = 341
       TabOrder = 0
       OnMouseDown = LineBox2MouseDown
@@ -122,7 +122,7 @@ object MicroForm: TMicroForm
         Left = 85
         Height = 15
         Top = 75
-        Width = 27
+        Width = 28
         Caption = 'NOP'
         Font.Color = clBlack
         Font.Height = -11
@@ -135,7 +135,7 @@ object MicroForm: TMicroForm
         Left = 48
         Height = 15
         Top = 89
-        Width = 10
+        Width = 9
         Caption = 'A'
         Font.Color = clBlack
         Font.Height = -11
@@ -148,7 +148,7 @@ object MicroForm: TMicroForm
         Left = 48
         Height = 15
         Top = 121
-        Width = 9
+        Width = 10
         Caption = 'B'
         Font.Color = clBlack
         Font.Height = -11
@@ -161,7 +161,7 @@ object MicroForm: TMicroForm
         Left = 240
         Height = 15
         Top = 105
-        Width = 9
+        Width = 10
         Caption = 'C'
         Font.Color = clBlack
         Font.Height = -11
@@ -174,7 +174,7 @@ object MicroForm: TMicroForm
         Left = 133
         Height = 15
         Top = 259
-        Width = 17
+        Width = 18
         Alignment = taRightJustify
         Caption = 'PC'
         Font.Color = clBlack
@@ -188,7 +188,7 @@ object MicroForm: TMicroForm
         Left = 122
         Height = 15
         Top = 291
-        Width = 30
+        Width = 28
         Alignment = taRightJustify
         Caption = 'MAR'
         Font.Color = clBlack
@@ -202,7 +202,7 @@ object MicroForm: TMicroForm
         Left = 121
         Height = 15
         Top = 323
-        Width = 30
+        Width = 29
         Alignment = taRightJustify
         Caption = 'MDR'
         Font.Color = clBlack
@@ -232,7 +232,7 @@ object MicroForm: TMicroForm
         Left = 64
         Height = 15
         Top = 355
-        Width = 14
+        Width = 13
         Caption = 'IR'
         Font.Color = clBlack
         Font.Height = -11
@@ -345,7 +345,7 @@ object MicroForm: TMicroForm
     Top = 0
     Width = 132
     Caption = 'Control'
-    ClientHeight = 244
+    ClientHeight = 246
     ClientWidth = 128
     Font.Color = clBlack
     Font.Height = -13
@@ -355,12 +355,12 @@ object MicroForm: TMicroForm
     TabOrder = 0
     object LineBox1: TLineBox
       Left = 0
-      Height = 244
+      Height = 246
       Top = 0
       Width = 128
       Align = alClient
       BevelOuter = bvNone
-      ClientHeight = 244
+      ClientHeight = 246
       ClientWidth = 128
       TabOrder = 0
       OnMouseDown = LineBox1MouseDown
@@ -393,7 +393,7 @@ object MicroForm: TMicroForm
         Left = 51
         Height = 15
         Top = 70
-        Width = 27
+        Width = 25
         Caption = 'µAR'
         Font.Color = clBlack
         Font.Height = -11
@@ -427,7 +427,7 @@ object MicroForm: TMicroForm
         Left = 32
         Height = 18
         Top = 142
-        Width = 76
+        Width = 77
         Caption = 'Microcode'
         Font.Color = clBlack
         Font.Height = -13
@@ -438,7 +438,7 @@ object MicroForm: TMicroForm
       end
       object JumpLabel: TLabel
         Left = 50
-        Height = 33
+        Height = 39
         Top = 189
         Width = 39
         Caption = 'Jump'#10'Table'
@@ -518,9 +518,9 @@ object MicroForm: TMicroForm
       end
       object MultiCycleCheck: TCheckBox
         Left = 6
-        Height = 32
+        Height = 38
         Top = 48
-        Width = 67
+        Width = 72
         Caption = 'Multiple'#10'cycles'
         Font.Color = clBlack
         Font.Height = -11
@@ -530,7 +530,7 @@ object MicroForm: TMicroForm
       end
       object Clock: TEditInteger
         Left = 6
-        Height = 23
+        Height = 25
         Top = 176
         Width = 81
         Font.Color = clBlack
@@ -572,7 +572,7 @@ object MicroForm: TMicroForm
       end
       object MultiCycle: TSpinEdit
         Left = 6
-        Height = 23
+        Height = 25
         Top = 104
         Width = 81
         Font.Color = clBlack

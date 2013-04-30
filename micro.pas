@@ -401,7 +401,6 @@ begin
   GenTrace2.Checked:=false;
   { Generate microcode form }
   MicroCode:=TMicroCode.Create(self);
-  MicroCode.Hide;
   { Create simulator (this will generate Imem, Dmem and Breakpoint forms }
   MSimulator:=TMSimulator.Create(self, RewindButton, RewindCheck, GenTrace, MultiCycle,
                                  MultiCycleCheck, Clock, true);
