@@ -4,7 +4,7 @@ object ConfigForm: TConfigForm
   Top = 138
   Width = 718
   Caption = 'ConfigForm'
-  ClientHeight = 502
+  ClientHeight = 475
   ClientWidth = 718
   Font.Height = -13
   KeyPreview = True
@@ -15,7 +15,7 @@ object ConfigForm: TConfigForm
   OnResize = FormResize
   PopupMenu = PopupMenu1
   Position = poScreenCenter
-  LCLVersion = '0.9.31'
+  LCLVersion = '1.0.9.0'
   object Courier101: TLabel
     Left = 600
     Height = 16
@@ -45,9 +45,9 @@ object ConfigForm: TConfigForm
   end
   object MSSansSerif81: TLabel
     Left = 600
-    Height = 13
+    Height = 15
     Top = 32
-    Width = 7
+    Width = 8
     Caption = '0'
     Font.Color = clBlack
     Font.Height = -11
@@ -86,9 +86,9 @@ object ConfigForm: TConfigForm
   end
   object MSSansSerif82: TLabel
     Left = 616
-    Height = 13
+    Height = 15
     Top = 32
-    Width = 13
+    Width = 15
     Caption = '00'
     Font.Color = clBlack
     Font.Height = -11
@@ -101,7 +101,7 @@ object ConfigForm: TConfigForm
   object TabSet1: TPageControl
     Left = 0
     Height = 21
-    Top = 481
+    Top = 454
     Width = 718
     Align = alBottom
     Font.Height = -11
@@ -120,44 +120,45 @@ object ConfigForm: TConfigForm
     TabOrder = 1
     object Page1: TTabSheet
       Caption = 'General Options'
-      ClientHeight = 461
-      ClientWidth = 706
+      ClientHeight = 469
+      ClientWidth = 708
+      TabVisible = False
       object GroupBox1: TGroupBox
         Left = 248
         Height = 161
         Top = 84
         Width = 241
         Caption = 'Memory Size'
-        ClientHeight = 138
-        ClientWidth = 233
+        ClientHeight = 142
+        ClientWidth = 237
         TabOrder = 1
         object Label1: TLabel
           Left = 16
-          Height = 17
+          Height = 18
           Top = 72
-          Width = 118
+          Width = 121
           Caption = 'Code Memory Size'
           ParentColor = False
         end
         object Label2: TLabel
           Left = 16
-          Height = 17
+          Height = 18
           Top = 32
-          Width = 114
+          Width = 119
           Caption = 'Data Memory Size'
           ParentColor = False
         end
         object Label12: TLabel
           Left = 16
-          Height = 17
+          Height = 18
           Top = 88
-          Width = 126
+          Width = 128
           Caption = 'Default Code Range'
           ParentColor = False
         end
         object ImemSize: TIntegerComboBox
           Left = 145
-          Height = 17
+          Height = 25
           Top = 77
           Width = 80
           DropDownCount = 10
@@ -184,7 +185,7 @@ object ConfigForm: TConfigForm
         end
         object DmemSize: TIntegerComboBox
           Left = 145
-          Height = 17
+          Height = 25
           Top = 29
           Width = 80
           DropDownCount = 10
@@ -225,8 +226,8 @@ object ConfigForm: TConfigForm
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 58
-        ClientWidth = 209
+        ClientHeight = 62
+        ClientWidth = 213
         ItemIndex = 1
         Items.Strings = (
           'Word only'
@@ -250,8 +251,8 @@ object ConfigForm: TConfigForm
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 58
-        ClientWidth = 233
+        ClientHeight = 62
+        ClientWidth = 237
         ItemIndex = 1
         Items.Strings = (
           'Word only'
@@ -266,14 +267,14 @@ object ConfigForm: TConfigForm
         Top = 0
         Width = 217
         Caption = 'ALU Operations'
-        ClientHeight = 53
-        ClientWidth = 209
+        ClientHeight = 57
+        ClientWidth = 213
         TabOrder = 3
         object CompleteALU: TCheckBox
           Left = 8
-          Height = 18
+          Height = 21
           Top = 24
-          Width = 155
+          Width = 157
           Caption = 'Enable MULT and DIV'
           OnClick = SetModify
           TabOrder = 0
@@ -294,8 +295,8 @@ object ConfigForm: TConfigForm
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 58
-        ClientWidth = 209
+        ClientHeight = 62
+        ClientWidth = 213
         ItemIndex = 1
         Items.Strings = (
           'Minimal Set'
@@ -307,16 +308,16 @@ object ConfigForm: TConfigForm
     end
     object Page2: TTabSheet
       Caption = 'Instruction Encoding'
-      ClientHeight = 461
-      ClientWidth = 690
+      ClientHeight = 469
+      ClientWidth = 708
       object GroupBox2: TGroupBox
         Left = 8
         Height = 204
         Top = -4
         Width = 481
         Caption = 'Instruction Encoding'
-        ClientHeight = 181
-        ClientWidth = 473
+        ClientHeight = 185
+        ClientWidth = 477
         TabOrder = 1
         object Label3: TLabel
           Left = 8
@@ -711,23 +712,25 @@ object ConfigForm: TConfigForm
         ItemHeight = 13
         OnClick = DropBoxClick
         ParentFont = False
+        ScrollWidth = 50
         Style = lbOwnerDrawFixed
         TabOrder = 2
+        TopIndex = -1
         Visible = False
       end
     end
     object Page3: TTabSheet
       Caption = 'Microprogrammed Architecture'
-      ClientHeight = 461
-      ClientWidth = 690
+      ClientHeight = 469
+      ClientWidth = 708
       object MicroStuff: TGroupBox
         Left = 8
         Height = 209
         Top = 124
         Width = 265
         Caption = 'Register File Operations'
-        ClientHeight = 186
-        ClientWidth = 257
+        ClientHeight = 190
+        ClientWidth = 261
         TabOrder = 2
         object Label7: TLabel
           Left = 8
@@ -805,8 +808,8 @@ object ConfigForm: TConfigForm
         Top = 0
         Width = 265
         Caption = 'Microcode Memory'
-        ClientHeight = 101
-        ClientWidth = 257
+        ClientHeight = 105
+        ClientWidth = 261
         TabOrder = 1
         object Label10: TLabel
           Left = 12
@@ -852,8 +855,8 @@ object ConfigForm: TConfigForm
         Top = 92
         Width = 193
         Caption = 'Extra Registers'
-        ClientHeight = 218
-        ClientWidth = 185
+        ClientHeight = 222
+        ClientWidth = 189
         TabOrder = 0
         object TmpNames: TNewStringGrid
           Left = 9
@@ -885,8 +888,8 @@ object ConfigForm: TConfigForm
         Top = 0
         Width = 193
         Caption = 'Jump Tables'
-        ClientHeight = 69
-        ClientWidth = 185
+        ClientHeight = 73
+        ClientWidth = 189
         TabOrder = 3
         object Label6: TLabel
           Left = 12
@@ -911,8 +914,8 @@ object ConfigForm: TConfigForm
     end
     object Page4: TTabSheet
       Caption = 'Pipelined Architecture'
-      ClientHeight = 461
-      ClientWidth = 690
+      ClientHeight = 469
+      ClientWidth = 708
       object RegFileRead: TRadioGroup
         Left = 8
         Height = 89
@@ -928,8 +931,8 @@ object ConfigForm: TConfigForm
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 66
-        ClientWidth = 473
+        ClientHeight = 70
+        ClientWidth = 477
         ItemIndex = 0
         Items.Strings = (
           'Instruction Independent (Blind)'
@@ -953,8 +956,8 @@ object ConfigForm: TConfigForm
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 66
-        ClientWidth = 473
+        ClientHeight = 70
+        ClientWidth = 477
         ItemIndex = 0
         Items.Strings = (
           'Only Stall when Necessary'
