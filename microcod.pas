@@ -47,8 +47,11 @@ type
   end;
 
   { The microcode and jump tables form }
+
   TMicroCode = class(TForm)
+    DropDownBox: TComboBox;
     Notebook1: TPageControl;
+    OverwriteBox: TComboBox;
     Page1,
     Page2: TTabSheet;
     Grid1: TNewStringGrid;
@@ -79,7 +82,6 @@ type
     Microcode1: TMenuItem;
     JumpTables1: TMenuItem;
     N1: TMenuItem;
-    DropdownMode1: TMenuItem;
     DropReg: TListBox;
     PopupMenu1: TPopupMenu;
     Cut2: TMenuItem;
@@ -88,7 +90,6 @@ type
     Delete2: TMenuItem;
     SelectAll2: TMenuItem;
     N2: TMenuItem;
-    DropdownMode2: TMenuItem;
     Base2: TMenuItem;
     SignedDecimal2: TMenuItem;
     UnsignedDecimal2: TMenuItem;
@@ -122,6 +123,7 @@ type
     Status3: TPanel;
     OpenDialog1: TOpenDialog;
     SaveDialog1: TSaveDialog;
+    procedure DropDownBoxChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
@@ -131,13 +133,13 @@ type
     procedure Grid2Resize(Sender: TObject);
     procedure Grid2Selection(Sender: TObject; Col, Row: Integer);
     procedure Notebook1Changing(Sender: TObject; var AllowChange: Boolean);
+    procedure OverwriteBoxChange(Sender: TObject);
     procedure TabSetChange(Sender: TObject; NewTab: Integer);
     procedure Grid1SelectCell(Sender: TObject; Col, Row: Longint;
       var CanSelect: Boolean);
     procedure Grid2SelectCell(Sender: TObject; Col, Row: Longint;
       var CanSelect: Boolean);
     procedure DropDownClick(Sender: TObject);
-    procedure DropdownMode1Click(Sender: TObject);
     procedure UnsignedHexadecimal1Click(Sender: TObject);
     procedure UnsignedDecimal1Click(Sender: TObject);
     procedure SignedDecimal1Click(Sender: TObject);
@@ -316,6 +318,11 @@ begin
   Action:=caHide
 end;
 
+procedure TMicroCode.DropDownBoxChange(Sender: TObject);
+begin
+  SetUseDropDown(DropDownBox.ItemIndex=0);
+end;
+
 destructor TMicroCode.Destroy;
 begin
   ClipBoardBuffer.Free;
@@ -436,10 +443,7 @@ end;
 procedure TMicroCode.SetOverwrite(Value: Boolean);
 begin
   Overwrite:=Value;
-  if Overwrite then
-    Status2.Caption:='Overwrite'
-  else
-    Status2.Caption:='Insert';
+  OverwriteBox.ItemIndex:=ord(not(Value));
 end;
 
 procedure TMicroCode.SetUseDropDown(Value: Boolean);
@@ -447,16 +451,13 @@ begin
   if LastDropDownField>=ufReg then
     FieldToDrop(LastDropDownField).Visible:=false;
   UseDropDown:=Value;
-  DropdownMode1.Checked:=Value;
-  DropdownMode2.Checked:=Value;
+  DropDownBox.ItemIndex:=ord(not Value);
   if UseDropDown then
     begin
-      Status1.Caption:='Dropdown Mode';
       Grid1.Options:=Grid1.Options-[goEditing]
     end
   else
     begin
-      Status1.Caption:='Edit Mode';
       Grid1.Options:=Grid1.Options+[goEditing]
     end;
   Grid1.EditorMode:=not Value
@@ -513,6 +514,11 @@ end;
 procedure TMicroCode.Notebook1Changing(Sender: TObject; var AllowChange: Boolean);
 begin
   TabSetChange(Sender,ord(Notebook1.ActivePage=Page1));
+end;
+
+procedure TMicroCode.OverwriteBoxChange(Sender: TObject);
+begin
+  SetOverwrite(OverwriteBox.ItemIndex=0);
 end;
 
 procedure TMicroCode.TabSetChange(Sender: TObject; NewTab: Integer);
@@ -884,11 +890,6 @@ begin
     SetModify;
     DropBox.Visible:=false
   end
-end;
-
-procedure TMicroCode.DropdownMode1Click(Sender: TObject);
-begin
-  SetUseDropDown(not UseDropDown)
 end;
 
 procedure TMicroCode.UnsignedHexadecimal1Click(Sender: TObject);
