@@ -19,7 +19,7 @@ object MainForm: TMainForm
     Top = 8
     Width = 90
     Anchors = [akTop]
-    Caption = 'Escape v1.2.3'
+    Caption = 'Escape v1.2.4'
     ParentColor = False
   end
   object Panel2: TPanel

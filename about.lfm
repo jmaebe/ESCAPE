@@ -48,7 +48,7 @@ object AboutForm: TAboutForm
     Height = 18
     Top = 16
     Width = 91
-    Caption = 'Escape v1.2.3'
+    Caption = 'Escape v1.2.4'
     ParentColor = False
   end
   object Panel2: TPanel
