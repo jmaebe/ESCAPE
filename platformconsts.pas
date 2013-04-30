@@ -8,7 +8,7 @@ Const
 {$ifdef LCLQt}
   { microcod constants }
   MSSansSerif8HeightGridRowFudge = 0;
-  MSSansSerif8MicroCodeAddrWidthFudge = 0;
+  MSSansSerif8MicroCodeAddrWidthFudge = 4;
   DropBoxHeightFudge = 5;
 {$endif}
 
