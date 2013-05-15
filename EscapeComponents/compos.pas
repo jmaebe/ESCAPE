@@ -491,8 +491,12 @@ begin
 end;
 
 procedure TRegFileBox.SetLines(Val: TStrings);
+var
+  oldPos: TPoint;
 begin
-  FMemo.Lines:=Val
+  oldPos:=FMemo.CaretPos;
+  FMemo.Lines:=Val;
+  FMemo.CaretPos:=oldPos
 end;
 
 function TRegFileBox.GetCol: TColor;
