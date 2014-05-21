@@ -648,7 +648,7 @@ begin
              else if Pos('RR',S)=1 then
              begin
                MCode[uAR,ufReg]:=LongInt(ConfigForm.RRA.Value)+$200+
-                       (ConfigForm.RRB.Value+$200) shl 10+$80000000;
+                       (ConfigForm.RRB.Value+$200) shl 10 or longint($80000000);
                p:=3
              end else
              begin
