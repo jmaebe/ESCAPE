@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
     <Version Value="9"/>
@@ -8,19 +8,15 @@
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
       <Icon Value="0"/>
-      <ActiveWindowIndexAtStart Value="0"/>
     </General>
     <VersionInfo>
       <Language Value=""/>
       <CharSet Value=""/>
       <StringTable ProductVersion=""/>
     </VersionInfo>
-    <BuildModes Count="4" Active="release">
+    <BuildModes Count="4" Active="debug">
       <Item1 Name="default" Default="True"/>
       <Item2 Name="release">
-        <MacroValues Count="1">
-          <Macro1 Name="LCLWidgetType" Value="qt"/>
-        </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
           <SearchPaths>
@@ -44,19 +40,9 @@
             </Debugging>
             <LinkSmart Value="True"/>
           </Linking>
-          <Other>
-            <CompilerMessages>
-              <UseMsgFile Value="True"/>
-            </CompilerMessages>
-            <CompilerPath Value="$(CompPath)"/>
-          </Other>
-          <LCLWidgetType Value="qt"/>
         </CompilerOptions>
       </Item2>
       <Item3 Name="debug">
-        <MacroValues Count="1">
-          <Macro1 Name="LCLWidgetType" Value="qt"/>
-        </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
           <SearchPaths>
@@ -71,21 +57,12 @@
             <Debugging>
               <DebugInfoType Value="dsDwarf2Set"/>
               <UseLineInfoUnit Value="False"/>
+              <UseExternalDbgSyms Value="True"/>
             </Debugging>
           </Linking>
-          <Other>
-            <CompilerMessages>
-              <UseMsgFile Value="True"/>
-            </CompilerMessages>
-            <CompilerPath Value="$(CompPath)"/>
-          </Other>
-          <LCLWidgetType Value="qt"/>
         </CompilerOptions>
       </Item3>
       <Item4 Name="valgrind">
-        <MacroValues Count="1">
-          <Macro1 Name="LCLWidgetType" Value="qt"/>
-        </MacroValues>
         <CompilerOptions>
           <Version Value="11"/>
           <SearchPaths>
@@ -103,13 +80,8 @@
             </Debugging>
           </Linking>
           <Other>
-            <CompilerMessages>
-              <UseMsgFile Value="True"/>
-            </CompilerMessages>
             <CustomOptions Value="-gv"/>
-            <CompilerPath Value="$(CompPath)"/>
           </Other>
-          <LCLWidgetType Value="qt"/>
         </CompilerOptions>
       </Item4>
     </BuildModes>
@@ -133,15 +105,13 @@
         <PackageName Value="EscapeComponents"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="19">
+    <Units Count="20">
       <Unit0>
         <Filename Value="Escape.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="6"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="7"/>
         <CursorPos X="18" Y="28"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -153,11 +123,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Main"/>
-        <EditorIndex Value="9"/>
-        <WindowIndex Value="0"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="35"/>
         <CursorPos X="70" Y="57"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -167,10 +136,9 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Common"/>
         <EditorIndex Value="3"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="541"/>
-        <CursorPos X="3" Y="561"/>
-        <UsageCount Value="50"/>
+        <TopLine Value="1966"/>
+        <CursorPos X="69" Y="1994"/>
+        <UsageCount Value="53"/>
         <Bookmarks Count="1">
           <Item0 X="8" Y="816" ID="3"/>
         </Bookmarks>
@@ -184,9 +152,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Config"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
-        <UsageCount Value="50"/>
+        <EditorIndex Value="13"/>
+        <TopLine Value="93"/>
+        <CursorPos X="16" Y="115"/>
+        <UsageCount Value="53"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
@@ -195,10 +165,7 @@
         <ComponentName Value="DmemForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="DataMem"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="53"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit4>
       <Unit5>
@@ -208,11 +175,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Micro"/>
-        <EditorIndex Value="0"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="36" Y="28"/>
-        <UsageCount Value="50"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="956"/>
+        <CursorPos Y="964"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -224,12 +190,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Pipe"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1276"/>
-        <CursorPos X="28" Y="1291"/>
-        <UsageCount Value="50"/>
+        <TopLine Value="217"/>
+        <CursorPos X="10" Y="256"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -242,10 +206,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Usage"/>
         <EditorIndex Value="2"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="29"/>
+        <TopLine Value="31"/>
         <CursorPos X="13" Y="49"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="53"/>
         <Bookmarks Count="1">
           <Item0 X="44" Y="50" ID="7"/>
         </Bookmarks>
@@ -261,10 +224,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Activity"/>
         <EditorIndex Value="4"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="66"/>
-        <CursorPos X="1" Y="80"/>
-        <UsageCount Value="50"/>
+        <CursorPos Y="80"/>
+        <UsageCount Value="53"/>
         <Bookmarks Count="1">
           <Item0 X="30" Y="80" ID="4"/>
         </Bookmarks>
@@ -280,10 +242,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="InstrMem"/>
         <EditorIndex Value="5"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="466"/>
         <CursorPos X="52" Y="476"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -295,11 +256,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Range"/>
-        <EditorIndex Value="10"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
-        <UsageCount Value="50"/>
+        <EditorIndex Value="9"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -311,11 +269,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="PipeDef"/>
-        <EditorIndex Value="11"/>
-        <WindowIndex Value="0"/>
+        <EditorIndex Value="10"/>
         <TopLine Value="236"/>
         <CursorPos X="31" Y="268"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -327,11 +284,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MicroCod"/>
-        <EditorIndex Value="12"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
-        <UsageCount Value="50"/>
+        <EditorIndex Value="11"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -343,11 +297,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="BrkForm"/>
-        <EditorIndex Value="13"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
-        <UsageCount Value="50"/>
+        <EditorIndex Value="14"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -359,11 +310,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="About"/>
-        <EditorIndex Value="14"/>
-        <WindowIndex Value="0"/>
+        <EditorIndex Value="15"/>
         <TopLine Value="8"/>
         <CursorPos X="72" Y="18"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="53"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
@@ -372,10 +322,9 @@
         <Filename Value="EscapeComponents/compos.pas"/>
         <UnitName Value="Compos"/>
         <EditorIndex Value="7"/>
-        <WindowIndex Value="0"/>
         <TopLine Value="312"/>
-        <CursorPos X="1" Y="347"/>
-        <UsageCount Value="25"/>
+        <CursorPos Y="347"/>
+        <UsageCount Value="26"/>
         <Loaded Value="True"/>
       </Unit15>
       <Unit16>
@@ -386,139 +335,143 @@
       <Unit17>
         <Filename Value="EscapeComponents/newstr.pas"/>
         <UnitName Value="NewStr"/>
-        <EditorIndex Value="8"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
-        <UsageCount Value="25"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="26"/>
       </Unit17>
       <Unit18>
         <Filename Value="main.lfm"/>
-        <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="1"/>
         <UsageCount Value="8"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit18>
+      <Unit19>
+        <Filename Value="/Data/dev/lazarus-1.4/lcl/grids.pas"/>
+        <UnitName Value="Grids"/>
+        <EditorIndex Value="12"/>
+        <TopLine Value="538"/>
+        <CursorPos X="42" Y="560"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit19>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1685" Column="3" TopLine="1666"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="846" Column="12" TopLine="814"/>
       </Position1>
       <Position2>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1684" Column="3" TopLine="1666"/>
+        <Filename Value="microcod.pas"/>
       </Position2>
       <Position3>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1632" Column="3" TopLine="1613"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="186" Column="24" TopLine="148"/>
       </Position3>
       <Position4>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1595" Column="3" TopLine="1575"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="846" Column="12" TopLine="807"/>
       </Position4>
       <Position5>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1557" Column="3" TopLine="1538"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="862" Column="12" TopLine="823"/>
       </Position5>
       <Position6>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1543" Column="3" TopLine="1536"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="877" Column="12" TopLine="838"/>
       </Position6>
       <Position7>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1542" Column="3" TopLine="1535"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="924" Column="14" TopLine="885"/>
       </Position7>
       <Position8>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1541" Column="3" TopLine="1534"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="1264" Column="14" TopLine="1225"/>
       </Position8>
       <Position9>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1540" Column="3" TopLine="1533"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="1275" Column="12" TopLine="1247"/>
       </Position9>
       <Position10>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1539" Column="3" TopLine="1532"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="1310" Column="31" TopLine="1267"/>
       </Position10>
       <Position11>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1459" Column="3" TopLine="1440"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="1314" Column="22" TopLine="1275"/>
       </Position11>
       <Position12>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1437" Column="3" TopLine="1418"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="1448" Column="12" TopLine="1409"/>
       </Position12>
       <Position13>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1436" Column="3" TopLine="1418"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="1453" Column="12" TopLine="1422"/>
       </Position13>
       <Position14>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1435" Column="3" TopLine="1418"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="186" Column="24" TopLine="165"/>
       </Position14>
       <Position15>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1434" Column="3" TopLine="1418"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="638" TopLine="606"/>
       </Position15>
       <Position16>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1433" Column="3" TopLine="1418"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="637" Column="6" TopLine="606"/>
       </Position16>
       <Position17>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1432" Column="3" TopLine="1418"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="638" Column="15" TopLine="611"/>
       </Position17>
       <Position18>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1431" Column="3" TopLine="1418"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="648" Column="10" TopLine="610"/>
       </Position18>
       <Position19>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1394" Column="28" TopLine="1375"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="1360" Column="14" TopLine="1346"/>
       </Position19>
       <Position20>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1393" Column="32" TopLine="1375"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="1111" Column="12" TopLine="1095"/>
       </Position20>
       <Position21>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1392" Column="27" TopLine="1375"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="653" Column="3" TopLine="686"/>
       </Position21>
       <Position22>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1391" Column="23" TopLine="1375"/>
+        <Filename Value="micro.pas"/>
+        <Caret Line="1076" Column="22" TopLine="1063"/>
       </Position22>
       <Position23>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1365" Column="3" TopLine="1346"/>
+        <Filename Value="common.pas"/>
+        <Caret Line="1944" Column="6" TopLine="1938"/>
       </Position23>
       <Position24>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1351" Column="3" TopLine="1344"/>
+        <Filename Value="common.pas"/>
+        <Caret Line="1991" Column="10" TopLine="1970"/>
       </Position24>
       <Position25>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1350" Column="3" TopLine="1343"/>
+        <Filename Value="common.pas"/>
+        <Caret Line="1981" Column="10" TopLine="1971"/>
       </Position25>
       <Position26>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1349" Column="3" TopLine="1342"/>
+        <Filename Value="micro.pas"/>
+        <Caret Line="1076" Column="22" TopLine="1063"/>
       </Position26>
       <Position27>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1348" Column="3" TopLine="1341"/>
+        <Filename Value="common.pas"/>
+        <Caret Line="445" Column="10" TopLine="438"/>
       </Position27>
       <Position28>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="1347" Column="3" TopLine="1340"/>
+        <Filename Value="microcod.pas"/>
+        <Caret Line="729" Column="81" TopLine="525"/>
       </Position28>
       <Position29>
-        <Filename Value="pipe.pas"/>
-        <Caret Line="779" Column="33" TopLine="760"/>
+        <Filename Value="micro.pas"/>
       </Position29>
+      <Position30>
+        <Filename Value="micro.pas"/>
+        <Caret Line="964" TopLine="956"/>
+      </Position30>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
@@ -531,15 +484,9 @@
         <SyntaxMode Value="Delphi"/>
       </SyntaxOptions>
     </Parsing>
-    <Other>
-      <CompilerMessages>
-        <UseMsgFile Value="True"/>
-      </CompilerMessages>
-      <CompilerPath Value="$(CompPath)"/>
-    </Other>
   </CompilerOptions>
   <Debugging>
-    <Exceptions Count="4">
+    <Exceptions Count="5">
       <Item1>
         <Name Value="EAbort"/>
       </Item1>
@@ -552,6 +499,9 @@
       <Item4>
         <Name Value="EConvertError"/>
       </Item4>
+      <Item5>
+        <Name Value="TMicroCodeEntryException"/>
+      </Item5>
     </Exceptions>
   </Debugging>
 </CONFIG>
