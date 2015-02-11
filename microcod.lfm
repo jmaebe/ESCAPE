@@ -80,9 +80,25 @@ object MicroCode: TMicroCode
             Title.Caption = 'S1'
           end        
           item
+            PickList.Strings = (
+              ''
+              'B'
+              'Const'
+              'PC'
+              'MAR'
+              'MDR'
+              'IR'
+            )
             Title.Caption = 'S2'
           end        
           item
+            PickList.Strings = (
+              ''
+              'C'
+              'PC'
+              'MAR'
+              'MDR'
+            )
             Title.Caption = 'Dest'
           end        
           item
@@ -307,52 +323,6 @@ object MicroCode: TMicroCode
     TabOrder = 2
     Visible = False
   end
-  object DropS2: TListBox
-    Left = 8
-    Height = 13
-    Top = 200
-    Width = 81
-    ClickOnSelChange = False
-    Font.Color = clBlack
-    Font.Height = -11
-    Font.Name = 'Microsoft Sans Serif'
-    Items.Strings = (
-      ''
-      'B'
-      'Const'
-      'PC'
-      'MAR'
-      'MDR'
-      'IR'
-    )
-    ItemHeight = 18
-    OnClick = DropDownClick
-    ParentFont = False
-    TabOrder = 3
-    Visible = False
-  end
-  object DropDest: TListBox
-    Left = 104
-    Height = 13
-    Top = 200
-    Width = 89
-    ClickOnSelChange = False
-    Font.Color = clBlack
-    Font.Height = -11
-    Font.Name = 'Microsoft Sans Serif'
-    Items.Strings = (
-      ''
-      'C'
-      'PC'
-      'MAR'
-      'MDR'
-    )
-    ItemHeight = 18
-    OnClick = DropDownClick
-    ParentFont = False
-    TabOrder = 4
-    Visible = False
-  end
   object DropIR: TListBox
     Left = 104
     Height = 13
@@ -369,7 +339,7 @@ object MicroCode: TMicroCode
     ItemHeight = 18
     OnClick = DropDownClick
     ParentFont = False
-    TabOrder = 5
+    TabOrder = 3
     Visible = False
   end
   object DropJCond: TListBox
@@ -395,7 +365,7 @@ object MicroCode: TMicroCode
     ItemHeight = 18
     OnClick = DropDownClick
     ParentFont = False
-    TabOrder = 6
+    TabOrder = 4
     Visible = False
   end
   object DropMDest: TListBox
@@ -415,7 +385,7 @@ object MicroCode: TMicroCode
     ItemHeight = 18
     OnClick = DropDownClick
     ParentFont = False
-    TabOrder = 7
+    TabOrder = 5
     Visible = False
   end
   object DropReg: TListBox
@@ -434,7 +404,7 @@ object MicroCode: TMicroCode
     ItemHeight = 18
     OnClick = DropDownClick
     ParentFont = False
-    TabOrder = 8
+    TabOrder = 6
     Visible = False
   end
   object MainMenu1: TMainMenu

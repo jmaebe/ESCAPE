@@ -63,8 +63,6 @@ type
     Grid2: TNewStringGrid;
     DropMem: TListBox;
     DropMAdr: TListBox;
-    DropS2: TListBox;
-    DropDest: TListBox;
     DropIR: TListBox;
     DropJCond: TListBox;
     DropMDest: TListBox;
@@ -390,8 +388,8 @@ begin
   for i:=0 to ConfigForm.NumTemps-1 do
   begin
     Grid1.Columns[FieldToCol(ufS1)].PickList.Add(ConfigForm.TmpNames.Cells[0,i]);
-    DropS2.Items.Add(ConfigForm.TmpNames.Cells[0,i]);
-    DropDest.Items.Add(ConfigForm.TmpNames.Cells[0,i])
+    Grid1.Columns[FieldToCol(ufS2)].PickList.Add(ConfigForm.TmpNames.Cells[0,i]);
+    Grid1.Columns[FieldToCol(ufDest)].PickList.Add(ConfigForm.TmpNames.Cells[0,i]);
   end;
   if CompleteExtend then
   begin
@@ -431,7 +429,7 @@ begin
     DropReg.Items.Add('WA');
   for f:=ufReg to High(TuCodeField) do
   begin
-    if f in [ufALU,ufS1] then
+    if f in [ufALU,ufS1,ufS2,ufDest] then
       continue;
     DropBox:=FieldToDrop(f);
     DropBox.Height:=DropBox.ItemHeight*DropBox.Items.Count+5+DropBoxHeightFudge;
@@ -447,7 +445,7 @@ end;
 procedure TMicroCode.SetUseDropDown(Value: Boolean);
 begin
   if (LastDropDownField>=ufReg) and
-     not(LastDropDownField in [ufALU,ufS1]) then
+     not(LastDropDownField in [ufALU,ufS1,ufS2,ufDest]) then
     FieldToDrop(LastDropDownField).Visible:=false;
   UseDropDown:=Value;
   DropDownBox.ItemIndex:=ord(not Value);
@@ -506,7 +504,7 @@ var
   field: TuCodeField;
 begin
   field:=ColToField(aCol);
-  if not(field in [ufALU,ufS1]) then
+  if not(field in [ufALU,ufS1,ufS2,ufDest]) then
     begin
       if UseDropDown then
         Editor:=Grid1.EditorByStyle(cbsNone);
@@ -554,7 +552,7 @@ begin
   TabIndex:=NewTab;
   ShowGrid;
   if (LastDropDownField>=ufReg) and
-     not(LastDropDownField in [ufALU,ufS1]) then
+     not(LastDropDownField in [ufALU,ufS1,ufS2,ufDest]) then
     FieldToDrop(LastDropDownField).Visible:=false
 end;
 
@@ -590,7 +588,7 @@ procedure TMicroCode.Grid1SelectCell(Sender: TObject; Col, Row: Longint;
   var CanSelect: Boolean);
 begin
   if (LastDropDownField>=ufReg) and
-     not(LastDropDownField in [ufALU,ufS1]) then
+     not(LastDropDownField in [ufALU,ufS1,ufS2,ufDest]) then
     FieldToDrop(LastDropDownField).Visible:=false;
   if Col=0 then
     CanSelect:=false
@@ -607,7 +605,7 @@ begin
   Field:=ColToField(Col);
   if UseDropDown and
      (Field>=ufReg) and
-     not(Field in [ufALU,ufS1]) then
+     not(Field in [ufALU,ufS1,ufS2,ufDest]) then
   begin
     LastDropDownField:=Field;
     DropBox:=FieldToDrop(Field);
@@ -628,7 +626,7 @@ begin
     DropBox.Top:=T;
     DropBox.Visible:=true
   end;
-  if not(Field in [ufALU,ufS1]) then
+  if not(Field in [ufALU,ufS1,ufS2,ufDest]) then
     begin
       uAR:=LastRow1-1;
       Field:=ColToField(LastCol1);
@@ -645,7 +643,7 @@ var
   Field: TuCodeField;
 begin
   Field:=ColToField(aCol);
-  if not(Field in [ufALU,ufS1]) then
+  if not(Field in [ufALU,ufS1,ufS2,ufDest]) then
     exit;
   if EnterField(aRow-1,Field,NewValue) then
     begin
@@ -718,7 +716,7 @@ begin
                  Result:=true
              end
            end;
-    ufALU..ufS1:
+    ufALU..ufDest:
       begin
         Items:=Grid1.Columns[FieldToCol(Field)].PickList;
         b:=Items.IndexOf(ReadIdentifier(S,p));
@@ -727,7 +725,7 @@ begin
         else
           MCode[uAR,Field]:=b;
       end;
-    succ(ufS1)..ufMem: begin
+    succ(ufDest)..ufMem: begin
                     Items:=FieldToDrop(Field).Items;
                     b:=Items.IndexOf(ReadIdentifier(S,p));
                     if b<0 then
@@ -776,12 +774,12 @@ begin
              end;
              Grid1.Cells[Col,uAR+1]:=RegField
            end;
-    ufALU..ufS1:
+    ufALU..ufDest:
       if InitialValue then
         begin
           Grid1.Cells[Col,uAR+1]:=Grid1.Columns[Col].PickList[MCode[uAR,Field]];
         end;
-    succ(ufS1)..ufMem: Grid1.Cells[Col,uAR+1]:=FieldToDrop(Field).Items[MCode[uAR,Field]]
+    succ(ufDest)..ufMem: Grid1.Cells[Col,uAR+1]:=FieldToDrop(Field).Items[MCode[uAR,Field]]
   end;
 end;
 
@@ -903,8 +901,8 @@ begin
     ufReg: Result:=DropReg;
 //    ufALU: Result:=DropALU;
 //    ufS1: Result:=DropS1;
-    ufS2: Result:=DropS2;
-    ufDest: Result:=DropDest;
+//    ufS2: Result:=DropS2;
+//    ufDest: Result:=DropDest;
     ufMemAdr: Result:=DropMAdr;
     ufMemDest: Result:=DropMDest;
     ufIRSize: Result:=DropIR;
