@@ -53,7 +53,6 @@ type
   { The microcode and jump tables form }
 
   TMicroCode = class(TForm)
-    DropDownBox: TComboBox;
     Notebook1: TPageControl;
     OverwriteBox: TComboBox;
     Page1,
@@ -61,11 +60,6 @@ type
     Grid1: TNewStringGrid;
     MainMenu1: TMainMenu;
     Grid2: TNewStringGrid;
-    DropMem: TListBox;
-    DropMAdr: TListBox;
-    DropIR: TListBox;
-    DropJCond: TListBox;
-    DropMDest: TListBox;
     File1: TMenuItem;
     SaveFileAs1: TMenuItem;
     SaveFile1: TMenuItem;
@@ -82,7 +76,6 @@ type
     Microcode1: TMenuItem;
     JumpTables1: TMenuItem;
     N1: TMenuItem;
-    DropReg: TListBox;
     PopupMenu1: TPopupMenu;
     Cut2: TMenuItem;
     Copy2: TMenuItem;
@@ -118,12 +111,10 @@ type
     UnsignedDecimal1: TMenuItem;
     UnsignedHexadecimal1: TMenuItem;
     N5: TMenuItem;
-    Status1: TPanel;
     Status2: TPanel;
     Status3: TPanel;
     OpenDialog1: TOpenDialog;
     SaveDialog1: TSaveDialog;
-    procedure DropDownBoxChange(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
@@ -143,7 +134,6 @@ type
       var CanSelect: Boolean);
     procedure Grid2SelectCell(Sender: TObject; Col, Row: Longint;
       var CanSelect: Boolean);
-    procedure DropDownClick(Sender: TObject);
     procedure UnsignedHexadecimal1Click(Sender: TObject);
     procedure UnsignedDecimal1Click(Sender: TObject);
     procedure SignedDecimal1Click(Sender: TObject);
@@ -173,7 +163,6 @@ type
     JTable: array [0..3,0..255] of LongInt;
     TabIndex: Integer;
     Overwrite: Boolean;
-    UseDropDown: Boolean;
     uCodeRows: Integer;
     NumOpcodes: Integer;
     NumJumpTables: Integer;
@@ -182,22 +171,19 @@ type
     CompleteJCond: Boolean;
     CompleteMemOps: Boolean;
     ClipBoardBuffer: TClipBoardBuffer;
-    LastDropDownField: TuCodeField;
     Base: Integer;
     ConstantHexWidth: Integer;
     procedure ShowGrid;
     procedure FillFixed;
     procedure SetOverwrite(Value: Boolean);
-    procedure SetUseDropDown(Value: Boolean);
     function EnterField(uAR: Integer; Field: TuCodeField; S: string): Boolean;
-    procedure DisplayField(uAR: Integer; Field: TuCodeField; InitialValue: Boolean);
-    procedure InitializeDropBoxes;
+    procedure DisplayField(uAR: Integer; Field: TuCodeField);
+    procedure InitializePickLists;
     function ColToField(Col: Integer): TuCodeField;
     function FieldToCol(Field: TuCodeField): Integer;
     procedure InsertLines(StartRow: Integer; NumLines: Integer);
     procedure DeleteLines(StartRow: Integer; NumLines: Integer);
     procedure ClearLines(StartRow: Integer; StopRow: Integer);
-    function FieldToDrop(Field: TuCodeField): TListBox;
     procedure UpdateBaseMenu;
     procedure ShowConstants;
     procedure ShowSingleConstant(Col,uAR: Integer);
@@ -322,11 +308,6 @@ begin
   Action:=caHide
 end;
 
-procedure TMicroCode.DropDownBoxChange(Sender: TObject);
-begin
-  SetUseDropDown(DropDownBox.ItemIndex=0);
-end;
-
 destructor TMicroCode.Destroy;
 begin
   ClipBoardBuffer.Free;
@@ -367,18 +348,14 @@ begin
   SetOverwrite(true);
   Base:=2;
   UpdateBaseMenu;
-  Status3.Caption:='';
-  InitializeDropBoxes;
-  SetUseDropDown(true);
+  InitializePickLists;
   ClearMicroCode;
   Notebook1.ActivePage:=Page1;
 end;
 
-procedure TMicroCode.InitializeDropBoxes;
+procedure TMicroCode.InitializePickLists;
 var
   i: Integer;
-  f: TuCodeField;
-  DropBox: TListBox;
 begin
   if ConfigForm.CompleteALU.Checked then
   begin
@@ -393,71 +370,46 @@ begin
   end;
   if CompleteExtend then
   begin
-    DropIR.Items.Insert(1,'Byte');
-    DropIR.Items.Insert(2,'Half')
+    Grid1.Columns[FieldToCol(ufIRSize)].PickList.Insert(1,'Byte');
+    Grid1.Columns[FieldToCol(ufIRSize)].PickList.Insert(2,'Half')
   end;
   if not CompleteJCond then
   begin
-    DropJCond.Items.Delete(7);
-    DropJCond.Items.Delete(6);
-    DropJCond.Items.Delete(5);
-    DropJCond.Items.Delete(3)
+    Grid1.Columns[FieldToCol(ufJCond)].PickList.Delete(7);
+    Grid1.Columns[FieldToCol(ufJCond)].PickList.Delete(6);
+    Grid1.Columns[FieldToCol(ufJCond)].PickList.Delete(5);
+    Grid1.Columns[FieldToCol(ufJCond)].PickList.Delete(3)
   end;
   for i:=1 to NumJumpTables do
-    DropJCond.Items.add('Jump'+IntToStr(i));
+    Grid1.Columns[FieldToCol(ufJCond)].PickList.add('Jump'+IntToStr(i));
   if not CompleteMemOps then
   begin
-    Dropmem.Items.Delete(5);
-    Dropmem.Items.Delete(4);
-    Dropmem.Items.Delete(2);
-    Dropmem.Items.Delete(1)
+    Grid1.Columns[FieldToCol(ufMem)].PickList.Delete(5);
+    Grid1.Columns[FieldToCol(ufMem)].PickList.Delete(4);
+    Grid1.Columns[FieldToCol(ufMem)].PickList.Delete(2);
+    Grid1.Columns[FieldToCol(ufMem)].PickList.Delete(1)
   end;
   for i:=1 to 6 do
     if ConfigForm.RAF[i-1].Checked then
-      DropReg.Items.Add('RAF'+IntToStr(i));
+      Grid1.Columns[FieldToCol(ufReg)].PickList.Add('RAF'+IntToStr(i));
   for i:=1 to 6 do
     if ConfigForm.RBF[i-1].Checked then
-      DropReg.Items.Add('RBF'+IntToStr(i));
+      Grid1.Columns[FieldToCol(ufReg)].PickList.Add('RBF'+IntToStr(i));
   for i:=1 to 6 do
     if ConfigForm.WF[i-1].Checked then
-      DropReg.Items.Add('WF'+IntToStr(i));
+      Grid1.Columns[FieldToCol(ufReg)].PickList.Add('WF'+IntToStr(i));
   if ConfigForm.RAA.Checked then
-    DropReg.Items.Add('RAA');
+    Grid1.Columns[FieldToCol(ufReg)].PickList.Add('RAA');
   if ConfigForm.RBA.Checked then
-    DropReg.Items.Add('RBA');
+    Grid1.Columns[FieldToCol(ufReg)].PickList.Add('RBA');
   if ConfigForm.WA.Checked then
-    DropReg.Items.Add('WA');
-  for f:=ufReg to High(TuCodeField) do
-  begin
-    if f in [ufALU,ufS1,ufS2,ufDest] then
-      continue;
-    DropBox:=FieldToDrop(f);
-    DropBox.Height:=DropBox.ItemHeight*DropBox.Items.Count+5+DropBoxHeightFudge;
-  end
+    Grid1.Columns[FieldToCol(ufReg)].PickList.Add('WA');
 end;
 
 procedure TMicroCode.SetOverwrite(Value: Boolean);
 begin
   Overwrite:=Value;
   OverwriteBox.ItemIndex:=ord(not(Value));
-end;
-
-procedure TMicroCode.SetUseDropDown(Value: Boolean);
-begin
-  if (LastDropDownField>=ufReg) and
-     not(LastDropDownField in [ufALU,ufS1,ufS2,ufDest]) then
-    FieldToDrop(LastDropDownField).Visible:=false;
-  UseDropDown:=Value;
-  DropDownBox.ItemIndex:=ord(not Value);
-  if UseDropDown then
-    begin
-//      Grid1.Options:=Grid1.Options-[goEditing]
-    end
-  else
-    begin
-//      Grid1.Options:=Grid1.Options+[goEditing]
-    end;
-  Grid1.EditorMode:=not Value
 end;
 
 procedure TMicroCode.FormKeyDown(Sender: TObject; var Key: Word;
@@ -500,19 +452,8 @@ begin
 end;
 
 procedure TMicroCode.Grid1SelectEditor(Sender: TObject; aCol, aRow: Integer; var Editor: TWinControl);
-var
-  field: TuCodeField;
 begin
-  field:=ColToField(aCol);
-  if not(field in [ufALU,ufS1,ufS2,ufDest]) then
-    begin
-      if UseDropDown then
-        Editor:=Grid1.EditorByStyle(cbsNone);
-      exit;
-    end;
-  if not UseDropDown then
-    Editor:=Grid1.EditorByStyle(cbsAuto)
-  else
+  if Editor is TPickListCellEditor then
     TPickListCellEditor(Editor).AutoComplete:=true;
 end;
 
@@ -551,9 +492,6 @@ begin
     end;
   TabIndex:=NewTab;
   ShowGrid;
-  if (LastDropDownField>=ufReg) and
-     not(LastDropDownField in [ufALU,ufS1,ufS2,ufDest]) then
-    FieldToDrop(LastDropDownField).Visible:=false
 end;
 
 procedure TMicroCode.ShowGrid;
@@ -587,52 +525,12 @@ end;
 procedure TMicroCode.Grid1SelectCell(Sender: TObject; Col, Row: Longint;
   var CanSelect: Boolean);
 begin
-  if (LastDropDownField>=ufReg) and
-     not(LastDropDownField in [ufALU,ufS1,ufS2,ufDest]) then
-    FieldToDrop(LastDropDownField).Visible:=false;
   if Col=0 then
     CanSelect:=false
 end;
 
 procedure TMicroCode.Grid1Selection(Sender: TObject; Col, Row: Integer);
-var
-  T, uAR: Integer;
-  Field: TuCodeField;
-  DropBox: TListBox;
-  XFormGridDiff,
-  YFormGridDiff:  Integer;
 begin
-  Field:=ColToField(Col);
-  if UseDropDown and
-     (Field>=ufReg) and
-     not(Field in [ufALU,ufS1,ufS2,ufDest]) then
-  begin
-    LastDropDownField:=Field;
-    DropBox:=FieldToDrop(Field);
-    uAR:=Row-1;
-    if Field>=ufALU then
-      DropBox.ItemIndex:=MCode[uAR,Field]
-    else
-      DropBox.ItemIndex:=DropReg.Items.IndexOf(Grid1.Cells[Col,Row]);
-    DropBox.Width:=Grid1.CellRect(Col,Row).Right-Grid1.CellRect(Col,Row).Left+2;
-    XFormGridDiff:=(Grid1.ClientOrigin.X)-(ClientOrigin.X);
-    YFormGridDiff:=(Grid1.ClientOrigin.Y)-(ClientOrigin.Y);
-    DropBox.Left:=Grid1.CellRect(Col,Row).Left+XFormGridDiff;
-    T:=Grid1.CellRect(Col,Row).Top+YFormGridDiff;
-    if T+DropBox.Height>Grid1.Height+YFormGridDiff then
-      T:=Grid1.Height-DropBox.Height+YFormGridDiff;
-    if Top-YFormGridDiff<=Grid1.DefaultRowHeight then
-      T:=Grid1.DefaultRowHeight+1+YFormGridDiff;
-    DropBox.Top:=T;
-    DropBox.Visible:=true
-  end;
-  if not(Field in [ufALU,ufS1,ufS2,ufDest]) then
-    begin
-      uAR:=LastRow1-1;
-      Field:=ColToField(LastCol1);
-      EnterField(uAR,Field,Grid1.Cells[LastCol1,LastRow1]);
-      DisplayField(uAR,Field,false);
-    end;
   LastCol1:=Col;
   LastRow1:=Row
 end;
@@ -643,12 +541,10 @@ var
   Field: TuCodeField;
 begin
   Field:=ColToField(aCol);
-  if not(Field in [ufALU,ufS1,ufS2,ufDest]) then
-    exit;
   if EnterField(aRow-1,Field,NewValue) then
     begin
       NewValue:=OldValue;
-      Raise TMicroCodeEntryException.Create('Invalid ALU value entered');
+      Raise TMicroCodeEntryException.Create('Invalid value entered');
     end;
   if OldValue<>NewValue then
     SetModify;
@@ -716,7 +612,7 @@ begin
                  Result:=true
              end
            end;
-    ufALU..ufDest:
+    ufALU..ufMem:
       begin
         Items:=Grid1.Columns[FieldToCol(Field)].PickList;
         b:=Items.IndexOf(ReadIdentifier(S,p));
@@ -725,21 +621,15 @@ begin
         else
           MCode[uAR,Field]:=b;
       end;
-    succ(ufDest)..ufMem: begin
-                    Items:=FieldToDrop(Field).Items;
-                    b:=Items.IndexOf(ReadIdentifier(S,p));
-                    if b<0 then
-                      Result:=true
-                    else
-                      MCode[uAR,Field]:=b;
-                  end
+    else
+      Result:=true;
   end;
   SkipSpaces(S,p);
   if not EndLine(S,p) then
     Result:=true
 end;
 
-procedure TMicroCode.DisplayField(uAR: Integer; Field: TuCodeField; InitialValue: Boolean);
+procedure TMicroCode.DisplayField(uAR: Integer; Field: TuCodeField);
 var
   Regs: LongInt;
   RegField: string;
@@ -774,12 +664,10 @@ begin
              end;
              Grid1.Cells[Col,uAR+1]:=RegField
            end;
-    ufALU..ufDest:
-      if InitialValue then
-        begin
-          Grid1.Cells[Col,uAR+1]:=Grid1.Columns[Col].PickList[MCode[uAR,Field]];
-        end;
-    succ(ufDest)..ufMem: Grid1.Cells[Col,uAR+1]:=FieldToDrop(Field).Items[MCode[uAR,Field]]
+    ufALU..ufMem:
+      begin
+        Grid1.Cells[Col,uAR+1]:=Grid1.Columns[Col].PickList[MCode[uAR,Field]];
+      end;
   end;
 end;
 
@@ -893,55 +781,6 @@ begin
       MCode[Row-1,f]:=0
   end;
   SetModify
-end;
-
-function TMicroCode.FieldToDrop(Field: TuCodeField): TListBox;
-begin
-  case Field of
-    ufReg: Result:=DropReg;
-//    ufALU: Result:=DropALU;
-//    ufS1: Result:=DropS1;
-//    ufS2: Result:=DropS2;
-//    ufDest: Result:=DropDest;
-    ufMemAdr: Result:=DropMAdr;
-    ufMemDest: Result:=DropMDest;
-    ufIRSize: Result:=DropIR;
-    ufJCond: Result:=DropJCond;
-    ufMem: Result:=DropMem
-  else
-    raise Exception.Create('This field has no dropbox')
-  end
-end;
-
-procedure TMicroCode.DropDownClick(Sender: TObject);
-var
-  uAR: Integer;
-  DropBox: TListBox;
-  S, Val: string;
-begin
-  if LastDropDownField>=ufReg then
-  begin
-    uAR:=LastRow1-1;
-    DropBox:=FieldToDrop(LastDropDownField);
-    if LastDropDownField=ufReg then
-    begin
-      S:=DropReg.Items[DropReg.ItemIndex];
-      if (Length(S)=2) and (S[2]='A') then
-      begin
-        Val:='0';
-        if InputQuery('Read or Write Actual Register',
-           'Enter actual register number:',Val) then
-          S:=S+Val
-        else
-          S:='void'
-      end;
-      EnterField(uAR,ufReg,S)
-    end else
-      MCode[uAR,LastDropDownField]:=DropBox.ItemIndex;
-    DisplayField(uAR,LastDropDownField,false);
-    SetModify;
-    DropBox.Visible:=false
-  end
 end;
 
 procedure TMicroCode.UnsignedHexadecimal1Click(Sender: TObject);
@@ -1128,7 +967,7 @@ begin
       f:=ColToField(Col);
       if EnterField(Row-1,f,ReadUntilPipe(Line,p)) then
         Result:=true;
-      DisplayField(Row-1,f,true)
+      DisplayField(Row-1,f)
     end else
       break
   end

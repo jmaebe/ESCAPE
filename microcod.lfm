@@ -102,27 +102,65 @@ object MicroCode: TMicroCode
             Title.Caption = 'Dest'
           end        
           item
+            PickList.Strings = (
+              ''
+              'Word'
+            )
             Title.Caption = 'ExtIR'
           end        
           item
             Title.Caption = 'Const'
           end        
           item
+            PickList.Strings = (
+              ''
+              'True'
+              'EQ'
+              'NE'
+              'LT'
+              'GT'
+              'LE'
+              'GE'
+              'Mbusy'
+            )
             Title.Caption = 'JCond'
           end        
           item
             Title.Caption = 'Adr'
           end        
           item
+            PickList.Strings = (
+              ''
+              'RB'
+              'RH'
+              'RW'
+              'WB'
+              'WH'
+              'WW'
+            )
             Title.Caption = 'Mem'
           end        
           item
+            PickList.Strings = (
+              ''
+              'MAR'
+              'PC'
+            )
             Title.Caption = 'MAdr'
           end        
           item
+            PickList.Strings = (
+              ''
+              'MDR'
+              'IR'
+            )
             Title.Caption = 'MDest'
           end        
           item
+            PickList.Strings = (
+              ''
+              'RR'
+            )
             Title.Caption = 'Regs'
           end>
         DefaultRowHeight = 20
@@ -146,54 +184,16 @@ object MicroCode: TMicroCode
         OnSelectCell = Grid1SelectCell
         OnValidateEntry = Grid1ValidateEntry
       end
-      object Status1: TPanel
+      object Status2: TPanel
         AnchorSideLeft.Control = Grid1
         AnchorSideTop.Control = Grid1
         AnchorSideTop.Side = asrBottom
         Left = 8
         Height = 25
-        Top = 418
-        Width = 124
-        Alignment = taLeftJustify
-        BorderSpacing.Top = 4
-        BevelOuter = bvLowered
-        Caption = 'Status1'
-        ClientHeight = 25
-        ClientWidth = 124
-        Font.Color = clBlack
-        Font.Height = -11
-        Font.Name = 'Microsoft Sans Serif'
-        ParentFont = False
-        TabOrder = 1
-        object DropDownBox: TComboBox
-          Left = 1
-          Height = 17
-          Top = 1
-          Width = 122
-          Align = alClient
-          ItemHeight = 0
-          ItemIndex = 0
-          Items.Strings = (
-            'Dropdown mode'
-            'Edit mode'
-          )
-          OnChange = DropDownBoxChange
-          Style = csDropDownList
-          TabOrder = 0
-          Text = 'Dropdown mode'
-        end
-      end
-      object Status2: TPanel
-        AnchorSideLeft.Control = Status1
-        AnchorSideLeft.Side = asrBottom
-        AnchorSideTop.Control = Status1
-        AnchorSideTop.Side = asrCenter
-        Left = 132
-        Height = 25
-        Top = 418
+        Top = 422
         Width = 109
         Alignment = taLeftJustify
-        BorderSpacing.Top = 4
+        BorderSpacing.Top = 8
         BevelOuter = bvLowered
         Caption = 'Status2'
         ClientHeight = 25
@@ -202,7 +202,7 @@ object MicroCode: TMicroCode
         Font.Height = -11
         Font.Name = 'Microsoft Sans Serif'
         ParentFont = False
-        TabOrder = 2
+        TabOrder = 1
         object OverwriteBox: TComboBox
           Left = 1
           Height = 17
@@ -228,22 +228,21 @@ object MicroCode: TMicroCode
         AnchorSideTop.Side = asrCenter
         AnchorSideRight.Control = Grid1
         AnchorSideRight.Side = asrBottom
-        Left = 241
+        Left = 117
         Height = 25
-        Top = 418
-        Width = 701
+        Top = 422
+        Width = 825
         Alignment = taLeftJustify
         Anchors = [akTop, akLeft, akRight]
         AutoSize = True
         BorderSpacing.Top = 4
         BevelOuter = bvLowered
-        Caption = 'Status3'
         Constraints.MinHeight = 25
         Font.Color = clBlack
         Font.Height = -11
         Font.Name = 'Microsoft Sans Serif'
         ParentFont = False
-        TabOrder = 3
+        TabOrder = 2
       end
     end
     object Page2: TTabSheet
@@ -278,134 +277,6 @@ object MicroCode: TMicroCode
         OnSelectCell = Grid2SelectCell
       end
     end
-  end
-  object DropMem: TListBox
-    Left = 8
-    Height = 13
-    Top = 152
-    Width = 81
-    ClickOnSelChange = False
-    Font.Color = clBlack
-    Font.Height = -11
-    Font.Name = 'Microsoft Sans Serif'
-    Items.Strings = (
-      ''
-      'RB'
-      'RH'
-      'RW'
-      'WB'
-      'WH'
-      'WW'
-    )
-    ItemHeight = 18
-    OnClick = DropDownClick
-    ParentFont = False
-    TabOrder = 1
-    Visible = False
-  end
-  object DropMAdr: TListBox
-    Left = 8
-    Height = 13
-    Top = 176
-    Width = 81
-    ClickOnSelChange = False
-    Font.Color = clBlack
-    Font.Height = -11
-    Font.Name = 'Microsoft Sans Serif'
-    Items.Strings = (
-      ''
-      'MAR'
-      'PC'
-    )
-    ItemHeight = 18
-    OnClick = DropDownClick
-    ParentFont = False
-    TabOrder = 2
-    Visible = False
-  end
-  object DropIR: TListBox
-    Left = 104
-    Height = 13
-    Top = 176
-    Width = 89
-    ClickOnSelChange = False
-    Font.Color = clBlack
-    Font.Height = -11
-    Font.Name = 'Microsoft Sans Serif'
-    Items.Strings = (
-      ''
-      'Word'
-    )
-    ItemHeight = 18
-    OnClick = DropDownClick
-    ParentFont = False
-    TabOrder = 3
-    Visible = False
-  end
-  object DropJCond: TListBox
-    Left = 104
-    Height = 13
-    Top = 152
-    Width = 89
-    ClickOnSelChange = False
-    Font.Color = clBlack
-    Font.Height = -11
-    Font.Name = 'Microsoft Sans Serif'
-    Items.Strings = (
-      ''
-      'True'
-      'EQ'
-      'NE'
-      'LT'
-      'GT'
-      'LE'
-      'GE'
-      'Mbusy'
-    )
-    ItemHeight = 18
-    OnClick = DropDownClick
-    ParentFont = False
-    TabOrder = 4
-    Visible = False
-  end
-  object DropMDest: TListBox
-    Left = 104
-    Height = 13
-    Top = 128
-    Width = 89
-    ClickOnSelChange = False
-    Font.Color = clBlack
-    Font.Height = -11
-    Font.Name = 'Microsoft Sans Serif'
-    Items.Strings = (
-      ''
-      'MDR'
-      'IR'
-    )
-    ItemHeight = 18
-    OnClick = DropDownClick
-    ParentFont = False
-    TabOrder = 5
-    Visible = False
-  end
-  object DropReg: TListBox
-    Left = 104
-    Height = 13
-    Top = 224
-    Width = 89
-    ClickOnSelChange = False
-    Font.Color = clBlack
-    Font.Height = -11
-    Font.Name = 'Microsoft Sans Serif'
-    Items.Strings = (
-      ''
-      'RR'
-    )
-    ItemHeight = 18
-    OnClick = DropDownClick
-    ParentFont = False
-    TabOrder = 6
-    Visible = False
   end
   object MainMenu1: TMainMenu
     object File1: TMenuItem
