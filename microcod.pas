@@ -40,6 +40,10 @@ type
   TuCodeField = (ufLabel, ufAdr, ufConst, ufReg, ufALU, ufS1, ufS2,
                  ufDest, ufMemAdr, ufMemDest, ufIRSize, ufJCond, ufMem);
 
+type
+  TMicroCodeEntryException = class(Exception)
+  end;
+
   { Don't confuse uLabel with the labels used by Disassemble in InstrMem.pas }
   TuLabel = class(TObject)
     uAR: LongInt;
@@ -65,7 +69,6 @@ type
     DropIR: TListBox;
     DropJCond: TListBox;
     DropMDest: TListBox;
-    DropALU: TListBox;
     File1: TMenuItem;
     SaveFileAs1: TMenuItem;
     SaveFile1: TMenuItem;
@@ -129,7 +132,11 @@ type
     procedure FormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure Grid1Resize(Sender: TObject);
+    procedure Grid1SelectEditor(Sender: TObject; aCol, aRow: Integer;
+      var Editor: TWinControl);
     procedure Grid1Selection(Sender: TObject; Col, Row: Integer);
+    procedure Grid1ValidateEntry(sender: TObject; aCol, aRow: Integer;
+      const OldValue: string; var NewValue: String);
     procedure Grid2Resize(Sender: TObject);
     procedure Grid2Selection(Sender: TObject; Col, Row: Integer);
     procedure Notebook1Changing(Sender: TObject; var AllowChange: Boolean);
@@ -186,7 +193,7 @@ type
     procedure SetOverwrite(Value: Boolean);
     procedure SetUseDropDown(Value: Boolean);
     function EnterField(uAR: Integer; Field: TuCodeField; S: string): Boolean;
-    procedure DisplayField(uAR: Integer; Field: TuCodeField);
+    procedure DisplayField(uAR: Integer; Field: TuCodeField; InitialValue: Boolean);
     procedure InitializeDropBoxes;
     function ColToField(Col: Integer): TuCodeField;
     function FieldToCol(Field: TuCodeField): Integer;
@@ -378,8 +385,8 @@ var
 begin
   if ConfigForm.CompleteALU.Checked then
   begin
-    DropALU.Items.Add(ALUOperation[MULT]);
-    DropALU.Items.Add(ALUOperation[DIVI])
+    Grid1.Columns[FieldToCol(ufALU)].PickList.Add(ALUOperation[MULT]);
+    Grid1.Columns[FieldToCol(ufALU)].PickList.Add(ALUOperation[DIVI]);
   end;
   for i:=0 to ConfigForm.NumTemps-1 do
   begin
@@ -425,6 +432,8 @@ begin
     DropReg.Items.Add('WA');
   for f:=ufReg to High(TuCodeField) do
   begin
+    if f=ufALU then
+      continue;
     DropBox:=FieldToDrop(f);
     DropBox.Height:=DropBox.ItemHeight*DropBox.Items.Count+5+DropBoxHeightFudge;
   end
@@ -438,17 +447,18 @@ end;
 
 procedure TMicroCode.SetUseDropDown(Value: Boolean);
 begin
-  if LastDropDownField>=ufReg then
+  if (LastDropDownField>=ufReg) and
+     not(LastDropDownField in [ufALU]) then
     FieldToDrop(LastDropDownField).Visible:=false;
   UseDropDown:=Value;
   DropDownBox.ItemIndex:=ord(not Value);
   if UseDropDown then
     begin
-      Grid1.Options:=Grid1.Options-[goEditing]
+//      Grid1.Options:=Grid1.Options-[goEditing]
     end
   else
     begin
-      Grid1.Options:=Grid1.Options+[goEditing]
+//      Grid1.Options:=Grid1.Options+[goEditing]
     end;
   Grid1.EditorMode:=not Value
 end;
@@ -492,6 +502,23 @@ begin
   Grid1.ColWidths[13]:=Grid1.ClientWidth-Grid1.CellRect(13,0).Left-1;
 end;
 
+procedure TMicroCode.Grid1SelectEditor(Sender: TObject; aCol, aRow: Integer; var Editor: TWinControl);
+var
+  field: TuCodeField;
+begin
+  field:=ColToField(aCol);
+  if not(field in [ufALU]) then
+    begin
+      if UseDropDown then
+        Editor:=Grid1.EditorByStyle(cbsNone);
+      exit;
+    end;
+  if not UseDropDown then
+    Editor:=Grid1.EditorByStyle(cbsAuto)
+  else
+    TPickListCellEditor(Editor).AutoComplete:=true;
+end;
+
 procedure TMicroCode.Grid2Resize(Sender: TObject);
 var
   i: Integer;
@@ -527,7 +554,8 @@ begin
     end;
   TabIndex:=NewTab;
   ShowGrid;
-  if LastDropDownField>=ufReg then
+  if (LastDropDownField>=ufReg) and
+     not(LastDropDownField in [ufALU]) then
     FieldToDrop(LastDropDownField).Visible:=false
 end;
 
@@ -562,7 +590,8 @@ end;
 procedure TMicroCode.Grid1SelectCell(Sender: TObject; Col, Row: Longint;
   var CanSelect: Boolean);
 begin
-  if LastDropDownField>=ufReg then
+  if (LastDropDownField>=ufReg) and
+     not(LastDropDownField in [ufALU]) then
     FieldToDrop(LastDropDownField).Visible:=false;
   if Col=0 then
     CanSelect:=false
@@ -577,7 +606,9 @@ var
   YFormGridDiff:  Integer;
 begin
   Field:=ColToField(Col);
-  if UseDropDown and (Field>=ufReg) then
+  if UseDropDown and
+     (Field>=ufReg) and
+     not(Field in [ufALU]) then
   begin
     LastDropDownField:=Field;
     DropBox:=FieldToDrop(Field);
@@ -598,12 +629,32 @@ begin
     DropBox.Top:=T;
     DropBox.Visible:=true
   end;
-  uAR:=LastRow1-1;
-  Field:=ColToField(LastCol1);
-  EnterField(uAR,Field,Grid1.Cells[LastCol1,LastRow1]);
-  DisplayField(uAR,Field);
+  if not(Field in [ufALU]) then
+    begin
+      uAR:=LastRow1-1;
+      Field:=ColToField(LastCol1);
+      EnterField(uAR,Field,Grid1.Cells[LastCol1,LastRow1]);
+      DisplayField(uAR,Field,false);
+    end;
   LastCol1:=Col;
   LastRow1:=Row
+end;
+
+procedure TMicroCode.Grid1ValidateEntry(sender: TObject; aCol, aRow: Integer;
+  const OldValue: string; var NewValue: String);
+var
+  Field: TuCodeField;
+begin
+  Field:=ColToField(aCol);
+  if not(Field in [ufALU]) then
+    exit;
+  if EnterField(aRow-1,Field,NewValue) then
+    begin
+      NewValue:=OldValue;
+      Raise TMicroCodeEntryException.Create('Invalid ALU value entered');
+    end;
+  if OldValue<>NewValue then
+    SetModify;
 end;
 
 function TMicroCode.EnterField(uAR: Integer; Field: TuCodeField; S: string): Boolean;
@@ -668,7 +719,16 @@ begin
                  Result:=true
              end
            end;
-    ufALU..ufMem: begin
+    ufALU:
+      begin
+        Items:=Grid1.Columns[FieldToCol(Field)].PickList;
+        b:=Items.IndexOf(ReadIdentifier(S,p));
+        if b<0 then
+          Result:=true
+        else
+          MCode[uAR,Field]:=b;
+      end;
+    succ(ufALU)..ufMem: begin
                     Items:=FieldToDrop(Field).Items;
                     b:=Items.IndexOf(ReadIdentifier(S,p));
                     if b<0 then
@@ -682,7 +742,7 @@ begin
     Result:=true
 end;
 
-procedure TMicroCode.DisplayField(uAR: Integer; Field: TuCodeField);
+procedure TMicroCode.DisplayField(uAR: Integer; Field: TuCodeField; InitialValue: Boolean);
 var
   Regs: LongInt;
   RegField: string;
@@ -717,7 +777,12 @@ begin
              end;
              Grid1.Cells[Col,uAR+1]:=RegField
            end;
-    ufALU..ufMem: Grid1.Cells[Col,uAR+1]:=FieldToDrop(Field).Items[MCode[uAR,Field]]
+    ufALU:
+      if InitialValue then
+        begin
+          Grid1.Cells[Col,uAR+1]:=Grid1.Columns[Col].PickList[MCode[uAR,Field]];
+        end;
+    succ(ufALU)..ufMem: Grid1.Cells[Col,uAR+1]:=FieldToDrop(Field).Items[MCode[uAR,Field]]
   end;
 end;
 
@@ -837,7 +902,7 @@ function TMicroCode.FieldToDrop(Field: TuCodeField): TListBox;
 begin
   case Field of
     ufReg: Result:=DropReg;
-    ufALU: Result:=DropALU;
+//    ufALU: Result:=DropALU;
     ufS1: Result:=DropS1;
     ufS2: Result:=DropS2;
     ufDest: Result:=DropDest;
@@ -876,7 +941,7 @@ begin
       EnterField(uAR,ufReg,S)
     end else
       MCode[uAR,LastDropDownField]:=DropBox.ItemIndex;
-    DisplayField(uAR,LastDropDownField);
+    DisplayField(uAR,LastDropDownField,false);
     SetModify;
     DropBox.Visible:=false
   end
@@ -1066,7 +1131,7 @@ begin
       f:=ColToField(Col);
       if EnterField(Row-1,f,ReadUntilPipe(Line,p)) then
         Result:=true;
-      DisplayField(Row-1,f)
+      DisplayField(Row-1,f,true)
     end else
       break
   end

@@ -9,6 +9,7 @@ object MainForm: TMainForm
   ClientWidth = 628
   Font.Height = -13
   OnClose = FormClose
+  OnCreate = FormCreate
   Position = poScreenCenter
   LCLVersion = '1.0.9.0'
   Visible = True

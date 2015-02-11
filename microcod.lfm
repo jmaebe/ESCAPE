@@ -48,6 +48,22 @@ object MicroCode: TMicroCode
             Title.Caption = 'Label'
           end        
           item
+            ButtonStyle = cbsPickList
+            PickList.Strings = (
+              ''
+              'ADD'
+              'SUB'
+              'RSUB'
+              'AND'
+              'OR'
+              'XOR'
+              'SLL'
+              'SRL'
+              'SRA'
+              'S1'
+              'S2'
+              'S2S1'
+            )
             Title.Caption = 'ALU'
           end        
           item
@@ -99,8 +115,10 @@ object MicroCode: TMicroCode
         TitleFont.Name = 'Microsoft Sans Serif'
         OnKeyPress = Grid1KeyPress
         OnResize = Grid1Resize
+        OnSelectEditor = Grid1SelectEditor
         OnSelection = Grid1Selection
         OnSelectCell = Grid1SelectCell
+        OnValidateEntry = Grid1ValidateEntry
       end
       object Status1: TPanel
         AnchorSideLeft.Control = Grid1
@@ -422,38 +440,6 @@ object MicroCode: TMicroCode
     TabOrder = 8
     Visible = False
   end
-  object DropALU: TListBox
-    Left = 8
-    Height = 17
-    Top = 128
-    Width = 81
-    ClickOnSelChange = False
-    Font.Color = clBlack
-    Font.Height = -11
-    Font.Name = 'Microsoft Sans Serif'
-    Items.Strings = (
-      ''
-      'ADD'
-      'SUB'
-      'RSUB'
-      'AND'
-      'OR'
-      'XOR'
-      'SLL'
-      'SRL'
-      'SRA'
-      'S1'
-      'S2'
-      'S2S1'
-    )
-    ItemHeight = 16
-    OnClick = DropDownClick
-    ParentFont = False
-    ScrollWidth = 58
-    Style = lbOwnerDrawFixed
-    TabOrder = 9
-    Visible = False
-  end
   object DropReg: TListBox
     Left = 104
     Height = 13
@@ -471,7 +457,7 @@ object MicroCode: TMicroCode
     OnClick = DropDownClick
     ParentFont = False
     ScrollWidth = 66
-    TabOrder = 10
+    TabOrder = 9
     Visible = False
   end
   object MainMenu1: TMainMenu
