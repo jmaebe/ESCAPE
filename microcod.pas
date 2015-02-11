@@ -40,10 +40,6 @@ type
   TuCodeField = (ufLabel, ufAdr, ufConst, ufReg, ufALU, ufS1, ufS2,
                  ufDest, ufMemAdr, ufMemDest, ufIRSize, ufJCond, ufMem);
 
-type
-  TMicroCodeEntryException = class(Exception)
-  end;
-
   { Don't confuse uLabel with the labels used by Disassemble in InstrMem.pas }
   TuLabel = class(TObject)
     uAR: LongInt;
@@ -544,7 +540,7 @@ begin
   if EnterField(aRow-1,Field,NewValue) then
     begin
       NewValue:=OldValue;
-      Raise TMicroCodeEntryException.Create('Invalid value entered');
+      Raise EAbort.Create('Invalid value entered');
     end;
   if OldValue<>NewValue then
     SetModify;

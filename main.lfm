@@ -9,9 +9,8 @@ object MainForm: TMainForm
   ClientWidth = 628
   Font.Height = -13
   OnClose = FormClose
-  OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '1.0.9.0'
+  LCLVersion = '1.4.0.1'
   Visible = True
   object Label1: TLabel
     AnchorSideLeft.Side = asrCenter

@@ -47,12 +47,10 @@ type
     Memo2: TMemo;
     ProgramIcon: TImage;
     Label1: TLabel;
-    procedure FormCreate(Sender: TObject);
     procedure microClick(Sender: TObject);
     procedure PipeClick(Sender: TObject);
     procedure ConfigButtonClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure OnException(Sender: TObject; E: Exception);
   end;
 
 var
@@ -60,7 +58,7 @@ var
 
 implementation
 
-uses Micro, MicroCod,Pipe, Config;
+uses Micro, Pipe, Config;
 
 {$R *.lfm}
 
@@ -69,11 +67,6 @@ begin
   MainForm.Hide;
   Application.CreateForm(TMicroForm, MicroForm);
   MicroForm.Show
-end;
-
-procedure TMainForm.FormCreate(Sender: TObject);
-begin
-  Application.OnException:=OnException;
 end;
 
 procedure TMainForm.PipeClick(Sender: TObject);
@@ -97,12 +90,6 @@ begin
   else
     { User clicked on cancel }
     Action:=caNone
-end;
-
-procedure TMainForm.OnException(Sender: TObject; E: Exception);
-begin
-  if not(E is TMicroCodeEntryException) then
-    Application.ShowException(E);
 end;
 
 end.
