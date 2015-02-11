@@ -348,12 +348,16 @@ begin
   ConstantHexWidth:=(NumConstBits+3) div 4;
   Grid1.DefaultRowHeight:=MSSansSerif8Height+2+MSSansSerif8HeightGridRowFudge;
   Grid1.RowCount:=uCodeRows+1;
-  Grid2.RowCount:=NumOpCodes+1;
-  Grid2.ColCount:=NumJumpTables+1;
   Grid2.DefaultRowHeight:=MSSansSerif8Height+2+MSSansSerif8HeightGridRowFudge;
-  Grid2.Cells[0,0]:='Opcode';
+  Grid2.RowCount:=NumOpCodes+1;
+  { title row }
+  Grid2.FixedRows:=1;
+  { opcodes column }
+  with Grid2.Columns.Add do
+    Title.Caption:='Opcode';
   for i:=1 to NumJumpTables do
-    Grid2.Cells[i,0]:='Jump Table '+IntToStr(i);
+    with Grid2.Columns.Add do
+      Title.Caption:='Jump Table '+IntToStr(i);
   FillFixed;
   ShowGrid;
   SetOverwrite(true);
