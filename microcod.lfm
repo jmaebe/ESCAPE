@@ -40,6 +40,49 @@ object MicroCode: TMicroCode
         BorderSpacing.Left = 8
         BorderSpacing.Right = 8
         ColCount = 14
+        Columns = <        
+          item
+            Title.Caption = 'uAR'
+          end        
+          item
+            Title.Caption = 'Label'
+          end        
+          item
+            Title.Caption = 'ALU'
+          end        
+          item
+            Title.Caption = 'S1'
+          end        
+          item
+            Title.Caption = 'S2'
+          end        
+          item
+            Title.Caption = 'Dest'
+          end        
+          item
+            Title.Caption = 'ExtIR'
+          end        
+          item
+            Title.Caption = 'Const'
+          end        
+          item
+            Title.Caption = 'JCond'
+          end        
+          item
+            Title.Caption = 'Adr'
+          end        
+          item
+            Title.Caption = 'Mem'
+          end        
+          item
+            Title.Caption = 'MAdr'
+          end        
+          item
+            Title.Caption = 'MDest'
+          end        
+          item
+            Title.Caption = 'Regs'
+          end>
         DefaultRowHeight = 20
         FixedCols = 0
         Font.Color = clBlack
