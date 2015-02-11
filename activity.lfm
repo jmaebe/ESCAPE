@@ -4,7 +4,7 @@ object ActivityForm: TActivityForm
   Top = 246
   Width = 474
   Caption = 'Pipeline Activity Diagram'
-  ClientHeight = 288
+  ClientHeight = 308
   ClientWidth = 474
   Font.Color = clBlack
   Font.Height = -11
@@ -13,10 +13,10 @@ object ActivityForm: TActivityForm
   OnCreate = FormCreate
   PopupMenu = PopupMenu1
   Position = poScreenCenter
-  LCLVersion = '1.0.3.0'
+  LCLVersion = '1.4.0.1'
   object Grid: TStringGrid
     Left = 0
-    Height = 288
+    Height = 308
     Top = 0
     Width = 474
     Align = alClient

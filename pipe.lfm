@@ -1,13 +1,13 @@
 object PipeForm: TPipeForm
   Left = 0
   Height = 560
-  Top = 0
+  Top = 22
   Width = 900
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
   ActiveControl = LineBox4
   Caption = 'Pipelined Architecture'
-  ClientHeight = 540
+  ClientHeight = 560
   ClientWidth = 900
   Font.Color = clBlack
   Font.Height = -11
@@ -20,7 +20,7 @@ object PipeForm: TPipeForm
   OnResize = FormResize
   OnShow = FormResize
   PopupMenu = PopupMenu1
-  LCLVersion = '1.0.3.0'
+  LCLVersion = '1.4.0.1'
   Visible = True
   object Control: TGroupBox
     Left = 96
@@ -28,8 +28,8 @@ object PipeForm: TPipeForm
     Top = 288
     Width = 568
     Caption = 'Control Unit'
-    ClientHeight = 63
-    ClientWidth = 564
+    ClientHeight = 61
+    ClientWidth = 560
     Font.Color = clBlack
     Font.Height = -13
     Font.Style = [fsBold]
@@ -37,21 +37,21 @@ object PipeForm: TPipeForm
     TabOrder = 1
     object LineBox3: TLineBox
       Left = 0
-      Height = 63
+      Height = 61
       Top = 0
-      Width = 564
+      Width = 560
       Align = alClient
       BevelOuter = bvNone
-      ClientHeight = 63
-      ClientWidth = 564
+      ClientHeight = 61
+      ClientWidth = 560
       TabOrder = 0
       OnMouseDown = LineBox3MouseDown
       OnMouseUp = LineBox1MouseUp
       object IRLabel: TLabel
         Left = 2
-        Height = 15
+        Height = 12
         Top = 16
-        Width = 14
+        Width = 11
         Caption = 'IR'
         Font.Color = clBlack
         Font.Height = -11
@@ -62,9 +62,9 @@ object PipeForm: TPipeForm
       end
       object ST1Label: TLabel
         Left = 117
-        Height = 15
+        Height = 12
         Top = 48
-        Width = 25
+        Width = 20
         Caption = 'ST1'
         Font.Color = clBlack
         Font.Height = -11
@@ -75,9 +75,9 @@ object PipeForm: TPipeForm
       end
       object IR1Label: TLabel
         Left = 117
-        Height = 15
+        Height = 12
         Top = 16
-        Width = 21
+        Width = 17
         Caption = 'IR1'
         Font.Color = clBlack
         Font.Height = -11
@@ -88,9 +88,9 @@ object PipeForm: TPipeForm
       end
       object IR2Label: TLabel
         Left = 268
-        Height = 15
+        Height = 12
         Top = 16
-        Width = 21
+        Width = 17
         Caption = 'IR2'
         Font.Color = clBlack
         Font.Height = -11
@@ -101,9 +101,9 @@ object PipeForm: TPipeForm
       end
       object ST2Label: TLabel
         Left = 265
-        Height = 15
+        Height = 12
         Top = 48
-        Width = 25
+        Width = 20
         Caption = 'ST2'
         Font.Color = clBlack
         Font.Height = -11
@@ -114,9 +114,9 @@ object PipeForm: TPipeForm
       end
       object IR3Label: TLabel
         Left = 404
-        Height = 15
+        Height = 12
         Top = 16
-        Width = 21
+        Width = 17
         Caption = 'IR3'
         Font.Color = clBlack
         Font.Height = -11
@@ -127,9 +127,9 @@ object PipeForm: TPipeForm
       end
       object ST3Label: TLabel
         Left = 405
-        Height = 15
+        Height = 12
         Top = 48
-        Width = 25
+        Width = 20
         Caption = 'ST3'
         Font.Color = clBlack
         Font.Height = -11
@@ -164,7 +164,7 @@ object PipeForm: TPipeForm
       end
       object IR: TRegBox
         Left = 18
-        Height = 18
+        Height = 24
         Top = 3
         Width = 73
         Font.Color = clBlack
@@ -174,7 +174,7 @@ object PipeForm: TPipeForm
       end
       object IR1: TRegBox
         Left = 144
-        Height = 18
+        Height = 24
         Top = 3
         Width = 81
         Font.Color = clBlack
@@ -184,7 +184,7 @@ object PipeForm: TPipeForm
       end
       object ST1: TRegBox
         Left = 144
-        Height = 18
+        Height = 24
         Top = 39
         Width = 81
         Font.Color = clBlack
@@ -194,7 +194,7 @@ object PipeForm: TPipeForm
       end
       object IR2: TRegBox
         Left = 296
-        Height = 18
+        Height = 24
         Top = 3
         Width = 73
         Font.Color = clBlack
@@ -204,7 +204,7 @@ object PipeForm: TPipeForm
       end
       object ST2: TRegBox
         Left = 296
-        Height = 18
+        Height = 24
         Top = 39
         Width = 73
         Font.Color = clBlack
@@ -214,7 +214,7 @@ object PipeForm: TPipeForm
       end
       object ST3: TRegBox
         Left = 432
-        Height = 18
+        Height = 24
         Top = 39
         Width = 65
         Font.Color = clBlack
@@ -224,7 +224,7 @@ object PipeForm: TPipeForm
       end
       object IR3: TRegBox
         Left = 432
-        Height = 18
+        Height = 24
         Top = 3
         Width = 65
         Font.Color = clBlack
@@ -275,9 +275,9 @@ object PipeForm: TPipeForm
     end
     object ImemLabel1: TLabel
       Left = 10
-      Height = 18
+      Height = 16
       Top = 18
-      Width = 80
+      Width = 73
       Caption = 'Instruction'
       Font.Color = clBlack
       Font.Height = -13
@@ -287,9 +287,9 @@ object PipeForm: TPipeForm
     end
     object ImemLabel2: TLabel
       Left = 20
-      Height = 18
+      Height = 16
       Top = 35
-      Width = 61
+      Width = 54
       Caption = 'Memory'
       Font.Color = clBlack
       Font.Height = -13
@@ -319,8 +319,8 @@ object PipeForm: TPipeForm
     Top = 0
     Width = 656
     Caption = 'Datapath'
-    ClientHeight = 267
-    ClientWidth = 652
+    ClientHeight = 265
+    ClientWidth = 648
     Font.Color = clBlack
     Font.Height = -13
     Font.Style = [fsBold]
@@ -328,13 +328,13 @@ object PipeForm: TPipeForm
     TabOrder = 0
     object LineBox1: TLineBox
       Left = 0
-      Height = 267
+      Height = 265
       Top = 0
-      Width = 652
+      Width = 648
       Align = alClient
       BevelOuter = bvNone
-      ClientHeight = 267
-      ClientWidth = 652
+      ClientHeight = 265
+      ClientWidth = 648
       TabOrder = 0
       OnMouseDown = LineBox1MouseDown
       OnMouseUp = LineBox1MouseUp
@@ -347,9 +347,9 @@ object PipeForm: TPipeForm
       end
       object CondLabel: TLabel
         Left = 425
-        Height = 15
+        Height = 12
         Top = 0
-        Width = 36
+        Width = 32
         Alignment = taRightJustify
         Caption = 'COND'
         Font.Color = clBlack
@@ -399,9 +399,9 @@ object PipeForm: TPipeForm
       end
       object BLabel: TLabel
         Left = 235
-        Height = 15
+        Height = 12
         Top = 192
-        Width = 9
+        Width = 7
         Caption = 'B'
         Font.Color = clBlack
         Font.Height = -11
@@ -412,9 +412,9 @@ object PipeForm: TPipeForm
       end
       object ALabel: TLabel
         Left = 235
-        Height = 15
+        Height = 12
         Top = 136
-        Width = 10
+        Width = 7
         Caption = 'A'
         Font.Color = clBlack
         Font.Height = -11
@@ -450,9 +450,9 @@ object PipeForm: TPipeForm
       end
       object ALULabel: TLabel
         Left = 379
-        Height = 15
+        Height = 12
         Top = 224
-        Width = 27
+        Width = 24
         Caption = 'NOP'
         Font.Color = clBlack
         Font.Height = -11
@@ -463,9 +463,9 @@ object PipeForm: TPipeForm
       end
       object RES1Label: TLabel
         Left = 411
-        Height = 15
+        Height = 12
         Top = 168
-        Width = 33
+        Width = 29
         Caption = 'RES1'
         Font.Color = clBlack
         Font.Height = -11
@@ -476,9 +476,9 @@ object PipeForm: TPipeForm
       end
       object MARLabel: TLabel
         Left = 411
-        Height = 15
+        Height = 12
         Top = 96
-        Width = 30
+        Width = 24
         Caption = 'MAR'
         Font.Color = clBlack
         Font.Height = -11
@@ -489,9 +489,9 @@ object PipeForm: TPipeForm
       end
       object SMDRLabel: TLabel
         Left = 408
-        Height = 15
+        Height = 12
         Top = 48
-        Width = 38
+        Width = 32
         Caption = 'SMDR'
         Font.Color = clBlack
         Font.Height = -11
@@ -502,9 +502,9 @@ object PipeForm: TPipeForm
       end
       object PC1Label: TLabel
         Left = 236
-        Height = 15
+        Height = 12
         Top = 24
-        Width = 25
+        Width = 21
         Alignment = taRightJustify
         Caption = 'PC1'
         Font.Color = clBlack
@@ -516,9 +516,9 @@ object PipeForm: TPipeForm
       end
       object PCLabel: TLabel
         Left = 21
-        Height = 15
+        Height = 12
         Top = 24
-        Width = 17
+        Width = 15
         Caption = 'PC'
         Font.Color = clBlack
         Font.Height = -11
@@ -529,9 +529,9 @@ object PipeForm: TPipeForm
       end
       object LMDRLabel: TLabel
         Left = 523
-        Height = 15
+        Height = 12
         Top = 120
-        Width = 37
+        Width = 31
         Caption = 'LMDR'
         Font.Color = clBlack
         Font.Height = -11
@@ -542,9 +542,9 @@ object PipeForm: TPipeForm
       end
       object RES2Label: TLabel
         Left = 523
-        Height = 15
+        Height = 12
         Top = 168
-        Width = 33
+        Width = 29
         Caption = 'RES2'
         Font.Color = clBlack
         Font.Height = -11
@@ -578,9 +578,9 @@ object PipeForm: TPipeForm
       end
       object IncrLabel: TLabel
         Left = 26
-        Height = 24
+        Height = 22
         Top = 98
-        Width = 30
+        Width = 22
         Caption = '+4'
         Font.Color = clBlack
         Font.Height = -19
@@ -599,7 +599,7 @@ object PipeForm: TPipeForm
       end
       object PC: TRegBox
         Left = 18
-        Height = 18
+        Height = 24
         Top = 0
         Width = 61
         Font.Color = clBlack
@@ -609,7 +609,7 @@ object PipeForm: TPipeForm
       end
       object PC1: TRegBox
         Left = 236
-        Height = 18
+        Height = 24
         Top = 0
         Width = 61
         Font.Color = clBlack
@@ -619,7 +619,7 @@ object PipeForm: TPipeForm
       end
       object Cond: TRegBox
         Left = 436
-        Height = 18
+        Height = 24
         Top = 16
         Width = 14
         Font.Color = clBlack
@@ -639,7 +639,7 @@ object PipeForm: TPipeForm
       end
       object A: TRegBox
         Left = 244
-        Height = 18
+        Height = 24
         Top = 152
         Width = 61
         Font.Color = clBlack
@@ -649,7 +649,7 @@ object PipeForm: TPipeForm
       end
       object B: TRegBox
         Left = 244
-        Height = 18
+        Height = 24
         Top = 208
         Width = 61
         Font.Color = clBlack
@@ -659,7 +659,7 @@ object PipeForm: TPipeForm
       end
       object RES1: TRegBox
         Left = 412
-        Height = 18
+        Height = 24
         Top = 184
         Width = 61
         Font.Color = clBlack
@@ -669,7 +669,7 @@ object PipeForm: TPipeForm
       end
       object MAR: TRegBox
         Left = 412
-        Height = 18
+        Height = 24
         Top = 112
         Width = 61
         Font.Color = clBlack
@@ -679,7 +679,7 @@ object PipeForm: TPipeForm
       end
       object SMDR: TRegBox
         Left = 412
-        Height = 18
+        Height = 24
         Top = 64
         Width = 61
         Font.Color = clBlack
@@ -689,7 +689,7 @@ object PipeForm: TPipeForm
       end
       object LMDR: TRegBox
         Left = 524
-        Height = 18
+        Height = 24
         Top = 136
         Width = 61
         Font.Color = clBlack
@@ -699,7 +699,7 @@ object PipeForm: TPipeForm
       end
       object RES2: TRegBox
         Left = 524
-        Height = 18
+        Height = 24
         Top = 184
         Width = 61
         Font.Color = clBlack
@@ -738,9 +738,9 @@ object PipeForm: TPipeForm
       TabOrder = 0
       object Label18: TLabel
         Left = 256
-        Height = 15
+        Height = 12
         Top = 6
-        Width = 33
+        Width = 28
         Caption = 'Time:'
         Font.Color = clBlack
         Font.Height = -11
@@ -776,7 +776,7 @@ object PipeForm: TPipeForm
       end
       object Clock: TEditInteger
         Left = 256
-        Height = 23
+        Height = 22
         Top = 22
         Width = 81
         Font.Color = clBlack
@@ -804,9 +804,9 @@ object PipeForm: TPipeForm
       end
       object MultiCycleCheck: TCheckBox
         Left = 128
-        Height = 19
+        Height = 18
         Top = 2
-        Width = 108
+        Width = 92
         Caption = 'multiple cycles'
         Font.Color = clBlack
         Font.Height = -11
@@ -816,7 +816,7 @@ object PipeForm: TPipeForm
       end
       object MultiCycle: TSpinEdit
         Left = 128
-        Height = 23
+        Height = 16
         Top = 22
         Width = 73
         Font.Color = clBlack
@@ -869,9 +869,9 @@ object PipeForm: TPipeForm
     end
     object DmemLabel1: TLabel
       Left = 28
-      Height = 18
+      Height = 16
       Top = 27
-      Width = 36
+      Width = 31
       Alignment = taCenter
       Caption = 'Data'
       Font.Color = clBlack
@@ -882,9 +882,9 @@ object PipeForm: TPipeForm
     end
     object DmemLabel2: TLabel
       Left = 18
-      Height = 18
+      Height = 16
       Top = 43
-      Width = 61
+      Width = 54
       Caption = 'Memory'
       Font.Color = clBlack
       Font.Height = -13

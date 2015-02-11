@@ -16,12 +16,12 @@ object BreakForm: TBreakForm
   OnKeyDown = FormKeyDown
   OnResize = FormResize
   Position = poScreenCenter
-  LCLVersion = '0.9.29'
+  LCLVersion = '1.4.0.1'
   object Organisational: TGroupBox
     Left = 0
-    Height = 236
+    Height = 22
     Top = 0
-    Width = 240
+    Width = 8
     AutoSize = True
     Caption = 'Organisational Registers'
     Font.Color = clBlack
@@ -34,9 +34,9 @@ object BreakForm: TBreakForm
   object RegisterFile: TGroupBox
     AnchorSideLeft.Side = asrBottom
     Left = 256
-    Height = 236
+    Height = 22
     Top = 0
-    Width = 240
+    Width = 8
     AutoSize = True
     BorderSpacing.Left = 16
     BorderSpacing.Right = 8

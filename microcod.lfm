@@ -6,7 +6,7 @@ object MicroCode: TMicroCode
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
   Caption = 'MicroCode'
-  ClientHeight = 474
+  ClientHeight = 501
   ClientWidth = 966
   Font.Height = -13
   KeyPreview = True
@@ -15,10 +15,10 @@ object MicroCode: TMicroCode
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   Position = poScreenCenter
-  LCLVersion = '1.0.9.0'
+  LCLVersion = '1.4.0.1'
   object Notebook1: TPageControl
     Left = 8
-    Height = 460
+    Height = 487
     Top = 8
     Width = 950
     ActivePage = Page1
@@ -29,13 +29,13 @@ object MicroCode: TMicroCode
     OnChanging = Notebook1Changing
     object Page1: TTabSheet
       Caption = 'Microcode'
-      ClientHeight = 429
-      ClientWidth = 946
+      ClientHeight = 448
+      ClientWidth = 944
       object Grid1: TNewStringGrid
         Left = 8
-        Height = 387
+        Height = 406
         Top = 8
-        Width = 936
+        Width = 934
         Anchors = [akTop, akLeft, akRight, akBottom]
         BorderSpacing.Left = 8
         BorderSpacing.Right = 8
@@ -126,7 +126,7 @@ object MicroCode: TMicroCode
         AnchorSideTop.Side = asrBottom
         Left = 8
         Height = 25
-        Top = 399
+        Top = 418
         Width = 124
         Alignment = taLeftJustify
         BorderSpacing.Top = 4
@@ -141,7 +141,7 @@ object MicroCode: TMicroCode
         TabOrder = 1
         object DropDownBox: TComboBox
           Left = 1
-          Height = 23
+          Height = 17
           Top = 1
           Width = 122
           Align = alClient
@@ -164,7 +164,7 @@ object MicroCode: TMicroCode
         AnchorSideTop.Side = asrCenter
         Left = 132
         Height = 25
-        Top = 399
+        Top = 418
         Width = 109
         Alignment = taLeftJustify
         BorderSpacing.Top = 4
@@ -179,7 +179,7 @@ object MicroCode: TMicroCode
         TabOrder = 2
         object OverwriteBox: TComboBox
           Left = 1
-          Height = 23
+          Height = 17
           Top = 1
           Width = 107
           Align = alClient
@@ -204,8 +204,8 @@ object MicroCode: TMicroCode
         AnchorSideRight.Side = asrBottom
         Left = 241
         Height = 25
-        Top = 399
-        Width = 703
+        Top = 418
+        Width = 701
         Alignment = taLeftJustify
         Anchors = [akTop, akLeft, akRight]
         AutoSize = True
@@ -271,10 +271,9 @@ object MicroCode: TMicroCode
       'WH'
       'WW'
     )
-    ItemHeight = 20
+    ItemHeight = 18
     OnClick = DropDownClick
     ParentFont = False
-    ScrollWidth = 58
     TabOrder = 1
     Visible = False
   end
@@ -292,10 +291,9 @@ object MicroCode: TMicroCode
       'MAR'
       'PC'
     )
-    ItemHeight = 20
+    ItemHeight = 18
     OnClick = DropDownClick
     ParentFont = False
-    ScrollWidth = 58
     TabOrder = 2
     Visible = False
   end
@@ -317,10 +315,9 @@ object MicroCode: TMicroCode
       'MDR'
       'IR'
     )
-    ItemHeight = 20
+    ItemHeight = 18
     OnClick = DropDownClick
     ParentFont = False
-    ScrollWidth = 58
     TabOrder = 3
     Visible = False
   end
@@ -342,10 +339,9 @@ object MicroCode: TMicroCode
       'MDR'
       'IR'
     )
-    ItemHeight = 20
+    ItemHeight = 18
     OnClick = DropDownClick
     ParentFont = False
-    ScrollWidth = 58
     TabOrder = 4
     Visible = False
   end
@@ -365,10 +361,9 @@ object MicroCode: TMicroCode
       'MAR'
       'MDR'
     )
-    ItemHeight = 20
+    ItemHeight = 18
     OnClick = DropDownClick
     ParentFont = False
-    ScrollWidth = 66
     TabOrder = 5
     Visible = False
   end
@@ -385,10 +380,9 @@ object MicroCode: TMicroCode
       ''
       'Word'
     )
-    ItemHeight = 20
+    ItemHeight = 18
     OnClick = DropDownClick
     ParentFont = False
-    ScrollWidth = 66
     TabOrder = 6
     Visible = False
   end
@@ -412,10 +406,9 @@ object MicroCode: TMicroCode
       'GE'
       'Mbusy'
     )
-    ItemHeight = 20
+    ItemHeight = 18
     OnClick = DropDownClick
     ParentFont = False
-    ScrollWidth = 66
     TabOrder = 7
     Visible = False
   end
@@ -433,10 +426,9 @@ object MicroCode: TMicroCode
       'MDR'
       'IR'
     )
-    ItemHeight = 20
+    ItemHeight = 18
     OnClick = DropDownClick
     ParentFont = False
-    ScrollWidth = 66
     TabOrder = 8
     Visible = False
   end
@@ -453,10 +445,9 @@ object MicroCode: TMicroCode
       ''
       'RR'
     )
-    ItemHeight = 20
+    ItemHeight = 18
     OnClick = DropDownClick
     ParentFont = False
-    ScrollWidth = 66
     TabOrder = 9
     Visible = False
   end

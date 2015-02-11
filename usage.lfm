@@ -4,17 +4,17 @@ object UsageForm: TUsageForm
   Top = 273
   Width = 552
   Caption = 'Pipeline Usage Diagram'
-  ClientHeight = 234
+  ClientHeight = 254
   ClientWidth = 552
   Font.Height = -13
   Menu = MainMenu1
   OnCreate = FormCreate
   PopupMenu = PopupMenu1
   Position = poScreenCenter
-  LCLVersion = '1.0.3.0'
+  LCLVersion = '1.4.0.1'
   object Grid: TStringGrid
     Left = 0
-    Height = 218
+    Height = 238
     Top = 0
     Width = 552
     Anchors = [akTop, akLeft, akRight, akBottom]
