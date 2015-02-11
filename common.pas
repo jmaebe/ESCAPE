@@ -842,9 +842,11 @@ function TMemoryInterface.CheckAddress(Address: LongInt; GroupSize: Integer): TE
 begin
   Result:=[];
   if ((CType in [ctData,ctBoth]) and
-      (Address>=ConfigForm.DmemSize.Value)) or
-     ((CType = ctCode) and
-      (Address>=ConfigForm.ImemSize.Value)) then
+      ((Address<0) or
+       (Address>=ConfigForm.DmemSize.Value))) or
+     ((CType=ctCode) and
+      ((Address<0) or
+       (Address>=ConfigForm.ImemSize.Value))) then
     Result:=[erOutOfRange];
   if (Address and (1 shl GroupSize -1))<>0 then
     Result:=[erNotAligned];
