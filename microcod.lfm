@@ -67,6 +67,16 @@ object MicroCode: TMicroCode
             Title.Caption = 'ALU'
           end        
           item
+            ButtonStyle = cbsPickList
+            PickList.Strings = (
+              ''
+              'A'
+              'Const'
+              'PC'
+              'MAR'
+              'MDR'
+              'IR'
+            )
             Title.Caption = 'S1'
           end        
           item
@@ -321,30 +331,6 @@ object MicroCode: TMicroCode
     TabOrder = 3
     Visible = False
   end
-  object DropS1: TListBox
-    Left = 8
-    Height = 13
-    Top = 224
-    Width = 81
-    ClickOnSelChange = False
-    Font.Color = clBlack
-    Font.Height = -11
-    Font.Name = 'Microsoft Sans Serif'
-    Items.Strings = (
-      ''
-      'A'
-      'Const'
-      'PC'
-      'MAR'
-      'MDR'
-      'IR'
-    )
-    ItemHeight = 18
-    OnClick = DropDownClick
-    ParentFont = False
-    TabOrder = 4
-    Visible = False
-  end
   object DropDest: TListBox
     Left = 104
     Height = 13
@@ -364,7 +350,7 @@ object MicroCode: TMicroCode
     ItemHeight = 18
     OnClick = DropDownClick
     ParentFont = False
-    TabOrder = 5
+    TabOrder = 4
     Visible = False
   end
   object DropIR: TListBox
@@ -383,7 +369,7 @@ object MicroCode: TMicroCode
     ItemHeight = 18
     OnClick = DropDownClick
     ParentFont = False
-    TabOrder = 6
+    TabOrder = 5
     Visible = False
   end
   object DropJCond: TListBox
@@ -409,7 +395,7 @@ object MicroCode: TMicroCode
     ItemHeight = 18
     OnClick = DropDownClick
     ParentFont = False
-    TabOrder = 7
+    TabOrder = 6
     Visible = False
   end
   object DropMDest: TListBox
@@ -429,7 +415,7 @@ object MicroCode: TMicroCode
     ItemHeight = 18
     OnClick = DropDownClick
     ParentFont = False
-    TabOrder = 8
+    TabOrder = 7
     Visible = False
   end
   object DropReg: TListBox
@@ -448,7 +434,7 @@ object MicroCode: TMicroCode
     ItemHeight = 18
     OnClick = DropDownClick
     ParentFont = False
-    TabOrder = 9
+    TabOrder = 8
     Visible = False
   end
   object MainMenu1: TMainMenu

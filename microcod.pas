@@ -64,7 +64,6 @@ type
     DropMem: TListBox;
     DropMAdr: TListBox;
     DropS2: TListBox;
-    DropS1: TListBox;
     DropDest: TListBox;
     DropIR: TListBox;
     DropJCond: TListBox;
@@ -390,7 +389,7 @@ begin
   end;
   for i:=0 to ConfigForm.NumTemps-1 do
   begin
-    DropS1.Items.Add(ConfigForm.TmpNames.Cells[0,i]);
+    Grid1.Columns[FieldToCol(ufS1)].PickList.Add(ConfigForm.TmpNames.Cells[0,i]);
     DropS2.Items.Add(ConfigForm.TmpNames.Cells[0,i]);
     DropDest.Items.Add(ConfigForm.TmpNames.Cells[0,i])
   end;
@@ -432,7 +431,7 @@ begin
     DropReg.Items.Add('WA');
   for f:=ufReg to High(TuCodeField) do
   begin
-    if f=ufALU then
+    if f in [ufALU,ufS1] then
       continue;
     DropBox:=FieldToDrop(f);
     DropBox.Height:=DropBox.ItemHeight*DropBox.Items.Count+5+DropBoxHeightFudge;
@@ -448,7 +447,7 @@ end;
 procedure TMicroCode.SetUseDropDown(Value: Boolean);
 begin
   if (LastDropDownField>=ufReg) and
-     not(LastDropDownField in [ufALU]) then
+     not(LastDropDownField in [ufALU,ufS1]) then
     FieldToDrop(LastDropDownField).Visible:=false;
   UseDropDown:=Value;
   DropDownBox.ItemIndex:=ord(not Value);
@@ -507,7 +506,7 @@ var
   field: TuCodeField;
 begin
   field:=ColToField(aCol);
-  if not(field in [ufALU]) then
+  if not(field in [ufALU,ufS1]) then
     begin
       if UseDropDown then
         Editor:=Grid1.EditorByStyle(cbsNone);
@@ -555,7 +554,7 @@ begin
   TabIndex:=NewTab;
   ShowGrid;
   if (LastDropDownField>=ufReg) and
-     not(LastDropDownField in [ufALU]) then
+     not(LastDropDownField in [ufALU,ufS1]) then
     FieldToDrop(LastDropDownField).Visible:=false
 end;
 
@@ -591,7 +590,7 @@ procedure TMicroCode.Grid1SelectCell(Sender: TObject; Col, Row: Longint;
   var CanSelect: Boolean);
 begin
   if (LastDropDownField>=ufReg) and
-     not(LastDropDownField in [ufALU]) then
+     not(LastDropDownField in [ufALU,ufS1]) then
     FieldToDrop(LastDropDownField).Visible:=false;
   if Col=0 then
     CanSelect:=false
@@ -608,7 +607,7 @@ begin
   Field:=ColToField(Col);
   if UseDropDown and
      (Field>=ufReg) and
-     not(Field in [ufALU]) then
+     not(Field in [ufALU,ufS1]) then
   begin
     LastDropDownField:=Field;
     DropBox:=FieldToDrop(Field);
@@ -629,7 +628,7 @@ begin
     DropBox.Top:=T;
     DropBox.Visible:=true
   end;
-  if not(Field in [ufALU]) then
+  if not(Field in [ufALU,ufS1]) then
     begin
       uAR:=LastRow1-1;
       Field:=ColToField(LastCol1);
@@ -646,7 +645,7 @@ var
   Field: TuCodeField;
 begin
   Field:=ColToField(aCol);
-  if not(Field in [ufALU]) then
+  if not(Field in [ufALU,ufS1]) then
     exit;
   if EnterField(aRow-1,Field,NewValue) then
     begin
@@ -719,7 +718,7 @@ begin
                  Result:=true
              end
            end;
-    ufALU:
+    ufALU..ufS1:
       begin
         Items:=Grid1.Columns[FieldToCol(Field)].PickList;
         b:=Items.IndexOf(ReadIdentifier(S,p));
@@ -728,7 +727,7 @@ begin
         else
           MCode[uAR,Field]:=b;
       end;
-    succ(ufALU)..ufMem: begin
+    succ(ufS1)..ufMem: begin
                     Items:=FieldToDrop(Field).Items;
                     b:=Items.IndexOf(ReadIdentifier(S,p));
                     if b<0 then
@@ -777,12 +776,12 @@ begin
              end;
              Grid1.Cells[Col,uAR+1]:=RegField
            end;
-    ufALU:
+    ufALU..ufS1:
       if InitialValue then
         begin
           Grid1.Cells[Col,uAR+1]:=Grid1.Columns[Col].PickList[MCode[uAR,Field]];
         end;
-    succ(ufALU)..ufMem: Grid1.Cells[Col,uAR+1]:=FieldToDrop(Field).Items[MCode[uAR,Field]]
+    succ(ufS1)..ufMem: Grid1.Cells[Col,uAR+1]:=FieldToDrop(Field).Items[MCode[uAR,Field]]
   end;
 end;
 
@@ -903,7 +902,7 @@ begin
   case Field of
     ufReg: Result:=DropReg;
 //    ufALU: Result:=DropALU;
-    ufS1: Result:=DropS1;
+//    ufS1: Result:=DropS1;
     ufS2: Result:=DropS2;
     ufDest: Result:=DropDest;
     ufMemAdr: Result:=DropMAdr;
