@@ -1949,7 +1949,8 @@ begin
   MaxClock:=0;
   Trace(0);
   Tracker.Reset;
-  RewindButton.Enabled:=(Tracker.Rewindable and RewindCheck.Checked)
+  RewindButton.Enabled:=(Tracker.Rewindable and RewindCheck.Checked);
+  SimError:=[];
 end;
 
 procedure TSimulator.ResetClick;
