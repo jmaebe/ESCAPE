@@ -1,8 +1,34 @@
+Introduction
+============
+
+ESCAPE is an interactive portable PC-based simulation environment addressing
+architectural issues such as microprogramming and pipelined execution. The main
+goal is to present students with an easy-to-understand custom-made architecture
+that allows them to become familiar with the basic concepts of computer
+architecture, without being overwhelmed by the complexity of realistic
+microprocessor architectures.
+
+ESCAPE was developed by Peter Verplaetse and Jan Van Campenhout at the
+Electronics and Information Systems (ELIS) department at the University of
+Ghent (http://www.elis.ugent.be). It was ported from Delphi to the Free Pascal
+Compiler and Lazarus by Jonas Maebe from the same department.
+ 
+ESCAPE was first presented at the Workshop on Computer Architecture Education
+(WCAE) held in June 1998 in cojunction with ISCA-25 at Barcelona, Spain. A brief
+paper on this topic also appeared in a special issue on Computer Architecture
+Education of the IEEE Computer Society Technical Committee on Computer
+Architecture (TCCA) Newsletter.
+
+Older versions of ESCAPE, papers about ESCAPE and files necessary for the
+example exercises mentioned in the papers can be downloaded from
+http://users.elis.ugent.be/escape/download.html#papers
+
+
 Prerequisites
 =============
 
-Free Pascal Compiler 2.6.4 or newer: http://www.freepascal.org/download.var
-Lazarus IDE 1.4.2 or newer: http://www.lazarus.freepascal.org
+* Free Pascal Compiler 2.6.4 or newer: http://www.freepascal.org/download.var
+* Lazarus IDE 1.4.2 or newer: http://www.lazarus.freepascal.org
 
 
 Supported platforms
