@@ -9,9 +9,9 @@ computer architecture, without being overwhelmed by the complexity of realistic
 microprocessor architectures.
 
 ESCAPE was developed by Peter Verplaetse and Jan Van Campenhout at the
-Electronics and Information Systems (ELIS) department at the University of
-Ghent (http://www.elis.ugent.be). It was ported from Delphi to the Free Pascal
-Compiler and Lazarus by Jonas Maebe from the same department.
+Electronics and Information Systems (ELIS) department at Ghent University
+(http://www.elis.ugent.be). It was ported from Delphi to the Free Pascal
+Compiler and Lazarus by Jonas Maebe at the same department.
  
 ESCAPE was first presented at the Workshop on Computer Architecture Education
 (WCAE) held in June 1998 in cojunction with ISCA-25 at Barcelona, Spain. A brief
