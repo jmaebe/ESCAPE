@@ -38,7 +38,7 @@ begin
   Tracker:=TTrackBuffer.Create;
   FileIO:=TFileIO.Create;
   { Create forms and start application }
-  Application.Title:='Escape v1.2.5a';
+  Application.Title:='Escape v1.2.6';
   Application.Initialize;
   Application.CreateForm(TMainForm, MainForm);
   Application.CreateForm(TConfigForm, ConfigForm);
