@@ -378,7 +378,8 @@ begin
       Font.Style:=[];
       ParentFont:=False;
       ReadOnly:=True;
-      Width:=W
+      Width:=W;
+      Height:=18
     end;
     LineBox2.InsertControl(Tmp[i]);
     TmpLabel[i]:=TLabel.Create(LineBox2);
