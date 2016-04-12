@@ -430,7 +430,11 @@ var
 begin
   { Size Datapath Panel }
   Datapath.Height:=ClientHeight-16;
-  Y:=340+NumTemps*32;
+  if NumTemps>0 then
+    TempHeight:=32
+  else
+    TempHeight:=0;
+  Y:=340+NumTemps*TempHeight;
   if Y<392 then
     Y:=392;
   if ClientHeight-16<Y then
@@ -444,11 +448,7 @@ begin
     Datapath.Width:=357;
   LineBox3.Height:=Datapath.Height-20;
   { Size Register File }
-  if NumTemps>0 then
-    TempHeight:=Tmp[0].Height*NumTemps
-  else
-    TempHeight:=0;
-  RegFile.Height:=Datapath.Height-TempHeight-8-340+124;
+  RegFile.Height:=Datapath.Height-TempHeight*NumTemps-8-340+124;
   RegFile.Width:=15*Courier9Width+Datapath.Width-365;
   { Show Register File }
   if MSimulator<>nil then
@@ -458,11 +458,11 @@ begin
   X:=RegFile.Left+(RegFile.Width-Courier9Width*8+12) div 2;
   for i:=0 to NumTemps-1 do
   begin
-    Tmp[i].Top:=RegFile.Top+RegFile.Height+32*i+12;
+    Tmp[i].Top:=RegFile.Top+RegFile.Height+TempHeight*i+12;
     Tmp[i].Left:=X;
   end;
   PC.Left:=X;
-  PC.Top:=RegFile.Top+RegFile.Height+32*NumTemps+12;
+  PC.Top:=RegFile.Top+RegFile.Height+TempHeight*NumTemps+12;
   MAR.Left:=X;
   MAR.Top:=PC.Top+32;
   MDR.Left:=X;
